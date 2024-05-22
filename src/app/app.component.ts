@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { HeaderComponent } from './Components/header/header.component';
 import { BodyComponent } from './Components/body/body.component';
 
+
 @Component({
   selector: 'app-root',
   standalone: true,

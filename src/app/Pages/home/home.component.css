@@ -1,0 +1,31 @@
+h1{
+    font-size: 30px;
+    color: white;
+    padding-left: 3%;
+}
+
+.main-section {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin: 0 auto;
+    max-width: 1200px;
+    padding: 30px;
+}
+
+.gallery-item {
+    flex-basis: calc(33.333% - 20px);
+    margin: 0 10px 20px;
+    overflow: hidden;
+    position: relative;
+    transition: transform .3s ease-in-out;
+}
+
+.gallery-item:hover {
+    transform: scale(1.05);
+}
+
+.gallery-item img {
+    display: block;
+    max-width: 100%;
+}
