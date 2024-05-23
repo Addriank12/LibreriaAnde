@@ -9,4 +9,13 @@ import { Component } from '@angular/core';
 })
 export class LoginComponent {
 
+  ngOnInit() {
+    document.body.classList.add('login-page');
+  }
+
+  ngOnDestroy() {
+    document.body.classList.remove('login-page');
+  }
+
+
 }

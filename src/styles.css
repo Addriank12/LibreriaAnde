@@ -10,3 +10,8 @@ body{
     font-family: 'Open Sans', sans-serif;
     color: #fff;
 }
+
+body.login-page {
+    --background-color: #fff;
+    /* otros estilos aquí */
+}
