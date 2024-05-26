@@ -1,31 +1,69 @@
-h1{
-    font-size: 30px;
-    color: white;
-    padding-left: 3%;
+/* Estilos generales */
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif, sans-serif;
+  margin: 5%;
+  padding: 0;
+  background-color: #f9f9f9df;
+  color: #333;
+  border-radius: 30px; 
 }
 
-.main-section {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    margin: 0 auto;
-    max-width: 1200px;
-    padding: 30px;
+header h1 {
+  padding-left: 2%;
+  font-size: 2.5em;
+  margin-left: 50px;
 }
 
-.gallery-item {
-    flex-basis: calc(33.333% - 20px);
-    margin: 0 10px 20px;
-    overflow: hidden;
-    position: relative;
-    transition: transform .3s ease-in-out;
+/* Estilos para la sección de información de libros */
+.infoLibros {
+  padding: 20px;
+  text-align: center;
 }
 
-.gallery-item:hover {
-    transform: scale(1.05);
+.infoLibros h2 {
+  font-size: 2em;
+  margin-bottom: 10px;
 }
 
-.gallery-item img {
-    display: block;
-    max-width: 100%;
+.infoLibros p {
+  font-size: 1.2em;
+  margin-bottom: 20px;
 }
+
+/* Estilos para la galería */
+.gallery {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  gap: 20px;
+  padding: 20px;
+}
+
+/* Estilos para cada contenedor de imagen */
+.divImg {
+  width: 150px;
+  text-align: center;
+  background-color: white;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s;
+}
+
+.divImg:hover {
+  transform: scale(1.05);
+}
+
+.divImg img {
+  width: 100%;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+}
+
+.divImg p {
+  margin: 10px 0;
+  font-size: 14px;
+  color: #333;
+}
+
+
