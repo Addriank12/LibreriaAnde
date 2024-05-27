@@ -31,7 +31,7 @@ export class AuthenticationComponent {
         throw new Error('El nombre de usuario no puede estar vacio')
       }        
       await this.asuthService.SingUpWithEmailAndPassword(this.credential, this.userName);
-      this.asuthService.setUserName(this.userName);
+      this.login;
     }
     catch(error: any){
       this.error = error.toString();
