@@ -1,0 +1,74 @@
+*{
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif, sans-serif;
+    margin: 2%;
+    padding: 0;
+}
+
+
+.locations {
+    padding: 50px 20px;
+    background-color: #ffffffda;
+    text-align: center;
+}
+
+h2 {
+    margin-left: 50px;
+    padding-left: 2%;
+    font-size: 2.5em;
+    margin-bottom: 30px;
+    color: #ffffff;
+    letter-spacing: 2px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif, sans-serif;
+}
+
+.location-container {
+    display: flex;
+    justify-content: center; /* Centramos los elementos */
+    align-items: flex-start;
+    gap: 40px;
+    flex-wrap: wrap;
+}
+
+.mapa {
+    flex: 1; /* Hace que el mapa tome todo el espacio disponible */
+    margin-right: 40px; /* Añade margen a la derecha para desplazar el mapa */
+}
+
+.mapa iframe {
+    width: 100%;
+    height: 500px; /* Incrementamos la altura del mapa */
+    border: 0;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.direcciones {
+    max-width: 400px;
+    text-align: left;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.direcciones ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.direcciones li {
+    margin-bottom: 15px;
+    font-size: 1.1em;
+    color: #555;
+    padding-left: 20px;
+    position: relative;
+}
+
+.direcciones li::before {
+    content: "\f041"; /* FontAwesome location icon (assuming you're using FontAwesome) */
+    font-family: "FontAwesome";
+    position: absolute;
+    left: 0;
+    color: #4CAF50;
+    font-size: 1.2em;
+}
