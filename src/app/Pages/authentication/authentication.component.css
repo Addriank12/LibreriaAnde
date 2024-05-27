@@ -2,6 +2,15 @@ div{
     display: grid;
     grid-template-columns: 1fr 1fr;
     align-items: center;
+    height: 100px;
+}
+
+h1{
+    max-width: 300px;
+    font-size: 4em;
+    font-weight: lighter;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 form{
@@ -36,10 +45,12 @@ button{
     cursor: pointer;
 }
 
-h1{
-    max-width: 300px;
-    font-size: 4em;
-    font-weight: lighter;
-    margin-left: auto;
-    margin-right: auto;
+#lblButton{
+    text-decoration: underline;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+#lblButton:hover{
+    color: #0066B8;
 }

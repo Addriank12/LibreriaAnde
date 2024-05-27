@@ -3,7 +3,7 @@ import { HomeComponent } from './Pages/home/home.component';
 import { ShopComponent } from './Pages/shop/shop.component';
 import { LocationsComponent } from './Pages/locations/locations.component';
 import { AboutItComponent } from './Pages/about-it/about-it.component';
-import { LoginComponent } from './Pages/login/login.component';
+import { AuthenticationComponent } from './Pages/authentication/authentication.component';
 
 
 export const routes: Routes = [
@@ -12,7 +12,7 @@ export const routes: Routes = [
     { path: 'shop', component: ShopComponent },
     { path: 'locations', component: LocationsComponent },
     { path: 'aboutIt', component: AboutItComponent },
-    { path: 'login', component: LoginComponent }
+    { path: 'login', component: AuthenticationComponent }
 ];
 
 

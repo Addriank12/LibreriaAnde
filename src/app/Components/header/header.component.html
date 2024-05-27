@@ -8,8 +8,14 @@
             <li><a routerLink="aboutIt">Acerca De</a></li>
         </ul>
     </nav>
-    <div class="UserInfo">
-        <label>Marco Cajamarca</label>
-        <img/>
-    </div>
+    @if (authService.user.email != " ") {
+        <label routerLink="login">Iniciar Sesion</label>
+    }
+    @else {
+        <div class="UserInfo">
+            <label>Marco Caasdadsjamarca</label>
+            <img/>
+        </div>
+    }
+    
 </div>

@@ -35,3 +35,17 @@ li a:hover {
     text-decoration: underline;
     cursor: pointer;
 }
+
+label{
+    display: block;
+    color: black;
+    text-align: center;
+    padding: 16px;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+label:hover {
+    text-decoration: underline;
+    cursor: pointer;
+}
