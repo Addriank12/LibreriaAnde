@@ -1,5 +1,8 @@
 import { Injectable, inject } from '@angular/core';
 import { Auth, UserCredential, authState, createUserWithEmailAndPassword, signInWithEmailAndPassword } from '@angular/fire/auth';
+import { BehaviorSubject } from 'rxjs';
+import { UserInfoService } from './user-info.service';
+import { UserInfo } from '../Domain/UserInfoModel';
 
 export interface Credential{
   email: string;
@@ -12,18 +15,26 @@ export interface Credential{
 })
 export class AuthService {
 
-  constructor() { }
+  constructor(private userInfoService: UserInfoService) { }
 
+ 
   private auth: Auth = inject(Auth);
-  public user: Credential = {email: "", password: "", passwordConfirm: ""};
+  private userSubject = new BehaviorSubject<{email: string}>({email: ''});
+  public user$ = this.userSubject.asObservable();
+
+  setUserName(email: string){
+    this.userSubject.next({email});
+  }  
+
   readonly authState$ = authState(this.auth);
 
-
-  SingUpWithEmailAndPassword(credential: Credential): Promise<UserCredential>{
+  async SingUpWithEmailAndPassword(credential: Credential, userName: string): Promise<UserCredential>{
     if (credential.password != credential.passwordConfirm){
       throw new Error('Las contraseñas no coinciden');
     }
-    return createUserWithEmailAndPassword(this.auth, credential.email, credential.password);
+    let result = await createUserWithEmailAndPassword(this.auth, credential.email, credential.password);
+    await this.userInfoService.addUserInfo({email: credential.email, userName: userName});
+    return result;
   }
 
   LoginUpWithEmailAndPassword(credential: Credential){
