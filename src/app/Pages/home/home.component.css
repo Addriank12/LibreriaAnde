@@ -16,8 +16,11 @@ header h1 {
 
 /* Estilos para la sección de información de libros */
 .infoLibros {
+  margin: auto;
   padding: 20px;
   text-align: center;
+  background-color: rgba(156, 103, 54, 0.596);
+  border-radius: 20px;
 }
 
 .infoLibros h2 {
@@ -68,7 +71,7 @@ header h1 {
 
 .background-section {
   position: relative;
-  height: 400px; /* Altura deseada de la sección de fondo */
+  height: 450px; /* Altura deseada de la sección de fondo */
   overflow: hidden;
 }
 
@@ -87,6 +90,11 @@ header h1 {
   object-fit: cover;
 }
 
+.background-section h2{
+  color: rgb(156, 103, 54);
+  background-color: rgba(255, 255, 255, 0.787);
+}
+
 .content {
   position: relative;
   z-index: 1; 
@@ -96,4 +104,15 @@ header h1 {
   box-sizing: border-box;
 }
 
+/* Estilos para la sección de recomendaciones */
+.recommendations-section {
+  padding: 40px 0;
+  text-align: center;
+  background-color: rgba(156, 103, 54, 0.596);
+  border-radius: 20px;
+}
 
+.recommendations-section h2 {
+  font-size: 2em;
+  margin-bottom: 20px;
+}

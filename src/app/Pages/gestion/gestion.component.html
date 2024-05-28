@@ -1,1 +1,19 @@
 <p>gestion works!</p>
+
+<main>
+    <section class="management-section">
+        <h2>Gestión de Libros</h2>
+        <div class="data-list">
+            <!-- Aquí se cargarán los datos desde Firebase -->
+        </div>
+        <div class="add-book-form">
+            <h3>Agregar Nuevo Libro</h3>
+            <input type="text" id="nombre" placeholder="Nombre del Libro">
+            <input type="text" id="autor" placeholder="Autor">
+            <input type="text" id="genero" placeholder="Género">
+            <input type="date" id="fecha" placeholder="Fecha de Publicación">
+            <input type="text" id="imagen" placeholder="Imagen Source">
+            <button onclick="agregarLibro()">Agregar Libro</button>
+        </div>
+    </section>
+</main>
