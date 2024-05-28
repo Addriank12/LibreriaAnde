@@ -1,51 +1,40 @@
-.Header{
+.Header {
     background-color: #fff;
     display: grid;
-    grid-template-columns: 50px 1fr 200px;
+    grid-template-columns: auto 1fr auto; /* Ajustamos las columnas para que el logo y el usuario ocupen su tamaño natural */
+    align-items: center; /* Centramos verticalmente los elementos */
+    padding: 10px; /* Añadimos un poco de espacio alrededor del header */
 }
 
-nav{
+nav {
     display: flex;
     justify-content: center;
-    align-items: center;
 }
 
 ul {
     list-style-type: none;
     margin: 0;
     padding: 0;
-    overflow: hidden;    
+    display: flex; /* Hacemos que la lista sea un flexbox para controlar el espaciado de los elementos */
 }
 
-li{
-    float: left;
+li {
+    margin: 0 10px; /* Añadimos un poco de espacio entre los elementos del menú */
 }
 
-li a {
-    display: block;
+li a, label {
     color: black;
-    text-align: center;
-    padding: 16px;
-    text-decoration: none;
-    font-weight: bold;
-    
-}
-
-li a:hover {
-    text-decoration: underline;
-    cursor: pointer;
-}
-
-label{
-    display: block;
-    color: black;
-    text-align: center;
-    padding: 16px;
     text-decoration: none;
     font-weight: bold;
 }
 
-label:hover {
+li a:hover, label:hover {
     text-decoration: underline;
     cursor: pointer;
+}
+
+img {
+    max-width: 100%; /* Hacemos que el logo se ajuste al ancho del contenedor */
+    max-height: 50px; /* Limitamos la altura del logo para que no sea demasiado grande */
+    margin-right: 10px; /* Añadimos un poco de espacio entre el logo y el menú */
 }
