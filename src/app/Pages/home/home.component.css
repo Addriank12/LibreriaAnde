@@ -19,8 +19,9 @@ header h1 {
   margin: auto;
   padding: 20px;
   text-align: center;
-  background-color: rgba(156, 103, 54, 0.596);
+  background-color: #b57026;
   border-radius: 20px;
+  margin: 0 80px;
 }
 
 .infoLibros h2 {
@@ -91,8 +92,8 @@ header h1 {
 }
 
 .background-section h2{
-  color: rgb(156, 103, 54);
-  background-color: rgba(255, 255, 255, 0.787);
+  color: (129, 98, 69, 0.583);
+  background-color: rgba(0, 0, 0, 0.787);
 }
 
 .content {
@@ -108,8 +109,9 @@ header h1 {
 .recommendations-section {
   padding: 40px 0;
   text-align: center;
-  background-color: rgba(156, 103, 54, 0.596);
+  background-color: #b57026;
   border-radius: 20px;
+  margin: 0 80px;
 }
 
 .recommendations-section h2 {

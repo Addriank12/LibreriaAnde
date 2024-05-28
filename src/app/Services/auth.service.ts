@@ -1,5 +1,5 @@
 import { Injectable, inject } from '@angular/core';
-import { Auth, UserCredential, authState, createUserWithEmailAndPassword, signInWithEmailAndPassword } from '@angular/fire/auth';
+import { Auth, UserCredential, authState, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut } from '@angular/fire/auth';
 import { BehaviorSubject } from 'rxjs';
 import { UserInfoService } from './user-info.service';
 import { UserInfo } from '../Domain/UserInfoModel';
@@ -41,4 +41,8 @@ export class AuthService {
     return signInWithEmailAndPassword(this.auth, credential.email, credential.password);
   }
 
+  async logout() {
+    await signOut(this.auth);
+  }
+  
 }

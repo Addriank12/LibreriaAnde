@@ -1,40 +1,71 @@
+/* Estilos para la cabecera */
 .Header {
     background-color: #fff;
-    display: grid;
-    grid-template-columns: auto 1fr auto; /* Ajustamos las columnas para que el logo y el usuario ocupen su tamaño natural */
-    align-items: center; /* Centramos verticalmente los elementos */
-    padding: 10px; /* Añadimos un poco de espacio alrededor del header */
-}
-
-nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between; /* Distribuye espacio uniformemente entre los elementos */
+    padding: 0 20px;
+  }
+  
+  nav {
     display: flex;
     justify-content: center;
-}
-
-ul {
+    align-items: center;
+  }
+  
+  ul {
     list-style-type: none;
     margin: 0;
     padding: 0;
-    display: flex; /* Hacemos que la lista sea un flexbox para controlar el espaciado de los elementos */
-}
-
-li {
-    margin: 0 10px; /* Añadimos un poco de espacio entre los elementos del menú */
-}
-
-li a, label {
+    display: flex;
+    gap: 20px;
+  }
+  
+  li a {
+    display: block;
     color: black;
+    text-align: center;
+    padding: 16px;
     text-decoration: none;
     font-weight: bold;
-}
-
-li a:hover, label:hover {
+  }
+  
+  li a:hover {
     text-decoration: underline;
     cursor: pointer;
-}
-
-img {
-    max-width: 100%; /* Hacemos que el logo se ajuste al ancho del contenedor */
-    max-height: 50px; /* Limitamos la altura del logo para que no sea demasiado grande */
+  }
+  
+  .auth-section {
+    margin-left: auto; /* Empuja la sección de autenticación a la derecha */
+    display: flex;
+    align-items: center;
+  }
+  
+  label {
+    display: block;
+    color: black;
+    text-align: center;
+    padding: 16px;
+    text-decoration: none;
+    font-weight: bold;
+  }
+  
+  label:hover {
+    text-decoration: underline;
+    cursor: pointer;
+  }
+  
+  .UserInfo {
+    display: flex;
+    align-items: center;
+    padding: 16px;
+  }
+  
+  /* Estilo para el logo */
+  .logo {
+    max-width: 150px; /* Ajusta este valor según sea necesario */
+    max-height: 75px; /* Ajusta este valor para hacerlo más grande */
     margin-right: 10px; /* Añadimos un poco de espacio entre el logo y el menú */
-}
+    margin-left: 20px; /* Ajusta el margen izquierdo para desplazar el logo a la derecha */
+  }
+  

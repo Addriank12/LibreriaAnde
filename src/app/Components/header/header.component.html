@@ -1,5 +1,7 @@
 <div class="Header">
-    <img src="assets/Imagenes/LogoDelAnde.png" alt="Logo del Ande">
+    <a routerLink="home">
+    <img src="assets/Imagenes/LogoDelAnde.png" alt="Logo de Librería Del Ande" class="logo"/>
+    </a>
     <nav>
         <ul>
             <li><a routerLink="home">Inicio</a></li>
@@ -8,13 +10,16 @@
             <li><a routerLink="aboutIt">Acerca De</a></li>
         </ul>
     </nav>
-    @if (userEmail == "") {
-        <label routerLink="login">Iniciar Sesion</label>
-    }
-    @else {
-        <div class="UserInfo">
+    <div class="auth-section">
+        <ng-container *ngIf="userEmail; else loginLink">
+          <div class="UserInfo">
             <label>{{userEmail}}</label>
-        </div>
-    }    
+            <a routerLink="/home" (click)="logout()">Cerrar Sesión</a>
+          </div>
+        </ng-container>
+        <ng-template #loginLink>
+          <label routerLink="login">Iniciar Sesión</label>
+        </ng-template>
+      </div>   
 
 </div>
