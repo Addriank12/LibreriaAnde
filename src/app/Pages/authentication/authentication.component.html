@@ -1,28 +1,32 @@
-<div>
-    <h1>Biblioteca Del Ande</h1>
-    <form>
-        <label>Email</label>
-        <input id="txtEmail" name="txtEmail" [(ngModel)]="credential.email" type="text"  />
-        <label>Contraseña</label>
-        <input id="txtPassword" name="txtPassword" [(ngModel)]="credential.password" type="password" />
-        @if (!loginMode) {                                  
-            <label>Confirmar Contraseña</label>
-            <input id="txtConfirmPassword" name="txtConfirmPassword" [(ngModel)]="credential.passwordConfirm" type="password" />
-            <label>Nombre</label>  
-            <input id="txtUserName" name="txtUserName" [(ngModel)]="userName" type="text"  />
-            <label id="lblButton" (click)="changeMode()" >Ya tienes cuenta? Inicia Sesión.</label>
-            <button (click)="SingUp()">Crear Cuenta</button> 
-            
-        }
-        @else {
-            <label id="lblButton" (click)="changeMode()" >¿No tienes cuenta? Registrate.</label>
-            <button (click)="login()">Iniciar Sesión</button>
-        }
-        @if(isLoading){
-            <app-loader>Cargando</app-loader>
-        }        
-        @if (error != "") {
-            <label>{{error}}</label>
-        }
-    </form>    
-</div>
+<body>
+    <div class="container">
+        <h1>Biblioteca Del Ande</h1>
+        <form>
+            <label>Email</label>
+            <input id="txtEmail" name="txtEmail" [(ngModel)]="credential.email" type="text"  />
+            <label>Contraseña</label>
+            <input id="txtPassword" name="txtPassword" [(ngModel)]="credential.password" type="password" />
+            @if (!loginMode) {                                  
+                <label>Confirmar Contraseña</label>
+                <input id="txtConfirmPassword" name="txtConfirmPassword" [(ngModel)]="credential.passwordConfirm" type="password" />
+                <label>Nombre</label>  
+                <input id="txtUserName" name="txtUserName" [(ngModel)]="userName" type="text"  />
+                <label id="lblButton" (click)="changeMode()" >Ya tienes cuenta? Inicia Sesión.</label>
+                <button (click)="SingUp()">Crear Cuenta</button> 
+            }
+            @else {
+                <br>
+                <label id="lblButton" (click)="changeMode()" >¿No tienes cuenta? Registrate.</label>
+                <br>
+                <button (click)="login()">Iniciar Sesión</button>
+            }
+            @if(isLoading){
+                <app-loader>Cargando</app-loader>
+            }        
+            @if (error != "") {
+                <br>
+                <label>{{error}}</label>
+            }
+        </form>    
+    </div>
+</body>

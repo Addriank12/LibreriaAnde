@@ -42,8 +42,12 @@ export class AuthService {
     return signInWithEmailAndPassword(this.auth, credential.email, credential.password);
   }
 
-  async logout() {
-    await signOut(this.auth);
+  async Logout() {
+    try {
+      await signOut(this.auth);
+    } catch (error) {
+      console.error('Error signing out', error);
+    }
   }
   
 }

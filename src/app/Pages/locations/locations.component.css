@@ -1,7 +1,6 @@
-*{
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif, sans-serif;
-    margin: 2%;
-    padding: 0;
+main{
+    font-family: Arial, sans-serif;
+    margin: 6%;
 }
 
 
@@ -12,14 +11,9 @@
 }
 
 h2 {
-    margin-left: 50px;
-    padding-left: 2%;
+    color: #f6f4f4;
     font-size: 2.5em;
-    margin-bottom: 30px;
-    color: #ffffff;
-    letter-spacing: 2px;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif, sans-serif;
-}
+  }
 
 .location-container {
     display: flex;

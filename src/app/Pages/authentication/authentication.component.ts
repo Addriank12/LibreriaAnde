@@ -44,20 +44,31 @@ export class AuthenticationComponent {
   }
 
   async login() {
-    try{
+    try {
       this.isLoading = true;
       await this.asuthService.LoginUpWithEmailAndPassword(this.credential);
       this.asuthService.setUserName(await this.userInfoService.getUserByEmail(this.credential.email));
       // Navigate to home page
       this.router.navigate(['/home']);
-
-
-    }
-    catch(error: any){
-      this.error = error.toString();
-    }
-    finally{
-      this.isLoading=false;
+    } catch (error: any) {
+      switch (error.code) {
+        case 'auth/invalid-email':
+          this.error = 'El correo electrónico no es válido.';
+          break;
+        case 'auth/user-disabled':
+          this.error = 'Este usuario ha sido deshabilitado.';
+          break;
+        case 'auth/user-not-found':
+          this.error = 'Usuario no encontrado.';
+          break;
+        case 'auth/wrong-password':
+          this.error = 'Contraseña incorrecta.';
+          break;
+        default:
+          this.error = 'Ocurrió un error al iniciar sesión.';
+      }
+    } finally {
+      this.isLoading = false;
     }
   }
 
