@@ -1,19 +1,37 @@
-div{
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    align-items: center;
-    height: 100px;
+html, body {
+    height: 100%;
+    margin: 0;
+    /*background: linear-gradient(to bottom, #0d6ccb, #000); */
+    font-family: Arial, sans-serif;
 }
 
-h1{
+.container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center; /* Centra verticalmente */
+    justify-items: center; /* Centra horizontalmente */
+    height: 75vh; /* Ocupa toda la altura de la ventana */
+}
+
+.app-loader {
+    border: 16px solid #f3f3f3;
+    border-top: 16px solid #3498db;
+    border-radius: 50%;
+    width: 120px;
+    height: 120px;
+    animation: spin 2s linear infinite;
+  }
+  
+h1 {
     max-width: 300px;
     font-size: 4em;
     font-weight: lighter;
-    margin-left: auto;
-    margin-right: auto;
+    color: #fff; /* Color blanco para el texto */
+    margin: 0; /* Elimina los márgenes */
+    text-align: center;
 }
 
-form{
+form {
     background-color: #fff;
     color: black;
     padding: 70px;
@@ -22,21 +40,20 @@ form{
     grid-template-columns: 1fr;
     justify-content: center;
     align-items: center;
-    margin: 0 auto;
+    margin: 0; 
     max-width: 300px;
     width: 100%;
 }
 
-input{
+input {
     margin-top: 10px;
     margin-bottom: 10px;
     padding: 10px;
     border: 1px solid #000;
     border-radius: 15px;
-
 }
 
-button{
+button {
     background-color: #0066B8;
     color: #fff;
     padding: 10px;
@@ -45,12 +62,12 @@ button{
     cursor: pointer;
 }
 
-#lblButton{
+#lblButton {
     text-decoration: underline;
     margin-top: 5px;
     margin-bottom: 5px;
 }
 
-#lblButton:hover{
+#lblButton:hover {
     color: #0066B8;
 }

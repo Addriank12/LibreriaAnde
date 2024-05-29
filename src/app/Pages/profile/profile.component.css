@@ -1,31 +1,53 @@
 .profile-page {
-    padding: 20px;
-  }
-  
-  .user-info {
-    display: flex;
-    align-items: center;
-  }
-
-  .details {
-    flex-grow: 1; /* Hace que los detalles del usuario ocupen todo el espacio disponible */
-  }
-  
-h1{
-    font-size: 30px; /* Tamaño del título de la página */
-    margin-bottom: 20px; /* Añade un poco de espacio inferior al título */
-    padding-left: 3%;
-  
+  padding: 20px;
+  font-family: Arial, sans-serif;
 }
 
- h2 {
-    font-size: 24px; /* Tamaño del título del usuario */
-    margin-bottom: 10px; /* Añade un poco de espacio inferior al título */
-    padding-left: 3%;
-  }
-  
-  p {
-    font-size: 18px; /* Tamaño del texto de los detalles del usuario */
-    padding-left: 3%;
-  }
-  
+h1 {
+  color: #f6f4f4;
+  font-size: 2.5em;
+}
+
+.user-info {
+  display: flex;
+  justify-content: space-between;
+}
+
+.details {
+  width: 45%;
+}
+
+.details h2 {
+  color: #ffffff;
+}
+
+.details p {
+  color: #bfdbff;
+}
+
+button {
+  margin-top: 20px;
+  padding: 10px 20px;
+  background-color: #007BFF;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #0056b3;
+}
+
+input {
+  display: block;
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+
+.profile-page{
+  padding-left: 6%;
+}
