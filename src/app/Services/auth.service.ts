@@ -45,6 +45,7 @@ export class AuthService {
   async Logout() {
     try {
       await signOut(this.auth);
+      this.setUserName({email: '', userName: '', isAdmin: false});
     } catch (error) {
       console.error('Error signing out', error);
     }

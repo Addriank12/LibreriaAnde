@@ -32,12 +32,7 @@ export class HeaderComponent {
     this.sub.unsubscribe();
   }
 
-  logout() {
-    this.authService.Logout().then(() => {
-      this.userEmail = null; // clear user email after successful logout
-      this.router.navigate(['/home']); // navigate to login page
-    }).catch(error => {
-      console.error('Error signing out', error);
-    });
+  async logout() {
+    await this.authService.Logout()
   }
 }
