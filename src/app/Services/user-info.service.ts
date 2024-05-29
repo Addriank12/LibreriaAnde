@@ -9,12 +9,12 @@ export class UserInfoService {
 
   constructor(private firestore: Firestore) {   }
 
-  async getUserByEmail(email: string): Promise<string>{
+  async getUserByEmail(email: string): Promise<UserInfo>{
     const querySnapshot = await getDocs(collection(this.firestore, "UsersInfo"));
-    let result = "";
+    let result: UserInfo = {email: '', userName: '', isAdmin: false};
     querySnapshot.forEach((doc) => {
       if (doc.data()['email'] === email){
-        result = doc.data()['userName'];
+        result = doc.data() as UserInfo;
       }
     });
     return result;

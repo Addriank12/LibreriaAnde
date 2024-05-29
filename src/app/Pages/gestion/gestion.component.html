@@ -1,5 +1,3 @@
-<p>gestion works!</p>
-
 <main>
     <section class="management-section">
         <h2>Gestión de Libros</h2>
@@ -7,13 +5,15 @@
             <!-- Aquí se cargarán los datos desde Firebase -->
         </div>
         <div class="add-book-form">
-            <h3>Agregar Nuevo Libro</h3>
-            <input type="text" id="nombre" placeholder="Nombre del Libro">
-            <input type="text" id="autor" placeholder="Autor">
-            <input type="text" id="genero" placeholder="Género">
-            <input type="date" id="fecha" placeholder="Fecha de Publicación">
-            <input type="text" id="imagen" placeholder="Imagen Source">
-            <button onclick="agregarLibro()">Agregar Libro</button>
+            <form>
+                <h3>Agregar Nuevo Libro</h3>
+                <input name="titulo" type="text" id="titulo" [(ngModel)]="selectedLibro.Titulo" placeholder="Titulo">
+                <input name="autor" type="text" id="autor" [(ngModel)]="selectedLibro.Autor" placeholder="Autor">                
+                <input name="precio" type="text" id="precio" [(ngModel)]="selectedLibro.Precio" placeholder="Precio">
+                <input name="imagen" type="file" id="imagen" [(ngModel)]="selectedLibro.Imagen" placeholder="Imagen Source">
+                <textarea name="contenido" id="contenido" placeholder="Contenido" [(ngModel)]="selectedLibro.Contenido"></textarea>
+                <button (click)="agregarLibro()">Agregar Libro</button>
+            </form>            
         </div>
     </section>
 </main>

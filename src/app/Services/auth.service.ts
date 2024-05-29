@@ -19,11 +19,12 @@ export class AuthService {
 
  
   private auth: Auth = inject(Auth);
-  private userSubject = new BehaviorSubject<{email: string}>({email: ''});
-  public user$ = this.userSubject.asObservable();
 
-  setUserName(email: string){
-    this.userSubject.next({email});
+  private userSubject = new BehaviorSubject<{currentUser: UserInfo}>({currentUser: {email: '', userName: '', isAdmin: false}});
+  public currentUser$ = this.userSubject.asObservable();
+
+  setUserName(currentUser: UserInfo){
+    this.userSubject.next({currentUser});
   }  
 
   readonly authState$ = authState(this.auth);
@@ -33,7 +34,7 @@ export class AuthService {
       throw new Error('Las contraseñas no coinciden');
     }
     let result = await createUserWithEmailAndPassword(this.auth, credential.email, credential.password);
-    await this.userInfoService.addUserInfo({email: credential.email, userName: userName});
+    await this.userInfoService.addUserInfo({email: credential.email, userName: userName, isAdmin: false});
     return result;
   }
 

@@ -14,6 +14,10 @@ header h1 {
   margin-left: 50px;
 }
 
+.content p{
+  text-shadow: #000 1px 2px 1px;
+} 
+
 /* Estilos para la sección de información de libros */
 .infoLibros {
   margin: auto;

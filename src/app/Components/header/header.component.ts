@@ -5,6 +5,7 @@ import { Subscription } from 'rxjs';
 import { UserInfoService } from '../../Services/user-info.service';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
+import { UserInfo } from '../../Domain/UserInfoModel';
 
 @Component({
   selector: 'app-header',
@@ -15,15 +16,15 @@ import { Router } from '@angular/router';
 })
 export class HeaderComponent {
 
-  userEmail: string = "";
+  currentUser: UserInfo= {email: '', userName: '', isAdmin: false};
   private sub: Subscription = new Subscription;
 
   constructor(public authService: AuthService, private userInfoService: UserInfoService){}
 
   ngOnInit() {
-    this.sub = this.authService.user$.subscribe(async user => {
-      const email = await this.userInfoService.getUserByEmail(user.email);
-      this.userEmail = email || ""; // Add null check here
+    this.sub = this.authService.currentUser$.subscribe(async user => {
+      const currentUser = await this.userInfoService.getUserByEmail(user.currentUser.email);
+      this.currentUser = currentUser; // Add null check here
     });
   }
 

@@ -5,6 +5,7 @@ import { LocationsComponent } from './Pages/locations/locations.component';
 import { ProfileComponent } from './Pages/profile/profile.component';
 import { AboutItComponent } from './Pages/about-it/about-it.component';
 import { AuthenticationComponent } from './Pages/authentication/authentication.component';
+import { GestionComponent } from './Pages/gestion/gestion.component';
 
 
 
@@ -15,7 +16,8 @@ export const routes: Routes = [
     { path: 'locations', component: LocationsComponent },
     { path: 'aboutIt', component: AboutItComponent },
     { path: 'login', component: AuthenticationComponent },
-    { path: 'profile', component: ProfileComponent }
+    { path: 'profile', component: ProfileComponent },
+    { path: 'gestion', component: GestionComponent }
 ];
 
 
