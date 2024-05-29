@@ -1,0 +1,31 @@
+.profile-page {
+    padding: 20px;
+  }
+  
+  .user-info {
+    display: flex;
+    align-items: center;
+  }
+
+  .details {
+    flex-grow: 1; /* Hace que los detalles del usuario ocupen todo el espacio disponible */
+  }
+  
+h1{
+    font-size: 30px; /* Tamaño del título de la página */
+    margin-bottom: 20px; /* Añade un poco de espacio inferior al título */
+    padding-left: 3%;
+  
+}
+
+ h2 {
+    font-size: 24px; /* Tamaño del título del usuario */
+    margin-bottom: 10px; /* Añade un poco de espacio inferior al título */
+    padding-left: 3%;
+  }
+  
+  p {
+    font-size: 18px; /* Tamaño del texto de los detalles del usuario */
+    padding-left: 3%;
+  }
+  

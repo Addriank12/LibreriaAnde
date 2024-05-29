@@ -41,7 +41,7 @@
     align-items: center;
   }
   
-  label {
+  label, a {
     display: block;
     color: black;
     text-align: center;
@@ -68,4 +68,16 @@
     margin-right: 10px; /* Añadimos un poco de espacio entre el logo y el menú */
     margin-left: 20px; /* Ajusta el margen izquierdo para desplazar el logo a la derecha */
   }
+  .UserInfo button {
+    background-color: #ff4b4b;
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+  }
   
+  .UserInfo button:hover {
+    background-color: #ff1a1a;
+  }

@@ -13,8 +13,8 @@
     <div class="auth-section">
         <ng-container *ngIf="userEmail; else loginLink">
           <div class="UserInfo">
-            <label>{{userEmail}}</label>
-            <a routerLink="/home" (click)="logout()">Cerrar Sesión</a>
+            <a routerLink="profile">{{userEmail}}</a>
+            <button (click)="logout()">Cerrar Sesión</button>
           </div>
         </ng-container>
         <ng-template #loginLink>
