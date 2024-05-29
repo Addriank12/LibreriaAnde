@@ -15,10 +15,10 @@ import { Router } from '@angular/router';
 })
 export class HeaderComponent {
 
-  userEmail: string = "";
+  userEmail: string | null = "";
   private sub: Subscription = new Subscription;
 
-  constructor(public authService: AuthService, private userInfoService: UserInfoService){}
+  constructor(public authService: AuthService, private userInfoService: UserInfoService, private router: Router){}
 
   ngOnInit() {
     this.sub = this.authService.user$.subscribe(async user => {
@@ -31,7 +31,12 @@ export class HeaderComponent {
     this.sub.unsubscribe();
   }
 
-  async logout() {
-    await this.authService.logout();
+  logout() {
+    this.authService.Logout().then(() => {
+      this.userEmail = null; // clear user email after successful logout
+      this.router.navigate(['/home']); // navigate to login page
+    }).catch(error => {
+      console.error('Error signing out', error);
+    });
   }
 }

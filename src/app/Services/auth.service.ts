@@ -18,7 +18,7 @@ export class AuthService {
   constructor(private userInfoService: UserInfoService) { }
 
  
-  private auth: Auth = inject(Auth);
+  public auth: Auth = inject(Auth);
   private userSubject = new BehaviorSubject<{email: string}>({email: ''});
   public user$ = this.userSubject.asObservable();
 
@@ -41,8 +41,12 @@ export class AuthService {
     return signInWithEmailAndPassword(this.auth, credential.email, credential.password);
   }
 
-  async logout() {
-    await signOut(this.auth);
+  async Logout() {
+    try {
+      await signOut(this.auth);
+    } catch (error) {
+      console.error('Error signing out', error);
+    }
   }
   
 }
