@@ -21,28 +21,12 @@
     <div class="infoLibros">
         <h2>Destacados</h2>
         <p>En esta sección podrás ver los libros destacados últimamente.</p>
-        <div class="gallery">
-            <div class="divImg">
-                <img src="https://m.media-amazon.com/images/I/41fNcSpxFNL._SL500_.jpg" alt="Elon Musk">
-                <p>Titulo del libro</p>
+            <div class="gallery">
+            <div class="divImg" *ngFor="let libro of libros">
+              <img [src]="libro.Imagen" alt="{{ libro.Titulo }}">
+              <p>{{ libro.Titulo }}</p>
             </div>
-            <div class="divImg">
-                <img src="https://m.media-amazon.com/images/I/41VU92m5gvL._SL500_.jpg" alt="Steve Jobs">
-                <p>Titulo del libro</p>
-            </div>
-            <div class="divImg">
-                <img src="https://m.media-amazon.com/images/I/51U8zYSCbnL._SL500_.jpg" alt="Me quedo o me voy">
-                <p>Titulo del libro</p>
-            </div>
-            <div class="divImg">
-                <img src="https://m.media-amazon.com/images/I/51Q50f11cmL._SL320_.jpg" alt="Me quedo o me voy">
-                <p>Titulo del libro</p>
-            </div>
-            <div class="divImg">
-                <img src="https://m.media-amazon.com/images/I/51SZmxMqJcL._SL320_.jpg" alt="Me quedo o me voy">
-                <p>Titulo del libro</p>
-            </div>
-        </div>
+          </div>
     </div>
 <br>
 <br>

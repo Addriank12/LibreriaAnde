@@ -1,38 +1,14 @@
 
 <main>
-    <!-- Sección de Tienda -->
+    <h2>Tienda</h2>
     <section class="shop-section">
-        <h2>Tienda</h2>
+        
         <div class="products">
-            <div class="product">
-                <img src="https://m.media-amazon.com/images/I/41fNcSpxFNL._SL500_.jpg" alt="Nombre del Producto">
-                <h3>Nombre del Producto</h3>
-                <p>Precio: $19.89</p>
-                <button>Agregar al Carrito</button>
-            </div>
-            <div class="product">
-                <img src="https://m.media-amazon.com/images/I/41VU92m5gvL._SL500_.jpg" alt="Nombre del Producto">
-                <h3>Nombre del Producto</h3>
-                <p>Precio: $17.00</p>
-                <button>Agregar al Carrito</button>
-            </div>
-            <div class="product">
-                <img src="https://m.media-amazon.com/images/I/51U8zYSCbnL._SL500_.jpg" alt="Nombre del Producto">
-                <h3>Nombre del Producto</h3>
-                <p>Precio: 24.99</p>
-                <button>Agregar al Carrito</button>
-            </div>
-            <div class="product">
-                <img src="https://m.media-amazon.com/images/I/51Q50f11cmL._SL320_.jpg" alt="Nombre del Producto">
-                <h3>Nombre del Producto</h3>
-                <p>Precio: $20.00</p>
-                <button>Agregar al Carrito</button>
-            </div>
-            <div class="product">
-                <img src="https://m.media-amazon.com/images/I/51SZmxMqJcL._SL320_.jpg" alt="Nombre del Producto">
-                <h3>Nombre del Producto</h3>
-                <p>Precio: $XX.XX</p>
-                <button>Agregar al Carrito</button>
+            <div *ngFor="let libro of libros" class="product">
+            <img [src]="libro.Image" alt="Nombre del Producto">
+            <h3>{{ libro.Titulo }}</h3>
+            <p>Precio: {{ libro.Precio }}</p>
+            <button>Agregar al Carrito</button>
             </div>
         </div>
     </section>
