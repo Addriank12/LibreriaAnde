@@ -20,8 +20,19 @@ export class LibroService {
 
   async uploadFile(libro: LibroModel): Promise<string> {
     const storageRef = ref(this.storage, 'Libros/' + libro.Titulo);
-    const result = await uploadBytes(storageRef, libro.Imagen);
+    const result = await uploadBytes(storageRef, this.convertToBlob(libro.Imagen));
     return getDownloadURL(result.ref);
+  }
+
+  private convertToBlob(base64: string){
+    const byteCharacters = atob(base64.split(',')[1]);
+    const byteNumbers = new Array(byteCharacters.length);
+    for (let i = 0; i < byteCharacters.length; i++) {
+      byteNumbers[i] = byteCharacters.charCodeAt(i);
+    }
+    const byteArray = new Uint8Array(byteNumbers);
+    const blob = new Blob([byteArray], {type: 'image/jpeg'});
+    return blob;
   }
 
   async getLibros() {
