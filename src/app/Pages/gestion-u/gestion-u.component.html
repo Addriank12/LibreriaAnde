@@ -1,0 +1,27 @@
+<div class="container">
+  <div class="table-container">
+    <table>
+      <tr>
+        <th>Nombre de usuario</th>
+        <th>Email</th>
+        <!-- Agrega más columnas según los datos del usuario que quieras mostrar -->
+      </tr>
+      <tr *ngFor="let user of users">
+        <td>{{user.userName}}</td>
+        <td>{{user.email}}</td>
+        <!-- Asegúrate de cambiar 'username' y 'email' a las propiedades correctas del usuario -->
+      </tr>
+    </table>
+  </div>
+
+  <div class="form-container">
+    <h2>Actualizar información del usuario</h2>
+    <form>
+      <label for="username">Nombre de usuario:</label>
+      <input type="text" id="username" name="username">
+      <label for="email">Email:</label>
+      <input type="text" id="email" name="email">
+      <input type="submit" value="Actualizar">
+    </form>
+  </div>
+</div>

@@ -33,5 +33,14 @@ export class UserInfoService {
     });
   }
 
+  async getAllUsers(): Promise<UserInfo[]> {
+    const querySnapshot = await getDocs(collection(this.firestore, "UsersInfo"));
+    const users: UserInfo[] = [];
+    querySnapshot.forEach((doc) => {
+      users.push(doc.data() as UserInfo);
+    });
+    return users;
+  }
+
 
 }

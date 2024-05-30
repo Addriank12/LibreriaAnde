@@ -1,0 +1,64 @@
+.container {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: 20px;
+  }
+  .table-container {
+    width: 45%;
+    padding-top: 2%;
+  }
+  .form-container {
+    width: 45%;
+  }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  table, th, td {
+    border: 1px solid black;
+  }
+  th, td {
+    padding: 10px;
+    text-align: left;
+    background-color: white;
+    color: black;
+  }
+  form {
+    display: flex;
+    flex-direction: column;
+  }
+  label, input {
+    margin-bottom: 10px;
+  }
+  input[type="text"] {
+    width: 100%;
+    max-width: 300px; /* Establece un ancho máximo */
+    padding: 5px; /* Añade padding para mejor apariencia */
+  }
+  input[type="submit"] {
+    width: fit-content;
+  }
+
+  input[type="submit"] {
+    width: fit-content;
+    background-color: #b28a08; /* Verde */
+    color: white; /* Texto blanco */
+    border: none; /* Sin bordes */
+    padding: 10px 20px; /* Relleno */
+    text-align: center; /* Alineación del texto */
+    text-decoration: none; /* Sin subrayado */
+    display: inline-block; /* Elemento en línea */
+    font-size: 16px; /* Tamaño de la fuente */
+    margin-top: 10px; /* Margen superior */
+    cursor: pointer; /* Cursor de puntero */
+    border-radius: 4px; /* Bordes redondeados */
+    transition-duration: 0.2s; /* Duración de la transición */
+  }
+  
+  input[type="submit"]:hover {
+    background-color: white; /* Fondo blanco */
+    color: #b28a08; /* Texto verde */
+    border: 1px solid black /* Borde verde */
+  }
+  
