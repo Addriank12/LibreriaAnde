@@ -1,7 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component} from '@angular/core';
 import { LibroService } from '../../Services/libro.service';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { BrowserModule } from '@angular/platform-browser';
+
 
 @Component({
   selector: 'app-home',

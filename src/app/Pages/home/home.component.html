@@ -22,9 +22,9 @@
         <h2>Destacados</h2>
         <p>En esta sección podrás ver los libros destacados últimamente.</p>
             <div class="gallery">
-            <div class="divImg" *ngFor="let libro of libros">
-              <img [src]="libro.Imagen" alt="{{ libro.Titulo }}">
-              <p>{{ libro.Titulo }}</p>
+                <div class="divImg" *ngFor="let libro of libros | slice:0:4">
+                <img [src]="libro.Imagen" alt="{{ libro.Titulo }}">
+                <p>{{ libro.Titulo }}</p>
             </div>
           </div>
     </div>
@@ -33,7 +33,12 @@
     <section class="recommendations-section">
         <h2>Recomendaciones</h2>
         <p>¡Echa un vistazo a nuestras recomendaciones!</p>
-        <!-- Agrega aquí tus recomendaciones de libros -->
+        <div class="gallery">
+            <div class="divImg" *ngFor="let libro of libros | slice:0:5">
+            <img [src]="libro.Imagen" alt="{{ libro.Titulo }}">
+            <p>{{ libro.Titulo }}</p>
+        </div>
+      </div>
     </section>
 </main>
 
