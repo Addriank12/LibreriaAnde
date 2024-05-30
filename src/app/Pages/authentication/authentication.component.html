@@ -1,7 +1,7 @@
 
 <body>
     <div class="container">
-        <img src="assets/Imagenes/loginLib.webp" alt="Img Fondo Libreria">
+        <img id="bg-image" src="assets/Imagenes/loginLib.webp" alt="Img Fondo Libreria">
         <h1>Biblioteca Del Ande</h1>
         <form>
             <label>Email</label>
@@ -22,6 +22,10 @@
                 <br>
                 <button (click)="login()">Iniciar Sesión</button>
             }
+            <button (click)="LoginWithGoogle()" id="google-button">
+                Continuar con Google
+                <img id="google-img" src="assets/Imagenes/google_icon.svg"/>
+            </button>
             <div id="loaderDiv">
             @if(isLoading){                
                     <app-loader>Cargando</app-loader>                            

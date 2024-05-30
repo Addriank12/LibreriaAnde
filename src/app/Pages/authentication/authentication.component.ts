@@ -16,6 +16,7 @@ import { UserInfoService } from '../../Services/user-info.service';
 })
 export class AuthenticationComponent {
 
+
   loginMode:boolean = true  ;
   credential: Credential = {email: "", password: "", passwordConfirm: ""}
   error: string = "";
@@ -41,6 +42,11 @@ export class AuthenticationComponent {
     finally{
       this.isLoading = false;
     }
+  }
+
+  async LoginWithGoogle() {
+    await this.asuthService.LoginWithGoogle();
+    this.router.navigate(['/home']);
   }
 
   async login() {

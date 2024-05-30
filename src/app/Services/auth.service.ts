@@ -1,5 +1,5 @@
 import { Injectable, inject } from '@angular/core';
-import { Auth, UserCredential, authState, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut } from '@angular/fire/auth';
+import { Auth, GoogleAuthProvider, UserCredential, authState, createUserWithEmailAndPassword, signInWithEmailAndPassword, signInWithPopup, signOut } from '@angular/fire/auth';
 import { BehaviorSubject } from 'rxjs';
 import { UserInfoService } from './user-info.service';
 import { UserInfo } from '../Domain/UserInfoModel';
@@ -15,13 +15,16 @@ export interface Credential{
 })
 export class AuthService {
 
-  constructor(private userInfoService: UserInfoService) { }
-
- 
   private auth: Auth = inject(Auth);
+  private authGoogleProvider = new GoogleAuthProvider();
 
   private userSubject = new BehaviorSubject<{currentUser: UserInfo}>({currentUser: {email: '', userName: '', isAdmin: false}});
   public currentUser$ = this.userSubject.asObservable();
+
+
+  constructor(private userInfoService: UserInfoService) {
+    this.authGoogleProvider.addScope('https://www.googleapis.com/auth/contacts.readonly');
+  }
 
   setUserName(currentUser: UserInfo){
     this.userSubject.next({currentUser});
@@ -40,6 +43,19 @@ export class AuthService {
 
   LoginUpWithEmailAndPassword(credential: Credential){
     return signInWithEmailAndPassword(this.auth, credential.email, credential.password);
+  }
+
+  async LoginWithGoogle(){
+    let result = await signInWithPopup(this.auth, this.authGoogleProvider);
+    if (result.user === null){
+      throw new Error('Error al autenticar con Google');
+    }
+
+    let user = await this.userInfoService.getUserByEmail(result.user.email as string);
+    if (user === undefined){
+      await this.userInfoService.addUserInfo({email: result.user.email as string, userName: result.user.displayName as string, isAdmin: false});
+    }
+    this.setUserName(await this.userInfoService.getUserByEmail(result.user.email as string));
   }
 
   async Logout() {

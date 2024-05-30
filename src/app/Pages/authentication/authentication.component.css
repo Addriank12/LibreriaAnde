@@ -13,7 +13,7 @@ html, body {
     height: 75vh; /* Ocupa toda la altura de la ventana */
 }
 
-img {
+#bg-image {
     position: absolute;
     top: 0;
     left: 0;
@@ -87,4 +87,24 @@ button {
 
 #lblButton:hover {
     color: #0066B8;
+}
+
+#google-button{
+    margin-top: 10px;
+    background-color: #F0F0F0;
+    color: #000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#google-button:hover{
+    background-color: #9b9b9b;
+    color: #fff;
+}
+
+#google-img{
+    width: 20px;
+    height: 20px;
+    margin-left: 5px;
 }
