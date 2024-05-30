@@ -1,9 +1,9 @@
 .loader {
-    border: 16px solid #f3f3f3; /* Color de fondo del círculo */
-    border-top: 16px solid #3498db; /* Color del borde superior que se animará */
+    border: 8px solid #f3f3f3; /* Color de fondo del círculo */
+    border-top: 8px solid #3498db; /* Color del borde superior que se animará */
     border-radius: 50%;
-    width: 24px;
-    height: 24px;
+    width: 18px;
+    height: 18px;
     animation: spin 2s linear infinite;
 }
 

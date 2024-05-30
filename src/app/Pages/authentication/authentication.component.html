@@ -1,7 +1,7 @@
 
 <body>
     <div class="container">
-        <img src="assets/Imagenes/loginLib.jpeg" alt="Img Fondo Libreria">
+        <img src="assets/Imagenes/loginLib.webp" alt="Img Fondo Libreria">
         <h1>Biblioteca Del Ande</h1>
         <form>
             <label>Email</label>
@@ -22,11 +22,13 @@
                 <br>
                 <button (click)="login()">Iniciar Sesión</button>
             }
-            @if(isLoading){
-                <app-loader>Cargando</app-loader>
-            }        
-            @if (error != "") {
-                <br>
+            <div id="loaderDiv">
+            @if(isLoading){                
+                    <app-loader>Cargando</app-loader>                            
+            }     
+            </div>   
+            <br>   
+            @if (error != "") {                
                 <label>{{error}}</label>
             }
         </form>    

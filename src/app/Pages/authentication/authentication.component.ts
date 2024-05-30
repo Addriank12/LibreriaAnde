@@ -74,6 +74,7 @@ export class AuthenticationComponent {
 
   changeMode(){
     this.loginMode = !this.loginMode;
+    this.error = "";
   }
   
 }
