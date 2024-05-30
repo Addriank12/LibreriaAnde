@@ -33,8 +33,8 @@
   }
   input[type="text"] {
     width: 100%;
-    max-width: 300px; /* Establece un ancho máximo */
-    padding: 5px; /* Añade padding para mejor apariencia */
+    max-width: 300px; 
+    padding: 5px; 
   }
   input[type="submit"] {
     width: fit-content;
@@ -42,23 +42,23 @@
 
   input[type="submit"] {
     width: fit-content;
-    background-color: #b28a08; /* Verde */
-    color: white; /* Texto blanco */
-    border: none; /* Sin bordes */
-    padding: 10px 20px; /* Relleno */
-    text-align: center; /* Alineación del texto */
-    text-decoration: none; /* Sin subrayado */
-    display: inline-block; /* Elemento en línea */
-    font-size: 16px; /* Tamaño de la fuente */
-    margin-top: 10px; /* Margen superior */
-    cursor: pointer; /* Cursor de puntero */
-    border-radius: 4px; /* Bordes redondeados */
-    transition-duration: 0.2s; /* Duración de la transición */
+    background-color: #b28a08; 
+    color: white; 
+    border: none;
+    padding: 10px 20px; 
+    text-align: center;
+    text-decoration: none; 
+    display: inline-block; 
+    font-size: 16px; 
+    margin-top: 10px; 
+    cursor: pointer; 
+    border-radius: 4px; 
+    transition-duration: 0.2s; 
   }
   
   input[type="submit"]:hover {
-    background-color: white; /* Fondo blanco */
-    color: #b28a08; /* Texto verde */
-    border: 1px solid black /* Borde verde */
+    background-color: white; 
+    color: #b28a08; 
+    border: 1px solid black 
   }
   

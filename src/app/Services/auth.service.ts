@@ -51,7 +51,7 @@ export class AuthService {
       throw new Error('Las contraseñas no coinciden');
     }
     let result = await createUserWithEmailAndPassword(this.auth, credential.email, credential.password);
-    await this.userInfoService.addUserInfo({email: credential.email, userName: userName, isAdmin: false});
+    await this.userInfoService.addUserInfo({email: credential.email, userName: userName, isAdmin: false, direccion: '', telefono: ''});
     return result;
   }
 
@@ -67,7 +67,7 @@ export class AuthService {
 
     let user = await this.userInfoService.getUserByEmail(result.user.email as string);
     if (user === undefined){
-      await this.userInfoService.addUserInfo({email: result.user.email as string, userName: result.user.displayName as string, isAdmin: false});
+      await this.userInfoService.addUserInfo({email: result.user.email as string, userName: result.user.displayName as string, isAdmin: false, direccion: '', telefono: ''});
     }
     this.setUserName(await this.userInfoService.getUserByEmail(result.user.email as string));
   }
@@ -75,7 +75,7 @@ export class AuthService {
   async Logout() {
     try {
       await signOut(this.auth);
-      this.setUserName({email: '', userName: '', isAdmin: false});
+      this.setUserName({email: '', userName: '', isAdmin: false, direccion: '', telefono: ''});
     } catch (error) {
       console.error('Error signing out', error);
     }

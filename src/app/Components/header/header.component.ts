@@ -16,7 +16,7 @@ import { UserInfo } from '../../Domain/UserInfoModel';
 })
 export class HeaderComponent {
 
-  currentUser: UserInfo= {email: '', userName: '', isAdmin: false};
+  currentUser: UserInfo= {email: '', userName: '', isAdmin: false, direccion: '', telefono: ''};
   private sub: Subscription = new Subscription;
 
   constructor(public authService: AuthService, private userInfoService: UserInfoService, private router: Router){}

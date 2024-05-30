@@ -12,10 +12,17 @@ import { UserInfoService } from '../../Services/user-info.service';
 })
 export class GestionUComponent {
   users: any[] = [];
+  selectedUser: any;
+  
 
   constructor(private userInfoService: UserInfoService) { }
 
   async ngOnInit() {
     this.users = await this.userInfoService.getAllUsers();
   }
+
+  seleccionarUsuario(usuario: any) {
+    this.selectedUser = usuario;
+  }
+
 }

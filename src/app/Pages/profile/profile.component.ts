@@ -18,7 +18,7 @@ export class ProfileComponent implements OnInit{
   
   isEditing = false;
   private sub: Subscription = new Subscription;
-  userInfo : UserInfo = {email: '', userName: '', isAdmin: false};
+  userInfo : UserInfo = {email: '', userName: '', isAdmin: false, direccion: '', telefono: ''};
 
   constructor(private authService: AuthService, private userInfoService: UserInfoService, private router: Router) { 
     if(authService.getCurrentUser().email === ""){

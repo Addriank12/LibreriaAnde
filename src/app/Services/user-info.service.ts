@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { DocumentReference, Firestore, addDoc, collection, getDocs, updateDoc } from '@angular/fire/firestore';
 import { UserInfo } from '../Domain/UserInfoModel';
 
+
 @Injectable({
   providedIn: 'root'
 })
@@ -11,7 +12,7 @@ export class UserInfoService {
 
   async getUserByEmail(email: string): Promise<UserInfo>{
     const querySnapshot = await getDocs(collection(this.firestore, "UsersInfo"));
-    let result: UserInfo = {email: '', userName: '', isAdmin: false};
+    let result: UserInfo = {email: '', userName: '', isAdmin: false, direccion: '', telefono: ''};
     querySnapshot.forEach((doc) => {
       if (doc.data()['email'] === email){
         result = doc.data() as UserInfo;
@@ -41,6 +42,8 @@ export class UserInfoService {
     });
     return users;
   }
+  
+
 
 
 }
