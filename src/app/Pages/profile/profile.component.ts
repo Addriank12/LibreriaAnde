@@ -1,9 +1,9 @@
 import { Component, OnInit, inject } from '@angular/core';
 import { AuthService } from '../../Services/auth.service';
-import { onAuthStateChanged } from '@firebase/auth';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-import { Auth } from '@angular/fire/auth';
+import { UserInfo } from '../../Domain/UserInfoModel';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-profile',
@@ -13,22 +13,26 @@ import { Auth } from '@angular/fire/auth';
   styleUrl: './profile.component.css'
 })
 export class ProfileComponent implements OnInit{
-  userName: string | null = null;
-  userEmail: string | null = null;
-  isEditing = false;
-  private auth: Auth = inject(Auth);
   
+  isEditing = false;
+  private sub: Subscription = new Subscription;
+
+
   constructor(private authService: AuthService) { }
 
-  ngOnInit(): void {
-    onAuthStateChanged(this.auth, (user) => {
-      if (user) {
-        this.userName = user.displayName;
-        this.userEmail = user.email;
-      }
-    });
+  ngOnInit(){
+    this.sub = this.authService.currentUser$.subscribe(user => {
+      this.userInfo = user.currentUser;
+    })
   }
 
+  ngOnDestroy(){
+    this.sub.unsubscribe();
+  }
+
+  userInfo : UserInfo = {email: '', userName: '', isAdmin: false};
+  
+ 
   saveChanges() {
     // code to save changes goes here
     this.isEditing = false;

@@ -13,6 +13,15 @@ html, body {
     height: 75vh; /* Ocupa toda la altura de la ventana */
 }
 
+img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+  }
+
 .app-loader {
     border: 16px solid #f3f3f3;
     border-top: 16px solid #3498db;

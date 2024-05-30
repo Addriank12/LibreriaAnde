@@ -1,19 +1,44 @@
 <main>
     <section class="management-section">
         <h2>Gestión de Libros</h2>
-        <div class="data-list">
-            <!-- Aquí se cargarán los datos desde Firebase -->
-        </div>
-        <div class="add-book-form">
-            <form>
-                <h3>Agregar Nuevo Libro</h3>
-                <input name="titulo" type="text" id="titulo" [(ngModel)]="selectedLibro.Titulo" placeholder="Titulo">
-                <input name="autor" type="text" id="autor" [(ngModel)]="selectedLibro.Autor" placeholder="Autor">                
-                <input name="precio" type="text" id="precio" [(ngModel)]="selectedLibro.Precio" placeholder="Precio">
-                <input name="imagen" type="file" id="imagen" [(ngModel)]="selectedLibro.Imagen" placeholder="Imagen Source">
-                <textarea name="contenido" id="contenido" placeholder="Contenido" [(ngModel)]="selectedLibro.Contenido"></textarea>
-                <button (click)="agregarLibro()">Agregar Libro</button>
-            </form>            
+        <div class="content-area">
+            <div class="data-list">
+                <!-- Aquí se cargarán los datos desde Firebase -->
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Titulo</th>
+                            <th>Autor</th>
+                            <th>Precio</th>
+                            <th>Imagen</th>
+                            <th>Contenido</th>
+                            <!-- Add more columns as needed -->
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let libro of libros">
+                            <td>{{ libro.Titulo }}</td>
+                            <td>{{ libro.Autor }}</td>
+                            <td>{{ libro.Precio }}</td>
+                            <td>{{ libro.Imagen | slice:0:70 }}</td>
+                            <td>{{ libro.Contenido }}</td>
+                            <!-- Add more cells as needed -->
+                        </tr>
+                    </tbody>
+                    
+                </table>
+            </div>
+            <div class="add-book-form">
+                <form>
+                    <h3>Agregar Nuevo Libro</h3>
+                    <input name="titulo" type="text" id="titulo" [(ngModel)]="selectedLibro.Titulo" placeholder="Titulo">
+                    <input name="autor" type="text" id="autor" [(ngModel)]="selectedLibro.Autor" placeholder="Autor">                
+                    <input name="precio" type="text" id="precio" [(ngModel)]="selectedLibro.Precio" placeholder="Precio">
+                    <input name="imagen" type="file" id="imagen" [(ngModel)]="selectedLibro.Imagen" placeholder="Imagen Source">
+                    <textarea name="contenido" id="contenido" placeholder="Contenido" [(ngModel)]="selectedLibro.Contenido"></textarea>
+                    <button (click)="agregarLibro()">Agregar Libro</button>
+                </form>            
+            </div>
         </div>
     </section>
 </main>

@@ -4,13 +4,13 @@
     <div class="details" style="display: flex; justify-content: space-between;">
       <div>
         <h2>Datos de Ingreso:</h2>
-        <p>Nombre: {{userName}}</p>
-        <p>Correo electrónico: {{userEmail}}</p>
+        <p>Nombre: <span class="username">{{userInfo.userName}}</span></p>
+        <p>Correo electrónico: <span class="email">{{userInfo.email}}</span></p>
         <button (click)="isEditing = !isEditing">Editar Información</button>
       </div>
       <div *ngIf="isEditing">
-        <input [(ngModel)]="userName" placeholder="Nombre">
-        <input [(ngModel)]="userEmail" placeholder="Correo electrónico">
+        <input [(ngModel)]="userInfo.userName" placeholder="Nombre">
+        <input [(ngModel)]="userInfo.email" placeholder="Correo electrónico">
         <button (click)="saveChanges()">Guardar Cambios</button>
       </div>
     </div>

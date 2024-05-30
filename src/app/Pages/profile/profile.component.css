@@ -51,3 +51,7 @@ input {
 .profile-page{
   padding-left: 6%;
 }
+
+.username, .email {
+  color: white;
+}

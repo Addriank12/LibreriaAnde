@@ -23,7 +23,7 @@ header h1 {
   margin: auto;
   padding: 20px;
   text-align: center;
-  background-color: #b57026;
+  background-color: rgb(146, 117, 64);
   border-radius: 20px;
   margin: 0 80px;
 }
@@ -74,10 +74,16 @@ header h1 {
   color: #333;
 }
 
+
 .background-section {
   position: relative;
   height: 450px; /* Altura deseada de la sección de fondo */
   overflow: hidden;
+  background: rgba(0, 0, 0, 0.409); 
+
+
+  border-radius: 20px;
+  margin: 0 80px;
 }
 
 .background-image {
@@ -97,7 +103,6 @@ header h1 {
 
 .background-section h2{
   color: (129, 98, 69, 0.583);
-  background-color: rgba(0, 0, 0, 0.787);
 }
 
 .content {
@@ -113,7 +118,7 @@ header h1 {
 .recommendations-section {
   padding: 40px 0;
   text-align: center;
-  background-color: #b57026;
+  background-color: rgb(146, 117, 64);
   border-radius: 20px;
   margin: 0 80px;
 }
