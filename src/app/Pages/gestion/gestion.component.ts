@@ -16,21 +16,54 @@ import { CommonModule } from '@angular/common';
 })
 export class GestionComponent implements OnInit {
   selectedLibro: LibroModel = new LibroModel();
+  libroSeleccionado: LibroModel = new LibroModel();
   libros: LibroModel[] = [];
+  errorMessage: string | null = null;
   
-  constructor(private libroService: LibroService) {    
+  constructor(private libroService: LibroService) { }
 
-  }
-
-  ngOnInit() { // Método que se llama automáticamente cuando se inicializa el componente
+  ngOnInit() { 
     this.libroService.getLibros().then(libros => {
       this.libros = libros.map(libro => libro as LibroModel);
-      console.log(this.libros); // Agrega esta línea
+      console.log(this.libros);
     });
   }
 
-  agregarLibro() {
-    this.libroService.addLibro(this.selectedLibro);
+  async agregarLibro() {
+    try {
+      const libro: LibroModel = new LibroModel(); // Define the 'libro' variable
+      await this.libroService.addLibro(libro);
+    } catch (error: any) { // Add type assertion to 'error' variable
+      this.errorMessage = error.message;
+    }
   }
 
+  seleccionarLibro(libro: LibroModel) {
+    this.selectedLibro = libro;
+  }
+
+  handleFileInput(event: Event) {
+    const target = event.target as HTMLInputElement;
+    if (target.files && target.files[0]) {
+      const reader = new FileReader();
+      reader.onload = (e) => this.selectedLibro.Imagen = (e.target as FileReader).result;
+      reader.readAsDataURL(target.files[0]);
+    }
+  }
+
+  eliminarLibro(libro: LibroModel) {
+    if (!libro.Titulo) {
+      this.errorMessage = 'El título del libro no puede estar vacío';
+      return;
+    }
+  
+    this.libroService.deleteLibro(libro.Titulo).then(() => {
+      this.libros = this.libros.filter(l => l.Titulo !== libro.Titulo);
+      if (this.selectedLibro && this.selectedLibro.Titulo === libro.Titulo) {
+        this.selectedLibro = new LibroModel();
+      }
+    }).catch(error => {
+      this.errorMessage = error.message;
+    });
+  }
 }

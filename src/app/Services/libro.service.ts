@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import { Bytes, Firestore, addDoc, collection, getDocs } from '@angular/fire/firestore';
-import { Storage, getDownloadURL, ref, uploadBytes } from '@angular/fire/storage';
+import { Bytes, Firestore, addDoc, collection, getDocs, deleteDoc, doc } from '@angular/fire/firestore';
+import { Storage, getDownloadURL, ref, uploadBytes, deleteObject } from '@angular/fire/storage';
 import { collectionData, query, orderBy } from '@angular/fire/firestore';
 import { LibroModel } from '../Domain/LIbroModel';
 
@@ -9,11 +9,13 @@ import { LibroModel } from '../Domain/LIbroModel';
 })
 export class LibroService {
 
-  constructor(private firestore: Firestore, private storage: Storage) 
-  {
-  }
+  constructor(private firestore: Firestore, private storage: Storage) {}
 
   async addLibro(libro: LibroModel){
+    if (!libro.Titulo || !libro.Autor) {
+      throw new Error('Todos los campos deben estar llenos');
+    }
+  
     libro.Imagen = await this.uploadFile(libro);
     return await addDoc(collection(this.firestore, "Libros"), Object.assign({}, libro));
   }
@@ -30,5 +32,16 @@ export class LibroService {
     const libros = querySnapshot.docs.map(doc => doc.data());
     return libros;
   }
-
+  
+  async deleteLibro(titulo: string) {
+    if (!titulo) {
+      throw new Error('El título del libro no puede ser nulo o vacío');
+    }
+  
+    const libroRef = doc(this.firestore, "Libros", titulo);
+    await deleteDoc(libroRef);
+  
+    const imageRef = ref(this.storage, 'Libros/' + titulo);
+    await deleteObject(imageRef);
+  }
 }

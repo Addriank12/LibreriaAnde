@@ -16,7 +16,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr *ngFor="let libro of libros">
+                        <tr *ngFor="let libro of libros" (click)="seleccionarLibro(libro)">
                             <td>{{ libro.Titulo }}</td>
                             <td>{{ libro.Autor }}</td>
                             <td>{{ libro.Precio }}</td>
@@ -31,12 +31,17 @@
             <div class="add-book-form">
                 <form>
                     <h3>Agregar Nuevo Libro</h3>
-                    <input name="titulo" type="text" id="titulo" [(ngModel)]="selectedLibro.Titulo" placeholder="Titulo">
-                    <input name="autor" type="text" id="autor" [(ngModel)]="selectedLibro.Autor" placeholder="Autor">                
+                    <input [(ngModel)]="selectedLibro.Titulo" name="Titulo" type="text" placeholder="Titulo">
+                    <input [(ngModel)]="selectedLibro.Autor" name="Autor" type="text" placeholder="Autor">    
                     <input name="precio" type="text" id="precio" [(ngModel)]="selectedLibro.Precio" placeholder="Precio">
-                    <input name="imagen" type="file" id="imagen" [(ngModel)]="selectedLibro.Imagen" placeholder="Imagen Source">
+                    <img [src]="selectedLibro.Imagen" alt="Imagen del libro">
+                    <input name="imagen" type="file" id="imagen" (change)="handleFileInput($event)" placeholder="Imagen Source">
                     <textarea name="contenido" id="contenido" placeholder="Contenido" [(ngModel)]="selectedLibro.Contenido"></textarea>
-                    <button (click)="agregarLibro()">Agregar Libro</button>
+                    <button (click)="agregarLibro()">Agregar Libro</button> <br>
+                    <button (click)="eliminarLibro(selectedLibro)" [disabled]="!selectedLibro">Eliminar</button> <br>
+                    <div *ngIf="errorMessage" class="error-message">
+                        {{errorMessage}}
+                      </div>
                 </form>            
             </div>
         </div>
