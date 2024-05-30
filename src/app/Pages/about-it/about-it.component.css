@@ -8,7 +8,7 @@ section{
     margin-right: auto;
 }
 
-@media (max-width: 480px) {
+@media (max-width: 907px) {
 
     h2{
         font-size: 20px;

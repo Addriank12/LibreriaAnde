@@ -76,7 +76,7 @@ table {
     width: 45%;
   }
 
-  @media (max-width: 480px) {
+  @media (max-width: 907px) {
 
     .management-section h2{
         display: block;

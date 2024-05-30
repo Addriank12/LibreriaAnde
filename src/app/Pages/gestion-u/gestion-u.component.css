@@ -62,3 +62,27 @@
     border: 1px solid black 
   }
   
+  @media (max-width: 907px) {
+
+    .container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .table-container {
+      width: 100%;
+      font-size: 14px;
+    }
+    .form-container {
+      width: 100%;
+    }
+
+    input[type="text"] {
+      width: 100%;
+      max-width: 300px; 
+      padding: 5px; 
+    }
+
+    
+
+  }
