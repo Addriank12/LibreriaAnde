@@ -18,7 +18,7 @@ export class AuthService {
   private auth: Auth = inject(Auth);
   private authGoogleProvider = new GoogleAuthProvider();
 
-  private userSubject = new BehaviorSubject<{currentUser: UserInfo}>({currentUser: {email: '', userName: '', isAdmin: false}});
+  private userSubject = new BehaviorSubject<{currentUser: UserInfo}>(this.getStoredUser());
   public currentUser$ = this.userSubject.asObservable();
 
 
@@ -26,8 +26,18 @@ export class AuthService {
     this.authGoogleProvider.addScope('https://www.googleapis.com/auth/contacts.readonly');
   }
 
+  private getStoredUser(): {currentUser: UserInfo} {
+    const storedUser = localStorage.getItem('currentUser');
+    return storedUser ? JSON.parse(storedUser) : {currentUser: {email: '', userName: '', isAdmin: false}};
+  }
+
+  private storeUser(user: UserInfo): void {
+    localStorage.setItem('currentUser', JSON.stringify({currentUser: user}));
+  }
+
   setUserName(currentUser: UserInfo){
     this.userSubject.next({currentUser});
+    this.storeUser(currentUser);
   }
 
   getCurrentUser(): UserInfo{

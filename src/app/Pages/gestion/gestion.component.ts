@@ -37,6 +37,7 @@ export class GestionComponent implements OnInit {
 
   agregarLibro() {
     this.libroService.addLibro(this.selectedLibro);
+    this.ngOnInit();
   }
 
   seleccionarLibro(libro: LibroModel) {
