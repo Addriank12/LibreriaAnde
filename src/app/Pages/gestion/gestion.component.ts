@@ -18,7 +18,7 @@ export class GestionComponent implements OnInit {
   selectedLibro: LibroModel = new LibroModel();
   libroSeleccionado: LibroModel = new LibroModel();
   libros: LibroModel[] = [];
-  errorMessage: string | null = null;
+  
   
   constructor(private libroService: LibroService) { }
 
@@ -29,13 +29,8 @@ export class GestionComponent implements OnInit {
     });
   }
 
-  async agregarLibro() {
-    try {
-      const libro: LibroModel = new LibroModel(); // Define the 'libro' variable
-      await this.libroService.addLibro(libro);
-    } catch (error: any) { // Add type assertion to 'error' variable
-      this.errorMessage = error.message;
-    }
+  agregarLibro() {
+    this.libroService.addLibro(this.selectedLibro);
   }
 
   seleccionarLibro(libro: LibroModel) {
@@ -52,18 +47,11 @@ export class GestionComponent implements OnInit {
   }
 
   eliminarLibro(libro: LibroModel) {
-    if (!libro.Titulo) {
-      this.errorMessage = 'El título del libro no puede estar vacío';
-      return;
-    }
-  
     this.libroService.deleteLibro(libro.Titulo).then(() => {
       this.libros = this.libros.filter(l => l.Titulo !== libro.Titulo);
       if (this.selectedLibro && this.selectedLibro.Titulo === libro.Titulo) {
         this.selectedLibro = new LibroModel();
       }
-    }).catch(error => {
-      this.errorMessage = error.message;
     });
   }
 }

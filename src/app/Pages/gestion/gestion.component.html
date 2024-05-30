@@ -34,14 +34,10 @@
                     <input [(ngModel)]="selectedLibro.Titulo" name="Titulo" type="text" placeholder="Titulo">
                     <input [(ngModel)]="selectedLibro.Autor" name="Autor" type="text" placeholder="Autor">    
                     <input name="precio" type="text" id="precio" [(ngModel)]="selectedLibro.Precio" placeholder="Precio">
-                    <img [src]="selectedLibro.Imagen" alt="Imagen del libro">
                     <input name="imagen" type="file" id="imagen" (change)="handleFileInput($event)" placeholder="Imagen Source">
                     <textarea name="contenido" id="contenido" placeholder="Contenido" [(ngModel)]="selectedLibro.Contenido"></textarea>
                     <button (click)="agregarLibro()">Agregar Libro</button> <br>
-                    <button (click)="eliminarLibro(selectedLibro)" [disabled]="!selectedLibro">Eliminar</button> <br>
-                    <div *ngIf="errorMessage" class="error-message">
-                        {{errorMessage}}
-                      </div>
+                    <button (click)="eliminarLibro(selectedLibro)" [disabled]="!selectedLibro">Eliminar</button>
                 </form>            
             </div>
         </div>

@@ -9,13 +9,11 @@ import { LibroModel } from '../Domain/LIbroModel';
 })
 export class LibroService {
 
-  constructor(private firestore: Firestore, private storage: Storage) {}
+  constructor(private firestore: Firestore, private storage: Storage) 
+  {
+  }
 
   async addLibro(libro: LibroModel){
-    if (!libro.Titulo || !libro.Autor) {
-      throw new Error('Todos los campos deben estar llenos');
-    }
-  
     libro.Imagen = await this.uploadFile(libro);
     return await addDoc(collection(this.firestore, "Libros"), Object.assign({}, libro));
   }
@@ -34,14 +32,10 @@ export class LibroService {
   }
   
   async deleteLibro(titulo: string) {
-    if (!titulo) {
-      throw new Error('El título del libro no puede ser nulo o vacío');
-    }
-  
-    const libroRef = doc(this.firestore, "Libros", titulo);
-    await deleteDoc(libroRef);
-  
-    const imageRef = ref(this.storage, 'Libros/' + titulo);
-    await deleteObject(imageRef);
-  }
+  const libroRef = doc(this.firestore, "Libros", titulo);
+  await deleteDoc(libroRef);
+
+  const imageRef = ref(this.storage, 'Libros/' + titulo);
+  await deleteObject(imageRef);
+}
 }
