@@ -83,8 +83,6 @@ header h1 {
   height: 450px; /* Altura deseada de la sección de fondo */
   overflow: hidden;
   background: rgba(0, 0, 0, 0.409); 
-
-
   border-radius: 20px;
   margin: 0 80px;
 }
@@ -130,3 +128,63 @@ header h1 {
   font-size: 2em;
   margin-bottom: 20px;
 }
+
+
+  @media (max-width: 480px) {
+    header h1{
+      font-size: 20px;
+      padding-top: 2%;
+    }
+    .divImg img {
+      width: 100%;
+      max-height: 200px;
+      border-top-left-radius: 10px;
+      border-top-right-radius: 10px;
+      object-fit: cover;
+    }
+    .background-section {
+      position: relative;
+      height: 280px; /* Altura deseada de la sección de fondo */
+      margin: 4%;
+    }
+
+    .background-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .background-section h2, p{
+      font-size: 8px;
+      margin-top: 0;
+    }
+
+    .infoLibros{
+      margin: auto;
+      padding: 20px;
+      margin: 5%;
+      font-size: 10px;
+    }
+
+    .infoLibros h2 {
+      margin-bottom: 10px;
+    }
+
+    .infoLibros p{
+      margin-bottom: 20px;
+    }
+
+    .divImg {
+      width: 80px;
+    }
+
+    .recommendations-section{
+      margin: auto;
+      padding: 20px;
+      margin: 5%;
+      font-size: 10px;
+    }
+  }
+
+
+  

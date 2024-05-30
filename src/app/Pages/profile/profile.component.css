@@ -55,3 +55,30 @@ input {
 .username, .email {
   color: white;
 }
+
+@media (max-width: 480px) {
+
+  .profile-page h1{
+    font-size: 20px;
+    padding-top: 2%;
+  }
+
+  .details h2{
+    font-size: 20px;
+    padding-top: 2%;
+  }
+
+  .details p{
+    font-size: 15px;
+    padding-top: 2%;
+  }
+
+  .profile-page{
+    padding-left: 5;
+  }
+
+  .user-info input{
+    width: 100%;
+  }
+
+}

@@ -75,3 +75,45 @@ table {
   .add-book-form {
     width: 45%;
   }
+
+  @media (max-width: 480px) {
+
+    .management-section h2{
+        display: block;
+        font-size: 20px;
+    }
+
+    form{
+        padding: 10px;
+    }
+    table {
+        width: 100%;
+        font-size: 6px;
+    }
+    .content-area {
+        display: block;
+    }
+    .data-list {
+        width: 100%;
+        padding-left: 0;
+    }
+    .add-book-form {
+        width: 100%;
+    }
+
+
+    add-book-form input{
+      width: 80%;
+      margin: 0 auto;
+    }
+    .add-book-form textarea{
+      width: 80%;
+      text-align: center;
+      margin: 0 auto;
+    }
+    .add-book-form button{
+      width: 80%;
+      margin: 0 auto;
+    }
+    
+  }

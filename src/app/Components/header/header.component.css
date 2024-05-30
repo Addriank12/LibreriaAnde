@@ -66,7 +66,7 @@
     max-width: 150px; /* Ajusta este valor según sea necesario */
     max-height: 75px; /* Ajusta este valor para hacerlo más grande */
     margin-right: 10px; /* Añadimos un poco de espacio entre el logo y el menú */
-    margin-left: 20px; /* Ajusta el margen izquierdo para desplazar el logo a la derecha */
+    margin-left: 15px; /* Ajusta el margen izquierdo para desplazar el logo a la derecha */
   }
   .UserInfo button {
     background-color: #ff4b4b;
@@ -81,3 +81,36 @@
   .UserInfo button:hover {
     background-color: #ff1a1a;
   }
+
+
+
+@media (max-width: 480px) {
+  li a {
+    font-size: 6px;
+    margin: 0; /* Elimina los márgenes */
+    padding: 0; /* Reduce el relleno */
+  }
+
+  .UserInfo, .UserInfo button {
+    padding: 2px 4px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 4px;
+  }
+
+  .logo {
+    max-width: 30px; /* Ajusta este valor según sea necesario */
+    max-height: 15px; /* Ajusta este valor para hacerlo más grande */
+    margin-right: 0; /* Añadimos un poco de espacio entre el logo y el menú */
+    margin-left: 0px; /* Ajusta el margen izquierdo para desplazar el logo a la derecha */
+  }
+
+  .auth-section, .auth-section button{
+    font-size: 5px;
+  }
+
+  .auth-section label{
+    font-size: 5px;
+  }
+
+}
