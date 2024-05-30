@@ -60,4 +60,8 @@ export class GestionComponent implements OnInit {
       }
     });
   }
+
+  updateLibro() {
+    this.libroService.UpdateLibro(this.selectedLibro);
+  }
 }

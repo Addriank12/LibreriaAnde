@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Bytes, Firestore, addDoc, collection, getDocs, deleteDoc, doc } from '@angular/fire/firestore';
+import { Bytes, Firestore, addDoc, collection, getDocs, deleteDoc, updateDoc ,doc } from '@angular/fire/firestore';
 import { Storage, getDownloadURL, ref, uploadBytes, deleteObject } from '@angular/fire/storage';
 import { collectionData, query, orderBy } from '@angular/fire/firestore';
 import { LibroModel } from '../Domain/LIbroModel';
@@ -48,5 +48,17 @@ export class LibroService {
 
   const imageRef = ref(this.storage, 'Libros/' + titulo);
   await deleteObject(imageRef);
-}
+  }
+
+  async UpdateLibro(libro: LibroModel): Promise<void> {
+    if (libro.Imagen !== null && libro.Imagen !== undefined && libro.Imagen !== ''){
+      libro.Imagen = await this.uploadFile(libro);
+    }
+    const querySnapshot = await getDocs(collection(this.firestore, "Libros"));
+    querySnapshot.forEach((doc) => {
+      if (doc.data()['Titulo'] === libro.Titulo){
+        updateDoc(doc.ref, libro as { [x: string]: any });
+      }
+    });
+  }
 }

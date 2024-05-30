@@ -37,6 +37,7 @@
                     <input name="imagen" type="file" id="imagen" (change)="handleFileInput($event)" placeholder="Imagen Source">
                     <textarea name="contenido" id="contenido" placeholder="Contenido" [(ngModel)]="selectedLibro.Contenido"></textarea>
                     <button (click)="agregarLibro()">Agregar Libro</button> <br>
+                    <button (click)="updateLibro()">Actualizar Libro</button> <br>
                     <button (click)="eliminarLibro(selectedLibro)" [disabled]="!selectedLibro">Eliminar</button>
                 </form>            
             </div>
