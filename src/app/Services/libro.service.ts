@@ -51,8 +51,10 @@ export class LibroService {
   }
 
   async UpdateLibro(libro: LibroModel): Promise<void> {
-    if (libro.Imagen !== null && libro.Imagen !== undefined && libro.Imagen !== ''){
+    try{
       libro.Imagen = await this.uploadFile(libro);
+    }catch{
+      console.log("No se ha subido la imagen");
     }
     const querySnapshot = await getDocs(collection(this.firestore, "Libros"));
     querySnapshot.forEach((doc) => {
