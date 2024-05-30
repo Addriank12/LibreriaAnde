@@ -28,7 +28,11 @@ export class AuthService {
 
   setUserName(currentUser: UserInfo){
     this.userSubject.next({currentUser});
-  }  
+  }
+
+  getCurrentUser(): UserInfo{
+    return this.userSubject.value.currentUser;
+  }
 
   readonly authState$ = authState(this.auth);
 

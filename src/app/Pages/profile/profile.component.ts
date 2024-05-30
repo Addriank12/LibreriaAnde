@@ -4,6 +4,8 @@ import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { UserInfo } from '../../Domain/UserInfoModel';
 import { Subscription } from 'rxjs';
+import { UserInfoService } from '../../Services/user-info.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-profile',
@@ -16,9 +18,13 @@ export class ProfileComponent implements OnInit{
   
   isEditing = false;
   private sub: Subscription = new Subscription;
+  userInfo : UserInfo = {email: '', userName: '', isAdmin: false};
 
-
-  constructor(private authService: AuthService) { }
+  constructor(private authService: AuthService, private userInfoService: UserInfoService, private router: Router) { 
+    if(authService.getCurrentUser().email === ""){
+      this.router.navigate(['/home']);
+    }
+  }
 
   ngOnInit(){
     this.sub = this.authService.currentUser$.subscribe(user => {
@@ -28,13 +34,12 @@ export class ProfileComponent implements OnInit{
 
   ngOnDestroy(){
     this.sub.unsubscribe();
-  }
+  } 
 
-  userInfo : UserInfo = {email: '', userName: '', isAdmin: false};
-  
- 
   saveChanges() {
-    // code to save changes goes here
     this.isEditing = false;
+    this.userInfoService.UpdateUserInfo(this.userInfo);
+    this.authService.setUserName(this.userInfo);
+    this.router.navigate(['/home']);
   }
 }

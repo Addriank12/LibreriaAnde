@@ -5,6 +5,8 @@ import { LibroModel } from '../../Domain/LIbroModel';
 import { FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { CommonModule } from '@angular/common';
+import { Router } from '@angular/router';
+import { AuthService } from '../../Services/auth.service';
 
 
 @Component({
@@ -20,7 +22,11 @@ export class GestionComponent implements OnInit {
   libros: LibroModel[] = [];
   
   
-  constructor(private libroService: LibroService) { }
+  constructor(private libroService: LibroService, private router: Router, private authService: AuthService) {
+    if (authService.getCurrentUser().isAdmin === false){
+      this.router.navigate(['/home']);
+    }    
+  }
 
   ngOnInit() { 
     this.libroService.getLibros().then(libros => {

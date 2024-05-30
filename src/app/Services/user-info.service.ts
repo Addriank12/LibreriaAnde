@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { DocumentReference, Firestore, addDoc, collection, getDocs } from '@angular/fire/firestore';
+import { DocumentReference, Firestore, addDoc, collection, getDocs, updateDoc } from '@angular/fire/firestore';
 import { UserInfo } from '../Domain/UserInfoModel';
 
 @Injectable({
@@ -22,6 +22,15 @@ export class UserInfoService {
 
   async addUserInfo(userInfo: UserInfo): Promise<DocumentReference> {
     return await addDoc(collection(this.firestore, "UsersInfo"), Object.assign({}, userInfo));
+  }
+
+  async UpdateUserInfo(userInfo: UserInfo): Promise<void> {
+    const querySnapshot = await getDocs(collection(this.firestore, "UsersInfo"));
+    querySnapshot.forEach((doc) => {
+      if (doc.data()['email'] === userInfo.email){
+        updateDoc(doc.ref, userInfo as { [x: string]: any });
+      }
+    });
   }
 
 
