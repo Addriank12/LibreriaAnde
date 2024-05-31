@@ -4,6 +4,8 @@ import { FormsModule } from '@angular/forms';
 import { UserInfoService } from '../../Services/user-info.service';
 import { UserInfo } from '../../Domain/UserInfoModel';
 import { LoaderComponent } from '../../Components/loader/loader.component';
+import { Router } from '@angular/router';
+import { AuthService } from '../../Services/auth.service';
 
 @Component({
   selector: 'app-gestion-u',
@@ -18,7 +20,11 @@ export class GestionUComponent {
   isLoading: boolean = false;
   
 
-  constructor(private userInfoService: UserInfoService) {  }
+  constructor(private userInfoService: UserInfoService, private router: Router, authService: AuthService) {  
+    if (authService.getCurrentUser().isAdmin === false){
+      this.router.navigate(['/home']);
+    }  
+  }
 
   async ngOnInit() {
     this.users = await this.userInfoService.getAllUsers();

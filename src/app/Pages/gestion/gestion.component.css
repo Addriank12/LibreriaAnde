@@ -38,6 +38,13 @@ textarea{
     max-height: 400px;
 }
 
+img{
+    width: 100%;
+    max-width: 32px;
+    margin: 0 auto;
+    display: block;
+}
+
 table {
     width: 120%;
     border-collapse: collapse;
