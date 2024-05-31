@@ -6,11 +6,15 @@
         <h2>Datos de Ingreso:</h2>
         <p>Nombre: <span class="username">{{userInfo.userName}}</span></p>
         <p>Correo electrónico: <span class="email">{{userInfo.email}}</span></p>
+        <p>Direccion: <span class="direccion">{{userInfo.direccion}}</span></p>
+        <p>Telefono: <span class="telefono">{{userInfo.telefono}}</span></p>
         <button (click)="isEditing = !isEditing">Editar Información</button>
       </div>
       <div *ngIf="isEditing">
         <input [(ngModel)]="userInfo.userName" placeholder="Nombre">
         <input [(ngModel)]="userInfo.email" placeholder="Correo electrónico">
+        <input [(ngModel)]="userInfo.direccion" placeholder="Direccion">
+        <input [(ngModel)]="userInfo.telefono" placeholder="Telefono">
         <button (click)="saveChanges()">Guardar Cambios</button>
       </div>
     </div>
