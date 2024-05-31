@@ -19,7 +19,27 @@ export class HeaderComponent {
   currentUser: UserInfo= {email: '', userName: '', isAdmin: false, direccion: '', telefono: '', profilePic: ''};
   private sub: Subscription = new Subscription;
 
-  constructor(public authService: AuthService, private userInfoService: UserInfoService, private router: Router){}
+  constructor(public authService: AuthService, private userInfoService: UserInfoService, private router: Router){
+    document.addEventListener("DOMContentLoaded", function () {
+      const menuToggle = document.getElementById("menu-toggle");
+      const mobileMenu = document.getElementById("mobile-menu");
+      const menuIcon = document.getElementById("menu-icon");
+  
+      if (!menuToggle || !mobileMenu || !menuIcon) {
+        return;
+      }
+  
+      menuToggle.addEventListener("click", function () {
+        if (mobileMenu.style.display === "none") {
+          mobileMenu.style.display = "flex";
+          menuIcon.textContent = "✕";
+        } else {
+          mobileMenu.style.display = "none";
+          menuIcon.textContent = "☰";
+        }
+      });
+    });
+  }
 
   ngOnInit() {
     this.sub = this.authService.currentUser$.subscribe(async user => {

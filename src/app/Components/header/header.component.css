@@ -82,13 +82,44 @@
     background-color: #ff1a1a;
   }
 
+  #menu-toggle{
+    display: none;
+    align-items: start;
+  }
 
+  #mobile-menu{
+    display: none;
+  }
 
-@media (max-width: 907px) {
+@media (max-width: 950px) {
   li a {
     font-size: 6px;
     margin: 0; /* Elimina los márgenes */
     padding: 0; /* Reduce el relleno */
+  }
+
+  #wide-menu{
+    display: none;
+  }
+
+  #menu-toggle{
+    display: flex;
+  }
+
+
+  #mobile-menu{
+    display: none;
+    flex-direction: column;
+    gap: 10px;
+    align-items: start;
+    position: absolute;
+    top: 50px;
+    right: 0;
+    z-index: 2;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 10px;
   }
 
   .UserInfo, .UserInfo button {
@@ -99,18 +130,26 @@
   }
 
   .logo {
-    max-width: 30px; /* Ajusta este valor según sea necesario */
-    max-height: 15px; /* Ajusta este valor para hacerlo más grande */
+    height: 64px;
+    width: auto;
     margin-right: 0; /* Añadimos un poco de espacio entre el logo y el menú */
     margin-left: 0px; /* Ajusta el margen izquierdo para desplazar el logo a la derecha */
   }
 
-  .auth-section, .auth-section button{
-    font-size: 5px;
+  .auth-section-wide, .auth-section button{
+    display: none;
   }
 
-  .auth-section label{
-    font-size: 5px;
+  .auth-section-mobile, .auth-section button{
+    font-size: 15px;
+  }
+
+  .auth-section-mobile label{
+    display: none;
+  }
+
+  .auth-section-wide label{
+    font-size: 15px;
   }
 
 }

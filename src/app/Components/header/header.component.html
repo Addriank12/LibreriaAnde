@@ -2,7 +2,7 @@
     <a routerLink="home">
     <img src="assets/Imagenes/LogoDelAnde.png" alt="Logo de Librería Del Ande" class="logo"/>
     </a>
-    <nav>
+    <nav id="wide-menu">
         <ul>
             <li><a routerLink="home">Inicio</a></li>
             <li><a routerLink="shop">Tienda</a></li>
@@ -15,8 +15,35 @@
 
         </ul>
     </nav>
-    <div class="auth-section">
-
+    <button
+    id="menu-toggle"
+    class="flex flex-grow basis-0 justify-end text-2xl md:hidden z-50"
+  >
+    <span id="menu-icon">☰</span>
+  </button>
+    <nav
+    id="mobile-menu">
+    <li><a routerLink="home">Inicio</a></li>
+    <li><a routerLink="shop">Tienda</a></li>
+    <li><a routerLink="locations">Locaciones</a></li>
+    <li><a routerLink="aboutIt">Acerca De</a></li>
+    @if (currentUser.isAdmin) {
+        <li><a routerLink="gestion">Gestion</a></li>
+        <li><a routerLink="gestion-u">Gestionar Usuarios</a></li>
+    }
+    <div class="auth-section-mobile">
+        @if (currentUser.userName != "") {
+            <div class="UserInfo">
+                <a routerLink="profile">{{currentUser.userName}}</a>
+                <button (click)="logout()">Cerrar Sesión</button>
+            </div>
+        }
+        @else{
+            <label routerLink="login">Iniciar Sesión</label>
+        }
+    </div>
+  </nav>
+    <div class="auth-section-wide">
         @if (currentUser.userName != "") {
             <div class="UserInfo">
                 <a routerLink="profile">{{currentUser.userName}}</a>
