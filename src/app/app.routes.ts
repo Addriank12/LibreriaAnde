@@ -7,7 +7,7 @@ import { AboutItComponent } from './Pages/about-it/about-it.component';
 import { AuthenticationComponent } from './Pages/authentication/authentication.component';
 import { GestionComponent } from './Pages/gestion/gestion.component';
 import { GestionUComponent } from './Pages/gestion-u/gestion-u.component';
-
+import { DetalleLibroComponent } from './Pages/detalle-libro/detalle-libro.component';
 
 
 export const routes: Routes = [
@@ -19,7 +19,8 @@ export const routes: Routes = [
     { path: 'login', component: AuthenticationComponent },
     { path: 'profile', component: ProfileComponent },
     { path: 'gestion', component: GestionComponent },
-    { path: 'gestion-u', component: GestionUComponent }
+    { path: 'gestion-u', component: GestionUComponent },
+    { path: 'detalle-libro/:titulo', component: DetalleLibroComponent }
 ];
 
 

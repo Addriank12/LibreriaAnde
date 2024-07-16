@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Bytes, Firestore, addDoc, collection, getDocs, deleteDoc, updateDoc ,doc } from '@angular/fire/firestore';
+import { Bytes, Firestore, addDoc, collection, getDocs, deleteDoc, updateDoc ,doc, where } from '@angular/fire/firestore';
 import { Storage, getDownloadURL, ref, uploadBytes, deleteObject } from '@angular/fire/storage';
 import { collectionData, query, orderBy } from '@angular/fire/firestore';
 import { LibroModel } from '../Domain/LIbroModel';
@@ -63,4 +63,15 @@ export class LibroService {
       }
     });
   }
+
+  async getLibroByTitulo(titulo: string): Promise<LibroModel | undefined> {
+    const q = query(collection(this.firestore, "Libros"), where("Titulo", "==", titulo));
+    const querySnapshot = await getDocs(q);
+    if (!querySnapshot.empty) {
+      return querySnapshot.docs[0].data() as LibroModel;
+    } else {
+      return undefined; // O maneja el caso en que no se encuentre el libro
+    }
+  }
+
 }

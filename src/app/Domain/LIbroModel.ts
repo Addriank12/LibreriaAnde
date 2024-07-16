@@ -3,7 +3,7 @@ export class LibroModel{
     Autor: string;
     Imagen: any;
     Genero : any;
-    AnioPublicacion : any;
+    AnioPublicacion : number;
     Descripcion: string;
     Existencia: number;
     Contenido: string;
@@ -13,7 +13,7 @@ export class LibroModel{
         this.Autor = '';
         this.Imagen = '';
         this.Genero = '';
-        this.AnioPublicacion = '';
+        this.AnioPublicacion = 0;
         this.Descripcion = '';
         this.Existencia = 0;
         this.Contenido = '';
