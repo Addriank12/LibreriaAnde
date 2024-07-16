@@ -19,7 +19,6 @@
                         <tr *ngFor="let libro of libros" (click)="seleccionarLibro(libro)">
                             <td>{{ libro.Titulo }}</td>
                             <td>{{ libro.Autor }}</td>
-                            <td>{{ libro.Precio }}</td>
                             <td><img src="{{libro.Imagen}}"/></td>
                             <td>{{ libro.Contenido }}</td>
                             <!-- Add more cells as needed -->
@@ -33,7 +32,6 @@
                     <h3>Agregar Nuevo Libro</h3>
                     <input [(ngModel)]="selectedLibro.Titulo" name="Titulo" type="text" placeholder="Titulo">
                     <input [(ngModel)]="selectedLibro.Autor" name="Autor" type="text" placeholder="Autor">    
-                    <input name="precio" type="text" id="precio" [(ngModel)]="selectedLibro.Precio" placeholder="Precio">
                     <input name="imagen" type="file" id="imagen" (change)="handleFileInput($event)" placeholder="Imagen Source">
                     <textarea name="contenido" id="contenido" placeholder="Contenido" [(ngModel)]="selectedLibro.Contenido"></textarea><br>
                     <button (click)="agregarLibro()">Agregar Libro</button> <br>
