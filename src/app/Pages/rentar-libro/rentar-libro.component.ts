@@ -1,19 +1,22 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute, RouterLink } from '@angular/router';
-import { LibroService } from '../../Services/libro.service';
 import { LibroModel } from '../../Domain/LIbroModel';
+import { LibroService } from '../../Services/libro.service';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 
+
 @Component({
-  selector: 'app-detalle-libro',
+  selector: 'app-rentar-libro',
   standalone: true,
   imports: [FormsModule, CommonModule, RouterLink],
-  templateUrl: './detalle-libro.component.html',
-  styleUrl: './detalle-libro.component.css'
+  templateUrl: './rentar-libro.component.html',
+  styleUrl: './rentar-libro.component.css'
 })
-export class DetalleLibroComponent {
+export class RentarLibroComponent {
   libro: LibroModel | undefined;
+  nombre: string = '';
+  fecha: string = '';
   libros: any[] = [];
 
   constructor(
@@ -29,6 +32,16 @@ export class DetalleLibroComponent {
       });
     }
   }
+
+  rentarLibro(): void {
+    if (this.libro) {
+      this.libroService.rentarLibro(this.libro.Titulo, this.nombre, this.fecha).then(() => {
+        alert('Libro rentado con éxito');
+        // Redirigir o hacer algo después de la renta
+      });
+    }
+  }
+
+  
+
 }
-
-

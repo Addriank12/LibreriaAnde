@@ -8,7 +8,7 @@ import { AuthenticationComponent } from './Pages/authentication/authentication.c
 import { GestionComponent } from './Pages/gestion/gestion.component';
 import { GestionUComponent } from './Pages/gestion-u/gestion-u.component';
 import { DetalleLibroComponent } from './Pages/detalle-libro/detalle-libro.component';
-
+import { RentarLibroComponent } from './Pages/rentar-libro/rentar-libro.component';
 
 export const routes: Routes = [
     { path: '', redirectTo: 'home', pathMatch: 'full' }, // Redirect to home component
@@ -20,7 +20,8 @@ export const routes: Routes = [
     { path: 'profile', component: ProfileComponent },
     { path: 'gestion', component: GestionComponent },
     { path: 'gestion-u', component: GestionUComponent },
-    { path: 'detalle-libro/:titulo', component: DetalleLibroComponent }
+    { path: 'detalle-libro/:titulo', component: DetalleLibroComponent },
+    { path: 'rentar-libro/:titulo', component: RentarLibroComponent }
 ];
 
 

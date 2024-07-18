@@ -74,4 +74,20 @@ export class LibroService {
     }
   }
 
+  async rentarLibro(titulo: string, nombre: string, fecha: string): Promise<void> {
+    const q = query(collection(this.firestore, "Libros"), where("Titulo", "==", titulo));
+    const querySnapshot = await getDocs(q);
+    if (!querySnapshot.empty) {
+      const libroDoc = querySnapshot.docs[0];
+      const libro = libroDoc.data() as LibroModel;
+      if (libro.Existencia > 0) {
+        libro.Existencia -= 1;
+        await updateDoc(libroDoc.ref, { Existencia: libro.Existencia });
+        // Aquí puedes agregar la lógica para guardar la información de la renta en otra colección
+      } else {
+        throw new Error('No hay existencias disponibles');
+      }
+    }
+  }
+
 }
