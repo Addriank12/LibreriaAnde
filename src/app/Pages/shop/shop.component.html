@@ -1,14 +1,14 @@
-
 <main>
     <h2>Tienda</h2>
     <section class="shop-section">
-        
         <div class="products">
             <div *ngFor="let libro of libros" class="product">
-            <img [src]="libro.Imagen" alt="Nombre del Producto">
-            <h3>{{ libro.Titulo }}</h3>
-            <p>Precio: {{ libro.Precio }}</p>
-            <button>Agregar al Carrito</button>
+                <img [src]="libro.Imagen" alt="Nombre del Producto">
+                <div class="product-content">
+                    <h3>{{ libro.Titulo }}</h3>
+                    <p>{{ libro.Autor }}</p>
+                    <button [routerLink]="['/detalle-libro', libro.Titulo]">Ver Detalles</button>
+                </div>
             </div>
         </div>
     </section>

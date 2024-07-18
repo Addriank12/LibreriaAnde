@@ -1,0 +1,91 @@
+.detalle-libro-container {
+    display: flex;
+    flex-direction: row;
+    padding: 20px;
+    background-color: #485d71;
+    color: #fffffffa;
+    border-radius: 10px;
+    margin: 10px;
+    font-size: 14px;
+}
+
+.detalle-libro-imagen {
+    flex: 1;
+    max-width: 200px;
+    margin-right: 20px;
+}
+
+.detalle-libro-imagen img {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+}
+
+.detalle-libro-contenido {
+    flex: 2;
+    display: flex;
+    flex-direction: column;
+    margin-left: 10px;
+}
+
+.detalle-libro-titulo {
+    font-size: 2em;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.detalle-libro-autor,
+.detalle-libro-genero {
+    margin-bottom: 10px;
+    font-size: 1.2em;
+}
+
+.detalle-libro-descripcion {
+    margin: 20px;
+    padding: 20px;
+    font-size: 1em;
+    line-height: 1.5;
+}
+
+.detalle-libro-botones {
+    display: flex;
+    gap: 10px;
+}
+
+.detalle-libro-botones button {
+    padding: 10px 20px;
+    background-color: #f39c12;
+    border: none;
+    border-radius: 5px;
+    color: #fff;
+    font-size: 1em;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.detalle-libro-botones button:hover {
+    background-color: #e67e22;
+}
+
+.detalle-libro-botones button:disabled {
+    background-color: #bdc3c7;
+    cursor: not-allowed;
+}
+
+.boton-volver {
+    margin-top: 20px;
+    padding: 10px 20px;
+    background-color: #3498db;
+    border: none;
+    border-radius: 5px;
+    color: #fff;
+    font-size: 1em;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    text-decoration: none; /* Para eliminar subrayado si es un enlace */
+    display: inline-block; /* Para que se comporte como botón */
+}
+
+.boton-volver:hover {
+    background-color: #2980b9;
+}

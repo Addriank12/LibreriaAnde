@@ -1,0 +1,24 @@
+<a routerLink="/shop" class="boton-volver">Volver a todos los libros</a>
+
+<div class="detalle-libro-container" *ngIf="libro">
+    <div class="detalle-libro-imagen">
+        <img [src]="libro.Imagen" alt="{{ libro.Titulo }}">
+    </div>
+    <div class="detalle-libro-contenido">
+        <div class="detalle-libro-titulo">{{ libro.Titulo }}</div>
+        <div class="detalle-libro-autor">Autor: {{ libro.Autor }}</div>
+        <div class="detalle-libro-autor">Existencias: {{ libro.Existencia }}</div>
+        <div class="detalle-libro-autor">Año de Publicación: {{ libro.AnioPublicacion }}</div>
+        <div class="detalle-libro-genero">Género: {{ libro.Genero }}</div>
+        <div class="detalle-libro-botones">
+            <button [routerLink]="['/rentar-libro', libro.Titulo]" [disabled]="libro.Existencia === 0">Rentar</button>
+        </div>
+    </div>
+</div>
+<div *ngIf="libro" class="detalle-libro-descripcion">
+    {{ libro.Contenido }}
+</div>
+<div *ngIf="!libro">
+    <p>Libro no encontrado.</p>
+</div>
+

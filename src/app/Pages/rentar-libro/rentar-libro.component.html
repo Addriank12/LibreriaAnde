@@ -1,0 +1,31 @@
+<div class="rentar-libro-container" *ngIf="libro">
+    <div class="header">
+        <h2>Rentar {{ libro.Titulo }}</h2>
+    </div>
+    <div class="book-info">
+        <div class="book-details">
+            <h3>Libro a rentar:</h3>
+            <img [src]="libro.Imagen" alt="{{ libro.Titulo }}">
+            <p>Disponibles: {{ libro.Existencia }}</p>
+            <p>Usuario a rentar: </p>
+            <label for="fecha">Fecha Solicitada:</label>
+            <br>
+            <br>
+            <input id="fecha" type="date" [(ngModel)]="fecha" name="fecha" required>
+        </div>
+        <div class="reservation-details">
+            <h3>Detalles de la reserva:</h3>
+            <p>Libro a rentar: {{ libro.Titulo }}</p>
+            <p>Usuario: {{ nombre }}</p>
+            <p>Duración: 8 Días</p>
+            <p>Nota: En caso de no devolución en la fecha establecida, el usuario deberá pagar multa.</p>
+            <div class="buttons">
+                <button class="rentar" (click)="rentarLibro()">Rentar</button>
+                <button class="cancelar" routerLink="/shop">Cancelar</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div *ngIf="!libro">
+    <p>Libro no encontrado.</p>
+</div>

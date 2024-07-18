@@ -1,5 +1,3 @@
-
-
 .shop-section {
     text-align: center;
     padding: 50px 0;
@@ -8,44 +6,55 @@
 .products {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    grid-auto-rows: 1fr;
     justify-items: center;
     gap: 20px;
 }
 
-h2{
+h2 {
     padding-left: 2%;
     font-size: 2.5em;
     margin-left: 50px;
-  }
-
-.product {
-    max-width: 200px; /* Reducimos el ancho máximo */
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    padding: 15px; /* Reducimos el espacio interno */
-    background-color: #fff;
-    color: #333;
-    
 }
 
+.product {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    max-width: 200px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 15px;
+    background-color: #fff;
+    color: #333;
+}
 
 .product img {
     width: 100%;
-    height: auto;
+    height: 250px; /* Altura fija para las imágenes */
+    object-fit: cover; /* Ajuste de las imágenes para cubrir el área */
     border-radius: 5px;
+}
+
+.product-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+    flex-grow: 1; /* Permite que el contenido crezca y ocupe todo el espacio disponible */
 }
 
 .product h3 {
     margin-top: 10px;
+    margin-bottom: 5px;
 }
 
 .product p {
-    margin-top: 5px;
+    margin: 0;
+    margin-bottom: 10px;
 }
 
 .product button {
-    margin-top: 15px;
+    margin-top: auto; /* Empuja el botón hacia la parte inferior */
     padding: 8px 20px;
     background-color: #007bff;
     color: #fff;
@@ -60,13 +69,12 @@ h2{
 }
 
 @media (max-width: 907px) {
-
-    h2{
+    h2 {
         padding-top: 2%;
         font-size: 20px;
     }
 
-    .shop-section{  
+    .shop-section {
         padding: 20px;
         margin: 5%;
         font-size: 8px;
@@ -75,9 +83,4 @@ h2{
     .products {
         grid-template-columns: repeat(2, 1fr);
     }
-
-
 }
-
-
-

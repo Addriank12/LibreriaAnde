@@ -2,11 +2,12 @@ import { Component } from '@angular/core';
 import { LibroService } from '../../Services/libro.service';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-shop',
   standalone: true,
-  imports: [FormsModule, CommonModule],
+  imports: [FormsModule, CommonModule, RouterLink],
   templateUrl: './shop.component.html',
   styleUrl: './shop.component.css'
 })
