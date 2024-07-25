@@ -146,8 +146,8 @@
     font-size: 15px;
   }
 
-  .auth-section-mobile label{
-    display: none;
+  .mobile-menu li a{
+    font-size: 25px;
   }
 
   .auth-section-wide label{
