@@ -11,6 +11,7 @@
             @if (currentUser.isAdmin) {
                 <li><a routerLink="gestion">Gestion</a></li>
                 <li><a routerLink="gestion-u">Gestionar Usuarios</a></li>
+                <li><a routerLink="gestion-r">Gestionar Rentas</a></li>
             }
 
         </ul>
@@ -30,6 +31,7 @@
     @if (currentUser.isAdmin) {
         <li><a routerLink="gestion">Gestion</a></li>
         <li><a routerLink="gestion-u">Gestionar Usuarios</a></li>
+        <li><a routerLink="gestion-r">Gestionar Rentas</a></li>
     }
     <div class="auth-section-mobile">
         @if (currentUser.userName != "") {

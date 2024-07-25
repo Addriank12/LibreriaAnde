@@ -4,6 +4,7 @@ import { LibroModel } from '../../Domain/LIbroModel';
 import { LibroService } from '../../Services/libro.service';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { AuthService } from '../../Services/auth.service';
 
 
 @Component({
@@ -18,10 +19,13 @@ export class RentarLibroComponent {
   nombre: string = '';
   fecha: string = '';
   libros: any[] = [];
+  loading: boolean = true;
+  usuario: any; // Declare the 'usuario' property
 
   constructor(
     private route: ActivatedRoute,
-    private libroService: LibroService
+    private libroService: LibroService,
+    private authService: AuthService
   ) { }
 
   ngOnInit(): void {
@@ -29,7 +33,11 @@ export class RentarLibroComponent {
     if (titulo) {
       this.libroService.getLibroByTitulo(titulo).then(libro => {
         this.libro = libro;
+        this.usuario = this.authService.getCurrentUser(); // Obtiene el usuario actual
+        this.loading = false; // Datos cargados
       });
+    } else {
+      this.loading = false; // Si no hay título, también dejamos de cargar
     }
   }
 
@@ -41,7 +49,4 @@ export class RentarLibroComponent {
       });
     }
   }
-
-  
-
 }

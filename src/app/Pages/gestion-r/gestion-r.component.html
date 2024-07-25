@@ -1,0 +1,26 @@
+<div class="gestion-r-container">
+    <h2>Gestión de Rentas</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Libro</th>
+          <th>Usuario</th>
+          <th>Fecha de Renta</th>
+          <th>Estado</th>
+          <th>Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let renta of rentas">
+          <td>{{ renta.tituloLibro }}</td>
+          <td>{{ renta.userName }}</td>
+          <td>{{ renta.fechaRenta }}</td>
+          <td>{{ renta.estado }}</td>
+          <td>
+            <button *ngIf="renta.estado === 'pendiente'" (click)="marcarComoDevuelto(renta)">Marcar como Devuelto</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  
