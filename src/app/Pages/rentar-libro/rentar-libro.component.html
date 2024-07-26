@@ -15,13 +15,14 @@
               <p>Usuario a rentar: {{ usuario?.userName }}</p>
               <label for="fecha">Fecha Solicitada:</label>
               <br><br>
-              <input id="fecha" type="date" [(ngModel)]="fecha" name="fecha" required>
+              <input id="fecha" type="date" [(ngModel)]="fecha" name="fecha" required (change)="calcularFechaEntrega()">
           </div>
           <div class="reservation-details">
               <h3>Detalles de la reserva:</h3>
               <p>Libro a rentar: {{ libro.Titulo }}</p>
               <p>Usuario: {{ usuario?.userName }}</p>
-              <p>Duración: 8 Días</p>
+              <p *ngIf="fechaEntrega">Fecha prevista de entrega: {{ fechaEntrega }}</p>
+              <p *ngIf="diasRestantes >= 0">Días restantes: {{ diasRestantes }}</p>
               <p>Nota: En caso de no devolución en la fecha establecida, el usuario deberá pagar multa.</p>
               <div class="buttons">
                   <button class="rentar" (click)="rentarLibro()">Rentar</button>

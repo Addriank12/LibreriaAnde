@@ -3,6 +3,7 @@ import { Bytes, Firestore, addDoc, collection, getDocs, deleteDoc, updateDoc ,do
 import { Storage, getDownloadURL, ref, uploadBytes, deleteObject } from '@angular/fire/storage';
 import { collectionData, query, orderBy } from '@angular/fire/firestore';
 import { LibroModel } from '../Domain/LIbroModel';
+import { getAuth } from "firebase/auth";
 
 @Injectable({
   providedIn: 'root'
@@ -74,19 +75,41 @@ export class LibroService {
     }
   }
 
-  async rentarLibro(titulo: string, nombre: string, fecha: string): Promise<void> {
-    const q = query(collection(this.firestore, "Libros"), where("Titulo", "==", titulo));
-    const querySnapshot = await getDocs(q);
-    if (!querySnapshot.empty) {
-      const libroDoc = querySnapshot.docs[0];
-      const libro = libroDoc.data() as LibroModel;
-      if (libro.Existencia > 0) {
-        libro.Existencia -= 1;
-        await updateDoc(libroDoc.ref, { Existencia: libro.Existencia });
-        // Aquí puedes agregar la lógica para guardar la información de la renta en otra colección
-      } else {
-        throw new Error('No hay existencias disponibles');
+  async rentarLibro(titulo: string, fechaRenta: string): Promise<void> {
+    const auth = getAuth();
+    const user = auth.currentUser;
+    if (user !== null) {
+      const nombre = user.displayName || "Usuario Desconocido";
+      const q = query(collection(this.firestore, "Libros"), where("Titulo", "==", titulo));
+      const querySnapshot = await getDocs(q);
+      if (!querySnapshot.empty) {
+        const libroDoc = querySnapshot.docs[0];
+        const libro = libroDoc.data() as LibroModel;
+        if (libro.Existencia > 0) {
+          libro.Existencia -= 1;
+          await updateDoc(libroDoc.ref, { Existencia: libro.Existencia });
+  
+          // Convertir la fecha de renta a un objeto Date
+          const fechaRentaDate = new Date(fechaRenta);
+          // Sumar 14 días para la fecha de devolución
+          const fechaDevolucion = new Date(fechaRentaDate.getTime() + 14 * 24 * 60 * 60 * 1000);
+          // Formatear la fecha de devolución a una cadena en formato YYYY-MM-DD
+          const fechaDevolucionStr = fechaDevolucion.toISOString().split('T')[0];
+  
+          const reserva = {
+            tituloLibro: titulo,
+            userName: nombre,
+            fechaRenta: fechaRenta,
+            FechaDevolucion: fechaDevolucionStr, // Usar la fecha calculada
+            estado: 'pendiente',
+          };
+          await addDoc(collection(this.firestore, "Reservas"), reserva);
+        } else {
+          throw new Error('No hay existencias disponibles');
+        }
       }
+    } else {
+      throw new Error('Usuario no logueado');
     }
   }
 

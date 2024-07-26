@@ -20,7 +20,9 @@ export class RentarLibroComponent {
   fecha: string = '';
   libros: any[] = [];
   loading: boolean = true;
-  usuario: any; // Declare the 'usuario' property
+  usuario: any; 
+  fechaEntrega: string = '';
+  diasRestantes: number = 0;
 
   constructor(
     private route: ActivatedRoute,
@@ -41,12 +43,35 @@ export class RentarLibroComponent {
     }
   }
 
+  calcularFechaEntrega(): void {
+    const fechaSeleccionada = new Date(this.fecha);
+    let diasSumados = 0;
+    while (diasSumados < 5) {
+      fechaSeleccionada.setDate(fechaSeleccionada.getDate() + 1); // Sumar un día
+      // Verificar si el día es laboral (lunes a viernes)
+      if (fechaSeleccionada.getDay() !== 0 && fechaSeleccionada.getDay() !== 6) {
+        diasSumados++;
+      }
+    }
+    this.fechaEntrega = fechaSeleccionada.toISOString().split('T')[0]; // Formatear fecha para mostrar
+    this.diasRestantes = 5; // En este contexto, siempre serán 5 días laborales
+  }
+
   rentarLibro(): void {
-    if (this.libro) {
-      this.libroService.rentarLibro(this.libro.Titulo, this.nombre, this.fecha).then(() => {
+    // Validación para asegurarse de que todos los campos necesarios están llenos
+    if (!this.fecha) {
+      alert('Por favor, complete todos los campos requeridos.');
+      return; // Detiene la ejecución si la fecha no está llena
+    }
+  
+    if (this.libro && this.libro.Titulo) { // Asegúrate de que el libro y su título existan
+      this.libroService.rentarLibro(this.libro.Titulo, this.fecha).then(() => {
         alert('Libro rentado con éxito');
         // Redirigir o hacer algo después de la renta
       });
+    } else {
+      alert('No se ha seleccionado un libro');
+      // Manejar el caso en que no se haya seleccionado un libro
     }
   }
 }
