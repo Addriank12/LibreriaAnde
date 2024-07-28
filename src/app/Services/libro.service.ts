@@ -52,7 +52,7 @@ export class LibroService {
   await deleteObject(imageRef);
   }
 
-  async UpdateLibro(libro: LibroModel): Promise<void> {
+  async updateLibro(libro: LibroModel): Promise<void> {
     try{
       libro.Imagen = await this.uploadFile(libro);
     }catch{
@@ -74,6 +74,11 @@ export class LibroService {
     } else {
       return undefined; // O maneja el caso en que no se encuentre el libro
     }
+  }
+
+  async getTotalLibros(): Promise<number> {
+    const querySnapshot = await getDocs(collection(this.firestore, 'Libros'));
+    return querySnapshot.size;
   }
 
   async rentarLibro(titulo: string, fechaRenta: string): Promise<void> {

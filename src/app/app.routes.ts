@@ -10,6 +10,7 @@ import { GestionUComponent } from './Pages/gestion-u/gestion-u.component';
 import { DetalleLibroComponent } from './Pages/detalle-libro/detalle-libro.component';
 import { RentarLibroComponent } from './Pages/rentar-libro/rentar-libro.component';
 import { GestionRComponent } from './Pages/gestion-r/gestion-r.component';
+import { GestionLComponent } from './Pages/gestion-l/gestion-l.component';
 
 export const routes: Routes = [
     { path: '', redirectTo: 'home', pathMatch: 'full' }, // Redirect to home component
@@ -20,6 +21,7 @@ export const routes: Routes = [
     { path: 'login', component: AuthenticationComponent },
     { path: 'profile', component: ProfileComponent },
     { path: 'gestion', component: GestionComponent },
+    { path: 'gestion-l', component: GestionLComponent },
     { path: 'gestion-u', component: GestionUComponent },
     { path: 'gestion-r', component: GestionRComponent },
     { path: 'detalle-libro/:titulo', component: DetalleLibroComponent },

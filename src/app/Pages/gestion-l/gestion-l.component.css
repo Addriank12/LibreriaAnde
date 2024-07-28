@@ -1,0 +1,126 @@
+form{
+    background-color: #fff;
+    color: black;
+    padding: 70px;
+    display: grid;
+    border-radius: 15px;
+    grid-template-columns: 1fr;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto;
+    max-width: 300px;
+    width: 100%;
+}
+
+input{
+    margin-top: 10px;
+    margin-bottom: 10px;
+    padding: 10px;
+    border: 1px solid #000;
+    border-radius: 15px;
+}
+
+button{
+    background-color: #0066B8;
+    color: #fff;
+    padding: 10px;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+}
+
+textarea{
+    margin-top: 10px;
+    margin-bottom: 10px;
+    padding: 10px;
+    border: 1px solid #000;
+    border-radius: 15px;
+    max-height: 400px;
+}
+
+img{
+    width: 100%;
+    max-width: 32px;
+    margin: 0 auto;
+    display: block;
+}
+
+table {
+    width: 120%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+    font-size: 12px;
+    
+  }
+  
+  table, th, td {
+    border: 1px solid #000;
+  }
+  
+  th, td {
+    padding: 10px;
+    text-align: left;
+    background-color: #fff;
+    color: #000;
+  }
+  
+  th {
+    background-color: #0066B8;
+    color: #fff;
+  }
+
+  .content-area {
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .data-list {
+    width: 45%;
+    padding-left: 3%;
+  }
+  
+  .add-book-form {
+    width: 45%;
+  }
+
+  @media (max-width: 907px) {
+
+    .management-section h2{
+        display: block;
+        font-size: 20px;
+    }
+
+    form{
+        padding: 10px;
+    }
+    table {
+        width: 100%;
+        font-size: 6px;
+    }
+    .content-area {
+        display: block;
+    }
+    .data-list {
+        width: 100%;
+        padding-left: 0;
+    }
+    .add-book-form {
+        width: 100%;
+    }
+
+
+    add-book-form input{
+      width: 80%;
+      margin: 0 auto;
+    }
+    .add-book-form textarea{
+      width: 80%;
+      text-align: center;
+      margin: 0 auto;
+    }
+    .add-book-form button{
+      width: 80%;
+      margin: 0 auto;
+    }
+    
+  }
