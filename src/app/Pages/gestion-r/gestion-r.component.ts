@@ -2,7 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { RentaModel } from '../../Domain/RentaModel';
-import { RentaService } from '../../Services/renta.service';
+import { LibroService } from '../../Services/libro.service';
 
 @Component({
   selector: 'app-gestion-r',
@@ -14,20 +14,20 @@ import { RentaService } from '../../Services/renta.service';
 export class GestionRComponent {
   rentas: RentaModel[] = [];
 
-  constructor(private rentaService: RentaService) { }
+  constructor(private libroService: LibroService) { }
 
   ngOnInit(): void {
     this.loadRentas();
   }
 
   async loadRentas() {
-    this.rentas = await this.rentaService.getRentas();
+    this.rentas = await this.libroService.getRentas();
   }
 
   async marcarComoDevuelto(renta: RentaModel) {
     renta.estado = 'devuelto';
     renta.fechaDevolucion = new Date().toISOString().split('T')[0]; // Fecha actual en formato YYYY-MM-DD
-    await this.rentaService.updateRenta(renta);
+    await this.libroService.updateRenta(renta);
     this.loadRentas(); // Recargar la lista de rentas
   }
 }

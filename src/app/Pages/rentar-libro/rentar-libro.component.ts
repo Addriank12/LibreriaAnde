@@ -23,7 +23,8 @@ export class RentarLibroComponent {
   usuario: any; 
   fechaEntrega: string = '';
   diasRestantes: number = 0;
-
+  searchQuery: string = '';
+  
   constructor(
     private route: ActivatedRoute,
     private libroService: LibroService,
@@ -62,6 +63,16 @@ export class RentarLibroComponent {
     if (!this.fecha) {
       alert('Por favor, complete todos los campos requeridos.');
       return; // Detiene la ejecución si la fecha no está llena
+    }
+
+    const fechaSeleccionada = new Date(this.fecha);
+    const fechaActual = new Date();
+    // Establecer la hora de la fecha actual a 00:00:00 para comparar solo la fecha
+    fechaActual.setHours(0, 0, 0, 0);
+
+    if (fechaSeleccionada < fechaActual) {
+      alert('La fecha de renta no puede ser menor a la fecha actual.');
+      return; // Detiene la ejecución si la fecha es menor a la actual
     }
   
     if (this.libro && this.libro.Titulo) { // Asegúrate de que el libro y su título existan

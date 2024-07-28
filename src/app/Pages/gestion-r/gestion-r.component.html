@@ -3,21 +3,25 @@
     <table>
       <thead>
         <tr>
-          <th>Libro</th>
+          <th>ID</th>
+          <th>Título del Libro</th>
           <th>Usuario</th>
           <th>Fecha de Renta</th>
+          <th>Fecha de Devolución</th>
           <th>Estado</th>
           <th>Acciones</th>
         </tr>
       </thead>
       <tbody>
         <tr *ngFor="let renta of rentas">
+          <td>{{ renta.id }}</td>
           <td>{{ renta.tituloLibro }}</td>
           <td>{{ renta.userName }}</td>
           <td>{{ renta.fechaRenta }}</td>
+          <td>{{ renta.fechaDevolucion }}</td>
           <td>{{ renta.estado }}</td>
           <td>
-            <button *ngIf="renta.estado === 'pendiente'" (click)="marcarComoDevuelto(renta)">Marcar como Devuelto</button>
+            <button (click)="marcarComoDevuelto(renta)" [disabled]="renta.estado === 'devuelto'">Marcar como devuelto</button>
           </td>
         </tr>
       </tbody>
