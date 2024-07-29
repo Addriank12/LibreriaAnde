@@ -1,10 +1,11 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { AuthService, Credential } from '../../Services/auth.service';
-import { HeaderComponent } from '../../Components/header/header.component';
 import { LoaderComponent } from '../../Components/loader/loader.component';
 import { Router } from '@angular/router';
 import { UserInfoService } from '../../Services/user-info.service';
+import { LibroService } from '../../Services/libro.service';
+import { RentaModel } from '../../Domain/RentaModel';
 import { UserInfo } from '../../Domain/UserInfoModel';
 
 
@@ -15,18 +16,35 @@ import { UserInfo } from '../../Domain/UserInfoModel';
   templateUrl: './authentication.component.html',
   styleUrl: './authentication.component.css'
 })
-export class AuthenticationComponent {
-
-
+export class AuthenticationComponent implements OnInit {
   loginMode:boolean = true  ;
   credential: Credential = {email: "", password: "", passwordConfirm: ""}
   error: string = "";
   isLoading: boolean = false;
-
-  constructor(private asuthService: AuthService, private router: Router, private userInfoService: UserInfoService){}
-
   userName: string = "";
-
+  
+  constructor(private asuthService: AuthService, private router: Router, private userInfoService: UserInfoService,private libroService: LibroService){}
+  
+  ngOnInit(): void {
+    this.asuthService.currentUser$.subscribe(async (user) => {
+      if (user.currentUser.email) {
+        const reservas = await this.libroService.getReservasUsuario(user.currentUser.email);
+        if (reservas.length > 0) {
+          const hoy = new Date();
+          reservas.forEach((reserva) => {
+            const fechaDevolucion = new Date(reserva.fechaDevolucion ?? "");
+            const diasRestantes = Math.ceil((fechaDevolucion.getTime() - hoy.getTime()) / (1000 * 60 * 60 * 24));
+            if (diasRestantes > 0) {
+              alert(`Tienes una reserva pendiente. Te quedan ${diasRestantes} días para devolver el libro.`);
+            } else {
+              alert(`Tienes una reserva pendiente. La fecha de devolución ya ha pasado.`);
+            }
+          });
+        }
+      }
+    });
+  }
+  
   async SingUp() {
     try{
       this.isLoading = true;

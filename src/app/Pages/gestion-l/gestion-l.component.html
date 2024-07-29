@@ -1,0 +1,51 @@
+<main>
+    <section class="gestion-l-container">
+        <h2>Gestión de Libros</h2>
+        <input type="text" placeholder="Buscar por título" [(ngModel)]="searchText" class="search-bar">
+        <button class="btnGest" (click)="toggleFormulario()">Gestionar</button>
+
+        <section class="management-section">
+            <div class="container">
+                <table class="full-width-table">
+                    <thead>
+                        <tr>
+                            <th>Título</th>
+                            <th>Autor</th>
+                            <th>Imagen</th>
+                            <th>Contenido</th>
+                            <th>Género</th>
+                            <th>Existencia</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let libro of libros | filterByTitle: searchText" (click)="seleccionarLibro(libro)">
+                            <td>{{ libro.Titulo }}</td>
+                            <td>{{ libro.Autor }}</td>
+                            <td><img src="{{libro.Imagen}}"/></td>
+                            <td>{{ libro.Contenido }}</td>
+                            <td>{{ libro.Genero }}</td>
+                            <td>{{ libro.Existencia }}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+    </section>
+
+    <div *ngIf="mostrarFormulario" class="add-book-form">
+        <button class="close-button" (click)="toggleFormulario()">X</button>
+        <form>
+            <input [(ngModel)]="selectedLibro.Titulo" name="Titulo" type="text" placeholder="Título">
+            <input [(ngModel)]="selectedLibro.Autor" name="Autor" type="text" placeholder="Autor">
+            <input name="imagen" type="file" id="imagen" (change)="handleFileInput($event)" placeholder="Imagen Source">
+            <textarea name="contenido" id="contenido" placeholder="Contenido" [(ngModel)]="selectedLibro.Contenido"></textarea><br>
+            <input [(ngModel)]="selectedLibro.Existencia" name="Existencias" type="number" placeholder="Existencias">
+            <input [(ngModel)]="selectedLibro.Genero" name="Género" type="text" placeholder="Género">
+            <input [(ngModel)]="selectedLibro.AnioPublicacion" name="AnioPublicacion" type="number" placeholder="Año de Publicación">
+            <button (click)="agregarLibro()">Agregar Libro</button> <br>
+            <button (click)="updateLibro()">Actualizar Libro</button> <br>
+            <button (click)="eliminarLibro(selectedLibro)" [disabled]="!selectedLibro">Eliminar</button>
+        </form>            
+    </div>
+    
+</main>

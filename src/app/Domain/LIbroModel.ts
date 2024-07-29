@@ -4,7 +4,6 @@ export class LibroModel{
     Imagen: any;
     Genero : any;
     AnioPublicacion : number;
-    Descripcion: string;
     Existencia: number;
     Contenido: string;
 
@@ -14,7 +13,6 @@ export class LibroModel{
         this.Imagen = '';
         this.Genero = '';
         this.AnioPublicacion = 0;
-        this.Descripcion = '';
         this.Existencia = 0;
         this.Contenido = '';
     }

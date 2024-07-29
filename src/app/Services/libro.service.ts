@@ -1,8 +1,10 @@
 import { Injectable } from '@angular/core';
-import { Bytes, Firestore, addDoc, collection, getDocs, deleteDoc, updateDoc ,doc, where } from '@angular/fire/firestore';
+import { Bytes, Firestore, addDoc, collection, getDocs, setDoc, deleteDoc, updateDoc ,doc, where } from '@angular/fire/firestore';
 import { Storage, getDownloadURL, ref, uploadBytes, deleteObject } from '@angular/fire/storage';
 import { collectionData, query, orderBy } from '@angular/fire/firestore';
 import { LibroModel } from '../Domain/LIbroModel';
+import { getAuth } from "firebase/auth";
+import { RentaModel } from '../Domain/RentaModel';
 
 @Injectable({
   providedIn: 'root'
@@ -50,7 +52,7 @@ export class LibroService {
   await deleteObject(imageRef);
   }
 
-  async UpdateLibro(libro: LibroModel): Promise<void> {
+  async updateLibro(libro: LibroModel): Promise<void> {
     try{
       libro.Imagen = await this.uploadFile(libro);
     }catch{
@@ -74,20 +76,86 @@ export class LibroService {
     }
   }
 
-  async rentarLibro(titulo: string, nombre: string, fecha: string): Promise<void> {
-    const q = query(collection(this.firestore, "Libros"), where("Titulo", "==", titulo));
-    const querySnapshot = await getDocs(q);
-    if (!querySnapshot.empty) {
-      const libroDoc = querySnapshot.docs[0];
-      const libro = libroDoc.data() as LibroModel;
-      if (libro.Existencia > 0) {
-        libro.Existencia -= 1;
-        await updateDoc(libroDoc.ref, { Existencia: libro.Existencia });
-        // Aquí puedes agregar la lógica para guardar la información de la renta en otra colección
-      } else {
-        throw new Error('No hay existencias disponibles');
+  async getTotalLibros(): Promise<number> {
+    const querySnapshot = await getDocs(collection(this.firestore, 'Libros'));
+    return querySnapshot.size;
+  }
+
+  async rentarLibro(titulo: string, fechaRenta: string): Promise<void> {
+    const auth = getAuth();
+    const user = auth.currentUser;
+    if (user !== null) {
+      const nombre = user.displayName || "Usuario Desconocido";
+      const q = query(collection(this.firestore, "Libros"), where("Titulo", "==", titulo));
+      const querySnapshot = await getDocs(q);
+      if (!querySnapshot.empty) {
+        const libroDoc = querySnapshot.docs[0];
+        const libro = libroDoc.data() as LibroModel;
+        if (libro.Existencia > 0) {
+          libro.Existencia -= 1;
+          await updateDoc(libroDoc.ref, { Existencia: libro.Existencia });
+  
+          // Convertir la fecha de renta a un objeto Date
+          const fechaRentaDate = new Date(fechaRenta);
+          // Sumar 14 días para la fecha de devolución
+          const fechaDevolucion = new Date(fechaRentaDate.getTime() + 14 * 24 * 60 * 60 * 1000);
+          // Formatear la fecha de devolución a una cadena en formato YYYY-MM-DD
+          const fechaDevolucionStr = fechaDevolucion.toISOString().split('T')[0];
+  
+          // Generar un nuevo documento en la colección "Reservas" con un ID único
+          const reservaRef = doc(collection(this.firestore, "Reservas"));
+          const reserva = {
+            id: reservaRef.id, // Usar el ID generado
+            tituloLibro: titulo,
+            userName: nombre,
+            fechaRenta: fechaRenta,
+            fechaDevolucion: fechaDevolucionStr,
+            estado: 'pendiente',
+          };
+          await setDoc(reservaRef, reserva);
+        } else {
+          throw new Error('No hay existencias disponibles');
+        }
       }
+    } else {
+      throw new Error('Usuario no logueado');
     }
   }
 
+  async getRentas(): Promise<RentaModel[]> {
+    const rentas: RentaModel[] = [];
+    const querySnapshot = await getDocs(collection(this.firestore, 'Reservas'));
+    querySnapshot.forEach((doc) => {
+      const renta = doc.data() as RentaModel;
+      console.log('Renta obtenida:', renta); // Log para depurar
+      rentas.push(renta);
+    });
+    return rentas;
+  }
+
+  async incrementarExistencia(titulo: string): Promise<void> {
+    const q = query(collection(this.firestore, "Libros"), where("Titulo", "==", titulo));
+    const querySnapshot = await getDocs(q);
+    if (!querySnapshot.empty) {
+        const libroDoc = querySnapshot.docs[0];
+        const libro = libroDoc.data() as LibroModel;
+        libro.Existencia += 1;
+        await updateDoc(libroDoc.ref, { Existencia: libro.Existencia });
+    } else {
+        throw new Error('Libro no encontrado');
+    }
+}
+  async updateRenta(renta: RentaModel): Promise<void> {
+    const rentaDocRef = doc(this.firestore, `Reservas/${renta.id}`);
+    await updateDoc(rentaDocRef, { estado: renta.estado, fechaDevolucion: renta.fechaDevolucion });
+  }
+  async getReservasUsuario(usuarioId: string): Promise<RentaModel[]> {
+    const q = query(collection(this.firestore, 'Reservas'), where('usuarioId', '==', usuarioId), where('estado', '==', 'pendiente'));
+    const querySnapshot = await getDocs(q);
+    const reservas: RentaModel[] = [];
+    querySnapshot.forEach((doc) => {
+      reservas.push(doc.data() as RentaModel);
+    });
+    return reservas;
+  }
 }

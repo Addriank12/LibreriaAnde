@@ -1,43 +1,27 @@
-<main>
-    <section class="management-section">
-        <h2>Gestión de Libros</h2>
-        <div class="content-area">
-            <div class="data-list">
-                <!-- Aquí se cargarán los datos desde Firebase -->
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Titulo</th>
-                            <th>Autor</th>
-                            <th>Imagen</th>
-                            <th>Contenido</th>
-                            <!-- Add more columns as needed -->
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr *ngFor="let libro of libros" (click)="seleccionarLibro(libro)">
-                            <td>{{ libro.Titulo }}</td>
-                            <td>{{ libro.Autor }}</td>
-                            <td><img src="{{libro.Imagen}}"/></td>
-                            <td>{{ libro.Contenido }}</td>
-                            <!-- Add more cells as needed -->
-                        </tr>
-                    </tbody>
-                    
-                </table>
+<body>
+    <h2>Menú de Gestión</h2>
+    <h3>Bienvenido {{ nombreUsuario }}</h3>
+    <div class="gestion-container">
+
+        <div class="info-cards">
+            <div class="info-card">
+                <h4>Administradores</h4>
+                <p>{{ totalAdmins }}</p>
             </div>
-            <div class="add-book-form">
-                <form>
-                    <h3>Agregar Nuevo Libro</h3>
-                    <input [(ngModel)]="selectedLibro.Titulo" name="Titulo" type="text" placeholder="Titulo">
-                    <input [(ngModel)]="selectedLibro.Autor" name="Autor" type="text" placeholder="Autor">    
-                    <input name="imagen" type="file" id="imagen" (change)="handleFileInput($event)" placeholder="Imagen Source">
-                    <textarea name="contenido" id="contenido" placeholder="Contenido" [(ngModel)]="selectedLibro.Contenido"></textarea><br>
-                    <button (click)="agregarLibro()">Agregar Libro</button> <br>
-                    <button (click)="updateLibro()">Actualizar Libro</button> <br>
-                    <button (click)="eliminarLibro(selectedLibro)" [disabled]="!selectedLibro">Eliminar</button>
-                </form>            
+            <div class="info-card">
+                <h4>Total Libros</h4>
+                <p>{{ totalLibros }}</p>
+            </div>
+            <div class="info-card">
+                <h4>Usuarios Registrados</h4>
+                <p>{{ totalUsuarios }}</p>
             </div>
         </div>
-    </section>
-</main>
+    </div>
+
+    <div class="buttons">
+        <button [routerLink]="['/gestion-l']">Gestionar Libros</button>
+        <button [routerLink]="['/gestion-u']">Gestionar Usuarios</button>
+        <button [routerLink]="['/gestion-r']">Gestionar Reservas</button>
+    </div>
+</body>

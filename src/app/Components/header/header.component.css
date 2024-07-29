@@ -25,9 +25,10 @@
     display: block;
     color: black;
     text-align: center;
-    padding: 16px;
+    padding: 5px;
     text-decoration: none;
     font-weight: bold;
+    font-size: 14px;
   }
   
   li a:hover {
@@ -58,7 +59,8 @@
   .UserInfo {
     display: flex;
     align-items: center;
-    padding: 16px;
+    padding: 10px;
+    font-size: 14px;
   }
   
   /* Estilo para el logo */

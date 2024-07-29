@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { DocumentReference, Firestore, addDoc, collection, getDocs, updateDoc } from '@angular/fire/firestore';
+import { DocumentReference, Firestore, addDoc, collection, getDocs, updateDoc, query, where } from '@angular/fire/firestore';
 import { UserInfo } from '../Domain/UserInfoModel';
 import { UsersInfoController } from '../DataAcces/UsersInfoController';
 import { AuthService } from './auth.service';
@@ -34,6 +34,17 @@ export class UserInfoService {
 
   async getAllUsers(): Promise<UserInfo[]> {
     return await this.usersInfoController.getAll();
+  }
+
+  async getTotalAdmins(): Promise<number> {
+    const q = query(collection(this.firestore, 'UsersInfo'), where('isAdmin', '==', true));
+    const querySnapshot = await getDocs(q);
+    return querySnapshot.size;
+  }
+
+  async getTotalUsuarios(): Promise<number> {
+    const querySnapshot = await getDocs(collection(this.firestore, 'UsersInfo'));
+    return querySnapshot.size;
   }
 
 }

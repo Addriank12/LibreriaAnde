@@ -1,0 +1,30 @@
+<div class="gestion-r-container">
+  <h2>Gestión de Reservas</h2>
+  <input type="text" placeholder="Buscar por nombre de usuario" [(ngModel)]="searchText" class="search-bar">
+  <table>
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Título del Libro</th>
+        <th>Usuario</th>
+        <th>Fecha de Renta</th>
+        <th>Fecha de Devolución</th>
+        <th>Estado</th>
+        <th>Acciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let renta of rentas | filterByUsernameforRent: searchText">
+        <td>{{ renta.id }}</td>
+        <td>{{ renta.tituloLibro }}</td>
+        <td>{{ renta.userName }}</td>
+        <td>{{ renta.fechaRenta }}</td>
+        <td>{{ renta.fechaDevolucion }}</td>
+        <td>{{ renta.estado }}</td>
+        <td>
+          <button (click)="marcarComoDevuelto(renta)" [disabled]="renta.estado === 'devuelto'">Marcar como devuelto</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

@@ -1,70 +1,52 @@
 import { Component, OnInit } from '@angular/core';
-import { FirebaseApp } from '@angular/fire/app';
-import { LibroService } from '../../Services/libro.service';
 import { LibroModel } from '../../Domain/LIbroModel';
 import { FormsModule } from '@angular/forms';
-import { BrowserModule } from '@angular/platform-browser';
 import { CommonModule } from '@angular/common';
-import { Router } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { AuthService } from '../../Services/auth.service';
+import { LibroService } from '../../Services/libro.service';
+import { UserInfoService } from '../../Services/user-info.service';
 
 
 @Component({
   selector: 'app-gestion',
   standalone: true,
-  imports: [FormsModule,CommonModule],
+  imports: [RouterLink, FormsModule,CommonModule],
   templateUrl: './gestion.component.html',
   styleUrl: './gestion.component.css'
 })
 export class GestionComponent implements OnInit {
+
   selectedLibro: LibroModel = new LibroModel();
   libroSeleccionado: LibroModel = new LibroModel();
   libros: LibroModel[] = [];
   
   
-  constructor(private libroService: LibroService, private router: Router, authService: AuthService) {
+  constructor(private libroService: LibroService, private router: Router, private authService: AuthService, private userinfoService: UserInfoService) {
       (async () => {
         if ((await authService.getCurrentUser()).isAdmin === false){
           this.router.navigate(['/home']);
         }
       })();
   }
+  nombreUsuario: string = '';
+  totalAdmins: number = 0;
+  totalLibros: number = 0;
+  totalUsuarios: number = 0;
 
-  ngOnInit() { 
-    this.libroService.getLibros().then(libros => {
-      this.libros = libros.map(libro => libro as LibroModel);
-      console.log(this.libros);
+  async ngOnInit(): Promise<void> {
+    this.nombreUsuario = (await this.authService.getCurrentUser()).userName;
+
+    this.userinfoService.getTotalAdmins().then(total => {
+      this.totalAdmins = total;
     });
-  }
 
-  agregarLibro() {
-    this.libroService.addLibro(this.selectedLibro);
-    this.ngOnInit();
-  }
-
-  seleccionarLibro(libro: LibroModel) {
-    this.selectedLibro = libro;
-  }
-
-  handleFileInput(event: Event) {
-    const target = event.target as HTMLInputElement;
-    if (target.files && target.files[0]) {
-      const reader = new FileReader();
-      reader.onload = (e) => this.selectedLibro.Imagen = (e.target as FileReader).result;
-      reader.readAsDataURL(target.files[0]);
-    }
-  }
-
-  eliminarLibro(libro: LibroModel) {
-    this.libroService.deleteLibro(libro.Titulo).then(() => {
-      this.libros = this.libros.filter(l => l.Titulo !== libro.Titulo);
-      if (this.selectedLibro && this.selectedLibro.Titulo === libro.Titulo) {
-        this.selectedLibro = new LibroModel();
-      }
+    this.libroService.getTotalLibros().then(total => {
+      this.totalLibros = total;
     });
-  }
 
-  updateLibro() {
-    this.libroService.UpdateLibro(this.selectedLibro);
+    this.userinfoService.getTotalUsuarios().then(total => {
+      this.totalUsuarios = total;
+    });
   }
 }
