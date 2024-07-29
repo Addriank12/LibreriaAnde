@@ -21,6 +21,7 @@ export const routes: Routes = [
     { path: 'login', component: AuthenticationComponent },
     { path: 'profile', component: ProfileComponent },
     { path: 'gestion', component: GestionComponent },
+    { path: 'gestion/:titulo', component: GestionLComponent },
     { path: 'gestion-l', component: GestionLComponent },
     { path: 'gestion-u', component: GestionUComponent },
     { path: 'gestion-r', component: GestionRComponent },

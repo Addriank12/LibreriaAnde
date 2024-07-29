@@ -3,30 +3,48 @@ import { LibroService } from '../../Services/libro.service';
 import { LibroModel } from '../../Domain/LIbroModel';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { AuthService } from '../../Services/auth.service';
+import { FilterByTitlePipe } from "../../filter-by-title.pipe";
+
 
 @Component({
   selector: 'app-gestion-l',
   standalone: true,
-  imports: [FormsModule,CommonModule],
+  imports: [FormsModule, CommonModule, FilterByTitlePipe],
   templateUrl: './gestion-l.component.html',
   styleUrl: './gestion-l.component.css'
 })
-export class GestionLComponent {
+export class GestionLComponent implements OnInit {
   selectedLibro: LibroModel = new LibroModel();
   libroSeleccionado: LibroModel = new LibroModel();
   libros: LibroModel[] = [];
-  
-  
-  
-  constructor(private libroService: LibroService, private router: Router, authService: AuthService) {
+  searchText: string = '';
+  mostrarFormulario: boolean = false;
+
+  constructor(
+    private libroService: LibroService, 
+    private router: Router, 
+    private route: ActivatedRoute,
+    authService: AuthService) {
     if (authService.getCurrentUser().isAdmin === false){
       this.router.navigate(['/home']);
     }    
   }
 
+  toggleFormulario(): void {
+    this.mostrarFormulario = !this.mostrarFormulario;
+  }
+
   ngOnInit() { 
+    this.route.params.subscribe(params => {
+      const tituloLibro = params['titulo'];
+      if (tituloLibro) {
+        this.libroService.getLibroByTitulo(tituloLibro).then(libro => {
+          this.selectedLibro = libro as LibroModel;
+        });
+      }
+    });
     this.libroService.getLibros().then(libros => {
       this.libros = libros.map(libro => libro as LibroModel);
       console.log(this.libros);
@@ -41,7 +59,9 @@ export class GestionLComponent {
 
   seleccionarLibro(libro: LibroModel) {
     this.selectedLibro = libro;
+    this.mostrarFormulario = true;
   }
+
 
   handleFileInput(event: Event) {
     const target = event.target as HTMLInputElement;

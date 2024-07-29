@@ -1,14 +1,14 @@
 <div class="container">
   <div class="table-container">
+    <input type="text" placeholder="Buscar por nombre de usuario" [(ngModel)]="searchText" class="search-bar">
     <table>
       <tr>
         <th>Nombre de usuario</th>
         <th>Email</th>
         <th>Direccion</th>
         <th>Telefono</th>
-
       </tr>
-      <tr *ngFor="let user of users" (click)="seleccionarUsuario(user)" >
+      <tr *ngFor="let user of users | filterByUsername: searchText" (click)="seleccionarUsuario(user)">
         <td>{{user.userName}}</td>
         <td>{{user.email}}</td>
         <td>{{user.direccion}}</td>
@@ -18,22 +18,19 @@
   </div>
 
   <div class="form-container">
-  <h2>Actualizar información del usuario</h2>
-  <form>   
-    <label for="username">Nombre de usuario:</label>
-    <input type="text" id="username" name="username" [(ngModel)]="selectedUser.userName">
-    <label for="email">Email:</label>
-    <input type="text" id="email" name="email" [(ngModel)]="selectedUser.email">
-    <label for="direccion">Dirección:</label>
-    <input type="text" id="direccion" name="direccion" [(ngModel)]="selectedUser.direccion">
-    <label for="telefono">Telefono:</label>
-    <input type="text" id="telefono" name="telefono" [(ngModel)]="selectedUser.telefono">
-    <label for="isAdmin">Administrador:</label>
-    <input type="checkbox" id="isAdmin" name="isAdmin" [(ngModel)]="selectedUser.isAdmin">
-    <input type="submit" value="Actualizar" (click)="updateUser()">
-  </form>
-  @if(isLoading){                
-    <app-loader>Cargando</app-loader>                            
-} 
-</div>
+    <h2>Actualizar información del usuario</h2>
+    <form>   
+      <label for="username">Nombre de usuario:</label>
+      <input type="text" id="username" name="username" [(ngModel)]="selectedUser.userName">
+      <label for="email">Email:</label>
+      <input type="text" id="email" name="email" [(ngModel)]="selectedUser.email">
+      <label for="direccion">Dirección:</label>
+      <input type="text" id="direccion" name="direccion" [(ngModel)]="selectedUser.direccion">
+      <label for="telefono">Telefono:</label>
+      <input type="text" id="telefono" name="telefono" [(ngModel)]="selectedUser.telefono">
+      <label for="isAdmin">Administrador:</label>
+      <input type="checkbox" id="isAdmin" name="isAdmin" [(ngModel)]="selectedUser.isAdmin">
+      <input type="submit" value="Actualizar" (click)="updateUser()">
+    </form>
+  </div>
 </div>

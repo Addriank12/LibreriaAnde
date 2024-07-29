@@ -6,11 +6,12 @@ import { UserInfo } from '../../Domain/UserInfoModel';
 import { LoaderComponent } from '../../Components/loader/loader.component';
 import { Router } from '@angular/router';
 import { AuthService } from '../../Services/auth.service';
+import { FilterByUsernamePipe } from "../../filter-by-username.pipe";
 
 @Component({
   selector: 'app-gestion-u',
   standalone: true,
-  imports: [FormsModule,CommonModule, LoaderComponent],
+  imports: [FormsModule, CommonModule, LoaderComponent, FilterByUsernamePipe],
   templateUrl: './gestion-u.component.html',
   styleUrl: './gestion-u.component.css'
 })
@@ -18,8 +19,8 @@ export class GestionUComponent {
   users: UserInfo[] = [];
   selectedUser: UserInfo = {email: '', userName: '', isAdmin: false, direccion: '', telefono: '', profilePic: ''};
   isLoading: boolean = false;
+  searchText: string = '';
   
-
   constructor(private userInfoService: UserInfoService, private router: Router, authService: AuthService) {  
     if (authService.getCurrentUser().isAdmin === false){
       this.router.navigate(['/home']);

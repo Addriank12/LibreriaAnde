@@ -36,11 +36,11 @@ export class RentarLibroComponent {
     if (titulo) {
       this.libroService.getLibroByTitulo(titulo).then(libro => {
         this.libro = libro;
-        this.usuario = this.authService.getCurrentUser(); // Obtiene el usuario actual
-        this.loading = false; // Datos cargados
+        this.usuario = this.authService.getCurrentUser();
+        this.loading = false; 
       });
     } else {
-      this.loading = false; // Si no hay título, también dejamos de cargar
+      this.loading = false; 
     }
   }
 
@@ -62,10 +62,10 @@ export class RentarLibroComponent {
     // Validación para asegurarse de que todos los campos necesarios están llenos
     if (!this.fecha) {
       alert('Por favor, complete todos los campos requeridos.');
-      return; // Detiene la ejecución si la fecha no está llena
+      return;
     }
 
-    const fechaSeleccionada = new Date(this.fecha);
+    const fechaSeleccionada = new Date(this.fecha); 
     const fechaActual = new Date();
     // Establecer la hora de la fecha actual a 00:00:00 para comparar solo la fecha
     fechaActual.setHours(0, 0, 0, 0);

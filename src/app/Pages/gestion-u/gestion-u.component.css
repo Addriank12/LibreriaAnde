@@ -14,15 +14,17 @@
   table {
     width: 100%;
     border-collapse: collapse;
+    margin-top: 20px;
   }
-  table, th, td {
-    border: 1px solid black;
-  }
+  
   th, td {
     padding: 10px;
+    border: 1px solid #34495e;
     text-align: left;
-    background-color: white;
-    color: black;
+  }
+  
+  th {
+    background-color: #34495e;
   }
   form {
     display: flex;
@@ -68,6 +70,17 @@
   table{
     cursor: pointer;
   }
+
+  .search-bar {
+    width: 100%;
+    max-width: 400px;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 1em;
+}
+
 
   @media (max-width: 907px) {
     .container {

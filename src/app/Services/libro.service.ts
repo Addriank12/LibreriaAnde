@@ -133,7 +133,22 @@ export class LibroService {
     return rentas;
   }
 
+  async incrementarExistencia(titulo: string): Promise<void> {
+    const q = query(collection(this.firestore, "Libros"), where("Titulo", "==", titulo));
+    const querySnapshot = await getDocs(q);
+    if (!querySnapshot.empty) {
+        const libroDoc = querySnapshot.docs[0];
+        const libro = libroDoc.data() as LibroModel;
+        libro.Existencia += 1;
+        await updateDoc(libroDoc.ref, { Existencia: libro.Existencia });
+    } else {
+        throw new Error('Libro no encontrado');
+    }
+}
+
   
+
+
   async updateRenta(renta: RentaModel): Promise<void> {
     const rentaDocRef = doc(this.firestore, `Reservas/${renta.id}`);
     await updateDoc(rentaDocRef, { estado: renta.estado, fechaDevolucion: renta.fechaDevolucion });

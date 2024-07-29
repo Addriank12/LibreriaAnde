@@ -1,25 +1,27 @@
-<h2>Menú de Gestión</h2>
-<h3>Bienvenido {{ nombreUsuario }}</h3>
-<div class="gestion-container">
+<body>
+    <h2>Menú de Gestión</h2>
+    <h3>Bienvenido {{ nombreUsuario }}</h3>
+    <div class="gestion-container">
 
-    <div class="info-cards">
-        <div class="info-card">
-            <h4>Administradores</h4>
-            <p>{{ totalAdmins }}</p>
-        </div>
-        <div class="info-card">
-            <h4>Total Libros</h4>
-            <p>{{ totalLibros }}</p>
-        </div>
-        <div class="info-card">
-            <h4>Usuarios Registrados</h4>
-            <p>{{ totalUsuarios }}</p>
+        <div class="info-cards">
+            <div class="info-card">
+                <h4>Administradores</h4>
+                <p>{{ totalAdmins }}</p>
+            </div>
+            <div class="info-card">
+                <h4>Total Libros</h4>
+                <p>{{ totalLibros }}</p>
+            </div>
+            <div class="info-card">
+                <h4>Usuarios Registrados</h4>
+                <p>{{ totalUsuarios }}</p>
+            </div>
         </div>
     </div>
-</div>
 
-<div class="buttons">
-    <button [routerLink]="['/gestion-l']">Gestionar Libros</button>
-    <button [routerLink]="['/gestion-u']">Gestionar Usuarios</button>
-    <button [routerLink]="['/gestion-r']">Gestionar Reservas</button>
-</div>
+    <div class="buttons">
+        <button [routerLink]="['/gestion-l']">Gestionar Libros</button>
+        <button [routerLink]="['/gestion-u']">Gestionar Usuarios</button>
+        <button [routerLink]="['/gestion-r']">Gestionar Reservas</button>
+    </div>
+</body>
