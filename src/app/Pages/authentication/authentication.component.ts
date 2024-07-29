@@ -5,6 +5,7 @@ import { HeaderComponent } from '../../Components/header/header.component';
 import { LoaderComponent } from '../../Components/loader/loader.component';
 import { Router } from '@angular/router';
 import { UserInfoService } from '../../Services/user-info.service';
+import { UserInfo } from '../../Domain/UserInfoModel';
 
 
 @Component({
@@ -32,7 +33,7 @@ export class AuthenticationComponent {
       if (this.userName === "") {
         throw new Error('El nombre de usuario no puede estar vacio')
       }        
-      await this.asuthService.SingUpWithEmailAndPassword(this.credential, this.userName);
+      await this.asuthService.SingUpWithEmailAndPassword(this.credential);
       this.error = "";
       this.login;
     }
@@ -44,16 +45,13 @@ export class AuthenticationComponent {
     }
   }
 
-  async LoginWithGoogle() {
-    await this.asuthService.LoginWithGoogle();
-    this.router.navigate(['/home']);
-  }
-
   async login() {
     try {
       this.isLoading = true;
-      await this.asuthService.LoginUpWithEmailAndPassword(this.credential);
-      this.asuthService.setUserName(await this.userInfoService.getUserByEmail(this.credential.email));
+      const token = await this.asuthService.LoginUpWithEmailAndPassword(this.credential);    
+      const user: UserInfo = { email: this.credential.email, userName: '', isAdmin: false, direccion: '', telefono: '', profilePic: '', token: '' }; ; 
+      user.token = token;
+      this.asuthService.setUserName(user);
       // Navigate to home page
       this.router.navigate(['/home']);
     } catch (error: any) {

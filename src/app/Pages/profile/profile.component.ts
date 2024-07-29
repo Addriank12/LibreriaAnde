@@ -18,17 +18,22 @@ export class ProfileComponent implements OnInit{
   
   isEditing = false;
   private sub: Subscription = new Subscription;
-  userInfo : UserInfo = {email: '', userName: '', isAdmin: false, direccion: '', telefono: '', profilePic: ''};
+  userInfo : UserInfo = {
+    email: '', userName: '', isAdmin: false, direccion: '', telefono: '', profilePic: '',
+    token: ''
+  };
 
   constructor(private authService: AuthService, private userInfoService: UserInfoService, private router: Router) { 
-    if(authService.getCurrentUser().email === ""){
-      this.router.navigate(['/home']);
-    }
+    (async () => {
+      if ((await authService.getCurrentUser()).email === ""){
+        this.router.navigate(['/home']);
+      }
+    })();
   }
 
   ngOnInit(){
-    this.sub = this.authService.currentUser$.subscribe(user => {
-      this.userInfo = user.currentUser;
+    this.sub = this.authService.currentUser$.subscribe(async user => {
+      this.userInfo = await this.userInfoService.getUserByEmail(user.currentUser.email);
     })
   }
 

@@ -32,9 +32,9 @@
         <li><a routerLink="gestion-u">Gestionar Usuarios</a></li>
     }
     <div class="auth-section-mobile">
-        @if (currentUser.userName != "") {
+        @if (currentUser.email != "") {
             <div class="UserInfo">
-                <a routerLink="profile">{{currentUser.userName}}</a>
+                <a routerLink="profile">{{currentUser.email}}</a>
                 <button (click)="logout()">Cerrar Sesión</button>
             </div>
         }
@@ -44,9 +44,9 @@
     </div>
   </nav>
     <div class="auth-section-wide">
-        @if (currentUser.userName != "") {
+        @if (currentUser.email != "") {
             <div class="UserInfo">
-                <a routerLink="profile">{{currentUser.userName}}</a>
+                <a routerLink="profile">{{currentUser.email}}</a>
                 <button (click)="logout()">Cerrar Sesión</button>
             </div>
         }

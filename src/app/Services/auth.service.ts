@@ -1,84 +1,85 @@
-import { Injectable, inject } from '@angular/core';
-import { Auth, GoogleAuthProvider, UserCredential, authState, createUserWithEmailAndPassword, signInWithEmailAndPassword, signInWithPopup, signOut } from '@angular/fire/auth';
+import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
-import { UserInfoService } from './user-info.service';
 import { UserInfo } from '../Domain/UserInfoModel';
+import { LoginController } from '../DataAcces/LoginController';
+import { UsersInfoController } from '../DataAcces/UsersInfoController';
+import { SignUpController } from '../DataAcces/SignUpController';
 
-export interface Credential{
+export interface Credential {
   email: string;
   password: string;
   passwordConfirm: string;
 }
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class AuthService {
-
-  private auth: Auth = inject(Auth);
-  private authGoogleProvider = new GoogleAuthProvider();
-
-  private userSubject = new BehaviorSubject<{currentUser: UserInfo}>(this.getStoredUser());
+  private userSubject = new BehaviorSubject<{ currentUser: UserInfo }>(
+    AuthService.getStoredUser()
+  );
   public currentUser$ = this.userSubject.asObservable();
+  private loginController: LoginController = new LoginController();
+  private signUpController: SignUpController = new SignUpController();
+  private userInfoController: UsersInfoController = new UsersInfoController();
 
-
-  constructor(private userInfoService: UserInfoService) {
-    this.authGoogleProvider.addScope('https://www.googleapis.com/auth/contacts.readonly');
+  constructor() {
+    this.initializeCurrentUser();
   }
 
-  private getStoredUser(): {currentUser: UserInfo} {
+  // Initialize the current user from local storage
+  private initializeCurrentUser(): void {
+    const currentUser = AuthService.getStoredUser();
+    
+    this.userSubject.next(currentUser);
+  }
+
+  // Retrieve the stored user from local storage
+  public static getStoredUser(): { currentUser: UserInfo } {
     const storedUser = localStorage.getItem('currentUser');
-    return storedUser ? JSON.parse(storedUser) : {currentUser: {email: '', userName: '', isAdmin: false}};
+    return storedUser
+      ? JSON.parse(storedUser)
+      : { currentUser: { email: '', userName: '', isAdmin: false } };
   }
 
+  // Store the user in local storage
   private storeUser(user: UserInfo): void {
-    localStorage.setItem('currentUser', JSON.stringify({currentUser: user}));
+    localStorage.setItem('currentUser', JSON.stringify({ currentUser: user }));
+    console.log(user);
   }
 
-  setUserName(currentUser: UserInfo){
-    this.userSubject.next({currentUser});
+  // Get the current user
+  async getCurrentUser(): Promise<UserInfo> {
+    return await this.userInfoController.getById(this.userSubject.value.currentUser.email);
+  }
+
+  // Update the current user and store it
+  setUserName(currentUser: UserInfo): void {
+    this.userSubject.next({ currentUser });
     this.storeUser(currentUser);
   }
 
-  getCurrentUser(): UserInfo{
-    return this.userSubject.value.currentUser;
+  //Add the Login Method
+  async LoginUpWithEmailAndPassword(credential: Credential): Promise<string> {
+    return await this.loginController.add({ email: credential.email, password: credential.password });
   }
 
-  readonly authState$ = authState(this.auth);
-
-  async SingUpWithEmailAndPassword(credential: Credential, userName: string): Promise<UserCredential>{
-    if (credential.password != credential.passwordConfirm){
-      throw new Error('Las contraseñas no coinciden');
-    }
-    let result = await createUserWithEmailAndPassword(this.auth, credential.email, credential.password);
-    await this.userInfoService.addUserInfo({email: credential.email, userName: userName, isAdmin: false, direccion: '', telefono: '', profilePic: ''});
-    return result;
+  // Add the Sign Up Method
+  async SingUpWithEmailAndPassword(credential: Credential): Promise<void> {
+    await this.signUpController.add({ email: credential.email, password: credential.password });
+    await this.userInfoController.add({ email: credential.email, userName: 'Pendiente', isAdmin: false, direccion: 'Pendiente', telefono: '9999999999' });
   }
 
-  LoginUpWithEmailAndPassword(credential: Credential){
-    return signInWithEmailAndPassword(this.auth, credential.email, credential.password);
+  // Add the Logout Method
+  async Logout(): Promise<void> {
+    this.setUserName({
+      email: '',
+      userName: '',
+      isAdmin: false,
+      direccion: '',
+      telefono: '',
+      profilePic: undefined,
+      token: '',
+    });
   }
-
-  async LoginWithGoogle(){
-    let result = await signInWithPopup(this.auth, this.authGoogleProvider);
-    if (result.user === null){
-      throw new Error('Error al autenticar con Google');
-    }
-
-    let user = await this.userInfoService.getUserByEmail(result.user.email as string);
-    if (user === undefined){
-      await this.userInfoService.addUserInfo({email: result.user.email as string, userName: result.user.displayName as string, isAdmin: false, direccion: '', telefono: '', profilePic: ''});
-    }
-    this.setUserName(await this.userInfoService.getUserByEmail(result.user.email as string));
-  }
-
-  async Logout() {
-    try {
-      await signOut(this.auth);
-      this.setUserName({email: '', userName: '', isAdmin: false, direccion: '', telefono: '',  profilePic: ''});
-    } catch (error) {
-      console.error('Error signing out', error);
-    }
-  }
-  
 }

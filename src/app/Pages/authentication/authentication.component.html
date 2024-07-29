@@ -22,10 +22,6 @@
                 <br>
                 <button (click)="login()">Iniciar Sesión</button>
             }
-            <button (click)="LoginWithGoogle()" id="google-button">
-                Continuar con Google
-                <img id="google-img" src="assets/Imagenes/google_icon.svg"/>
-            </button>
             <div id="loaderDiv">
             @if(isLoading){                
                     <app-loader>Cargando</app-loader>                            

@@ -23,9 +23,11 @@ export class GestionComponent implements OnInit {
   
   
   constructor(private libroService: LibroService, private router: Router, authService: AuthService) {
-    if (authService.getCurrentUser().isAdmin === false){
-      this.router.navigate(['/home']);
-    }    
+      (async () => {
+        if ((await authService.getCurrentUser()).isAdmin === false){
+          this.router.navigate(['/home']);
+        }
+      })();
   }
 
   ngOnInit() { 

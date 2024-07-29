@@ -1,47 +1,39 @@
 import { Injectable } from '@angular/core';
 import { DocumentReference, Firestore, addDoc, collection, getDocs, updateDoc } from '@angular/fire/firestore';
 import { UserInfo } from '../Domain/UserInfoModel';
+import { UsersInfoController } from '../DataAcces/UsersInfoController';
+import { AuthService } from './auth.service';
 
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserInfoService {
+  private usersInfoController: UsersInfoController = new UsersInfoController()
 
-
-  constructor(private firestore: Firestore) {   }
-
-  async getUserByEmail(email: string): Promise<UserInfo>{
-    const querySnapshot = await getDocs(collection(this.firestore, "UsersInfo"));
-    let result: UserInfo = {email: '', userName: '', isAdmin: false, direccion: '', telefono: '', profilePic: ''};
-    querySnapshot.forEach((doc) => {
-      if (doc.data()['email'] === email){
-        result = doc.data() as UserInfo;
-      }
-    });
-    return result;
+  constructor() {       
   }
 
-  async addUserInfo(userInfo: UserInfo): Promise<DocumentReference> {
-    return await addDoc(collection(this.firestore, "UsersInfo"), Object.assign({}, userInfo));
+  async getUserByEmail(email: string): Promise<UserInfo>{ 
+    return await this.usersInfoController.getById(email);
   }
 
-  async UpdateUserInfo(userInfo: UserInfo): Promise<void> {
-    const querySnapshot = await getDocs(collection(this.firestore, "UsersInfo"));
-    querySnapshot.forEach((doc) => {
-      if (doc.data()['email'] === userInfo.email){
-        updateDoc(doc.ref, userInfo as { [x: string]: any });
-      }
-    });
+  async addUserInfo(userInfo: UserInfo): Promise<boolean> {
+    try{
+      await this.usersInfoController.add(userInfo);
+      return true;
+    }
+    catch{
+      return false;
+    }
+  }
+
+  async UpdateUserInfo(userInfo: UserInfo): Promise<void> { 
+    await this.usersInfoController.update(userInfo);
   }
 
   async getAllUsers(): Promise<UserInfo[]> {
-    const querySnapshot = await getDocs(collection(this.firestore, "UsersInfo"));
-    const users: UserInfo[] = [];
-    querySnapshot.forEach((doc) => {
-      users.push(doc.data() as UserInfo);
-    });
-    return users;
+    return await this.usersInfoController.getAll();
   }
 
 }

@@ -4,5 +4,6 @@ export interface UserInfo{
     direccion: string;
     telefono: string;
     isAdmin: boolean;
-    profilePic: any; 
+    profilePic: any;
+    token: string;
 }

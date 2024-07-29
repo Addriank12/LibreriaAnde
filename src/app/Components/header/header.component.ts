@@ -12,39 +12,52 @@ import { UserInfo } from '../../Domain/UserInfoModel';
   standalone: true,
   imports: [RouterLink, CommonModule],
   templateUrl: './header.component.html',
-  styleUrl: './header.component.css'
+  styleUrl: './header.component.css',
 })
 export class HeaderComponent {
+  currentUser: UserInfo = {
+    email: '',
+    userName: '',
+    isAdmin: false,
+    direccion: '',
+    telefono: '',
+    profilePic: '',
+    token: '',
+  };
+  private sub: Subscription = new Subscription();
 
-  currentUser: UserInfo= {email: '', userName: '', isAdmin: false, direccion: '', telefono: '', profilePic: ''};
-  private sub: Subscription = new Subscription;
+  constructor(
+    public authService: AuthService,
+    private userInfoService: UserInfoService,
+    private router: Router
+  ) {
+    document.addEventListener('DOMContentLoaded', function () {
+      const menuToggle = document.getElementById('menu-toggle');
+      const mobileMenu = document.getElementById('mobile-menu');
+      const menuIcon = document.getElementById('menu-icon');
 
-  constructor(public authService: AuthService, private userInfoService: UserInfoService, private router: Router){
-    document.addEventListener("DOMContentLoaded", function () {
-      const menuToggle = document.getElementById("menu-toggle");
-      const mobileMenu = document.getElementById("mobile-menu");
-      const menuIcon = document.getElementById("menu-icon");
-  
       if (!menuToggle || !mobileMenu || !menuIcon) {
         return;
       }
-  
-      menuToggle.addEventListener("click", function () {
-        if (mobileMenu.style.display === "none") {
-          mobileMenu.style.display = "flex";
-          menuIcon.textContent = "✕";
+
+      menuToggle.addEventListener('click', function () {
+        if (mobileMenu.style.display === 'none') {
+          mobileMenu.style.display = 'flex';
+          menuIcon.textContent = '✕';
         } else {
-          mobileMenu.style.display = "none";
-          menuIcon.textContent = "☰";
+          mobileMenu.style.display = 'none';
+          menuIcon.textContent = '☰';
         }
       });
     });
   }
 
   ngOnInit() {
-    this.sub = this.authService.currentUser$.subscribe(async user => {
-      const currentUser = await this.userInfoService.getUserByEmail(user.currentUser.email);
-      this.currentUser = currentUser; // Add null check here
+    this.sub = this.authService.currentUser$.subscribe(async (user) => {
+      this.currentUser = await this.authService.getCurrentUser();
+      if (this.currentUser.email === '') {
+        this.router.navigate(['/home']);
+      }
     });
   }
 
@@ -53,6 +66,6 @@ export class HeaderComponent {
   }
 
   async logout() {
-    await this.authService.Logout()
+    await this.authService.Logout();
   }
 }

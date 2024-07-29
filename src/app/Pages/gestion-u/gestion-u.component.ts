@@ -16,14 +16,19 @@ import { AuthService } from '../../Services/auth.service';
 })
 export class GestionUComponent {
   users: UserInfo[] = [];
-  selectedUser: UserInfo = {email: '', userName: '', isAdmin: false, direccion: '', telefono: '', profilePic: ''};
+  selectedUser: UserInfo = {
+    email: '', userName: '', isAdmin: false, direccion: '', telefono: '', profilePic: '',
+    token: ''
+  };
   isLoading: boolean = false;
   
 
   constructor(private userInfoService: UserInfoService, private router: Router, authService: AuthService) {  
-    if (authService.getCurrentUser().isAdmin === false){
-      this.router.navigate(['/home']);
-    }  
+    (async () => {
+      if ((await authService.getCurrentUser()).isAdmin === false){
+        this.router.navigate(['/home']);
+      }
+    })();
   }
 
   async ngOnInit() {
