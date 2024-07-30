@@ -5,9 +5,15 @@
 
 .products {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
     justify-items: center;
-    gap: 20px;
+    gap: 30px; /* Aumentar el espacio entre los elementos */
+}
+
+.product img {
+    width: 100%;
+    object-fit: contain; /* Ajusta la imagen dentro del contenedor sin recortar */
+    border-radius: 5px;
 }
 
 h2 {
@@ -20,26 +26,28 @@ h2 {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    max-width: 200px;
+    width: 200px; /* Ancho fijo */
+    height: 400px; /* Altura fija */
     border: 1px solid #ddd;
     border-radius: 5px;
     padding: 15px;
     background-color: #fff;
     color: #333;
+    cursor: pointer;
 }
 
-.product img {
+.product-image-container {
     width: 100%;
     height: 250px; /* Altura fija para las imágenes */
-    object-fit: cover; /* Ajuste de las imágenes para cubrir el área */
-    border-radius: 5px;
+    overflow: hidden;
+    position: relative;
 }
 
 .product-content {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    height: 100%;
+    height: 80px;
     flex-grow: 1; /* Permite que el contenido crezca y ocupe todo el espacio disponible */
 }
 
@@ -49,38 +57,13 @@ h2 {
 }
 
 .product p {
-    margin: 0;
-    margin-bottom: 10px;
+    margin-top: 10px;
+    margin-bottom: 5px;
 }
 
-.product button {
-    margin-top: auto; /* Empuja el botón hacia la parte inferior */
-    padding: 8px 20px;
-    background-color: #007bff;
+.loading {
+    font-size: 1.5em;
     color: #fff;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-}
-
-.product button:hover {
-    background-color: #0056b3;
-}
-
-@media (max-width: 907px) {
-    h2 {
-        padding-top: 2%;
-        font-size: 20px;
-    }
-
-    .shop-section {
-        padding: 20px;
-        margin: 5%;
-        font-size: 8px;
-    }
-
-    .products {
-        grid-template-columns: repeat(2, 1fr);
-    }
+    text-align: center;
+    width: 100%;
 }

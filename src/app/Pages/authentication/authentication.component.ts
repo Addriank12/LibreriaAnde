@@ -7,6 +7,7 @@ import { UserInfoService } from '../../Services/user-info.service';
 import { LibroService } from '../../Services/libro.service';
 import { RentaModel } from '../../Domain/RentaModel';
 import { UserInfo } from '../../Domain/UserInfoModel';
+import { RentaService } from '../../Services/renta.service';
 
 
 @Component({
@@ -23,12 +24,12 @@ export class AuthenticationComponent implements OnInit {
   isLoading: boolean = false;
   userName: string = "";
   
-  constructor(private asuthService: AuthService, private router: Router, private userInfoService: UserInfoService,private libroService: LibroService){}
+  constructor(private asuthService: AuthService, private router: Router, private rentaService: RentaService){}
   
   ngOnInit(): void {
     this.asuthService.currentUser$.subscribe(async (user) => {
       if (user.currentUser.email) {
-        const reservas = await this.libroService.getReservasUsuario(user.currentUser.email);
+        const reservas = await this.rentaService.getReservasUsuario(user.currentUser.email);
         if (reservas.length > 0) {
           const hoy = new Date();
           reservas.forEach((reserva) => {

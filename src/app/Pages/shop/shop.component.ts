@@ -13,11 +13,13 @@ import { RouterLink } from '@angular/router';
 })
 export class ShopComponent {
   libros: any[] = [];
+  isLoading: boolean = true;
 
   constructor(private libroService: LibroService) {}
 
   async ngOnInit() {
     this.libros = await this.libroService.getLibros();
+    this.isLoading = false;
     console.log(this.libros);
   }
 

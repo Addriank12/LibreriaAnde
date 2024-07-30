@@ -5,6 +5,7 @@ import { LibroService } from '../../Services/libro.service';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { AuthService } from '../../Services/auth.service';
+import { RentaService } from '../../Services/renta.service';
 
 
 @Component({
@@ -28,6 +29,7 @@ export class RentarLibroComponent {
   constructor(
     private route: ActivatedRoute,
     private libroService: LibroService,
+    private rentaService: RentaService,
     private authService: AuthService
   ) { }
 
@@ -76,7 +78,7 @@ export class RentarLibroComponent {
     }
   
     if (this.libro && this.libro.Titulo) { // Asegúrate de que el libro y su título existan
-      this.libroService.rentarLibro(this.libro.Titulo, this.fecha).then(() => {
+      this.rentaService.rentarLibro(this.libro.Titulo, this.fecha).then(() => {
         alert('Libro rentado con éxito');
         // Redirigir o hacer algo después de la renta
       });

@@ -2,12 +2,14 @@
     <h2>Tienda</h2>
     <section class="shop-section">
         <div class="products">
-            <div *ngFor="let libro of libros" class="product">
-                <img [src]="libro.Imagen" alt="Nombre del Producto">
+            <div *ngIf="isLoading" class="loading">Cargando...</div>
+            <div *ngFor="let libro of libros" [routerLink]="['/detalle-libro', libro.Titulo]" class="product">
+                <div class="product-image-container">
+                    <img [src]="libro.Imagen" alt="{{ libro.Titulo }}">
+                  </div>
                 <div class="product-content">
                     <h3>{{ libro.Titulo }}</h3>
                     <p>{{ libro.Autor }}</p>
-                    <button [routerLink]="['/detalle-libro', libro.Titulo]">Ver Detalles</button>
                 </div>
             </div>
         </div>

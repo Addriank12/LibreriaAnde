@@ -23,14 +23,16 @@ export class GestionLComponent implements OnInit {
   mostrarFormulario: boolean = false;
 
   constructor(
-    private libroService: LibroService, 
-    private router: Router, 
-    private route: ActivatedRoute,
-    authService: AuthService) {
-    if (authService.getCurrentUser().isAdmin === false){
-      this.router.navigate(['/home']);
-    }    
-  }
+      private libroService: LibroService, 
+      private router: Router, 
+      private route: ActivatedRoute,
+      authService: AuthService) {
+      (async () => {
+        if ((await authService.getCurrentUser()).isAdmin === false){
+          this.router.navigate(['/home']);
+        }
+      })();
+    }
 
   toggleFormulario(): void {
     this.mostrarFormulario = !this.mostrarFormulario;

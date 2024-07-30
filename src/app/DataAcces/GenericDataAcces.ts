@@ -21,7 +21,7 @@ export abstract class GenericRepository<T> {
         if (contentType && contentType.includes('application/json')) {
           return await response.json(); // Parse JSON response
         } else {
-          return response.text();
+          return await response.text();
         }
       } else {
         throw new Error(await response.text());
@@ -42,7 +42,7 @@ export abstract class GenericRepository<T> {
         if (contentType && contentType.includes('application/json')) {
           return await response.json(); // Parse JSON response
         } else {
-          return response.text();
+          return await response.text();
         }
       } else {
         throw new Error(await response.text());
@@ -92,7 +92,7 @@ export abstract class GenericRepository<T> {
         if (contentType && contentType.includes('application/json')) {
           return await response.json(); // Parse JSON response
         } else {
-          return response.text();
+          return await response.text();
         }
       } else {
         throw new Error(await response.text());
@@ -100,7 +100,7 @@ export abstract class GenericRepository<T> {
     });
   }
 
-  delete(id: number): Promise<void> {
+  delete(id: string): Promise<void> {
     let headers: { Authorization?: string } = {};
     if (this.getToken()) {
       headers['Authorization'] = `Bearer ${this.getToken()}`;
@@ -114,7 +114,7 @@ export abstract class GenericRepository<T> {
         if (contentType && contentType.includes('application/json')) {
           return await response.json(); // Parse JSON response
         } else {
-          return response.text();
+          return await response.text();
         }
       } else {
         throw new Error(await response.text());

@@ -37,16 +37,16 @@ export class GestionComponent implements OnInit {
   async ngOnInit(): Promise<void> {
     this.nombreUsuario = (await this.authService.getCurrentUser()).userName;
 
-    this.userinfoService.getTotalAdmins().then(total => {
-      this.totalAdmins = total;
-    });
-
-    this.libroService.getTotalLibros().then(total => {
-      this.totalLibros = total;
-    });
-
-    this.userinfoService.getTotalUsuarios().then(total => {
-      this.totalUsuarios = total;
-    });
+   // this.userinfoService.getTotalAdmins().then(total => {
+   //   this.totalAdmins = total;
+   // });
+//
+   // this.libroService.getTotalLibros().then(total => {
+   //   this.totalLibros = total;
+   // });
+//
+   // this.userinfoService.getTotalUsuarios().then(total => {
+   //   this.totalUsuarios = total;
+   // });
   }
 }
