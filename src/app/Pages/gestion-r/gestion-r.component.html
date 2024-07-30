@@ -16,8 +16,8 @@
     <tbody>
       <tr *ngFor="let renta of rentas | filterByUsernameforRent: searchText">
         <td>{{ renta.id }}</td>
-        <td>{{ renta.tituloLibro }}</td>
-        <td>{{ renta.userName }}</td>
+        <td>{{ renta.libro.titulo }}</td>
+        <td>{{ renta.user.email }}</td>
         <td>{{ renta.fechaRenta }}</td>
         <td>{{ renta.fechaDevolucion }}</td>
         <td>{{ renta.estado }}</td>

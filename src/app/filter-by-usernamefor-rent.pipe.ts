@@ -1,5 +1,6 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { RentaModel } from './Domain/RentaModel';
+import { ReservaModel } from './Domain/ReservaModel';
+
 
 @Pipe({
   name: 'filterByUsernameforRent',
@@ -7,12 +8,12 @@ import { RentaModel } from './Domain/RentaModel';
 })
 export class FilterByUsernameforRentPipe implements PipeTransform {
 
-  transform(rentas: RentaModel[], searchText: string): RentaModel[] {
+  transform(rentas: ReservaModel[], searchText: string): ReservaModel[] {
     if (!rentas || !searchText) {
       return rentas;
     }
     return rentas.filter(renta =>
-      renta.userName.toLowerCase().includes(searchText.toLowerCase())
+      renta.user.email.toLowerCase().includes(searchText.toLowerCase())
     );
   }
 

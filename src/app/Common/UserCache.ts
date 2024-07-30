@@ -1,6 +1,6 @@
 import { UserInfo } from "../Domain/UserInfoModel";
 
-export class USerCache {    
+export class UserCache {    
 
     // Retrieve the stored user from local storage
   public static getStoredUser(): { currentUser: UserInfo } {

@@ -1,9 +1,9 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { RentaModel } from '../../Domain/RentaModel';
 import { FilterByUsernameforRentPipe } from "../../filter-by-usernamefor-rent.pipe";
 import { RentaService } from '../../Services/renta.service';
+import { ReservaModel } from '../../Domain/ReservaModel';
 
 @Component({
   selector: 'app-gestion-r',
@@ -13,7 +13,7 @@ import { RentaService } from '../../Services/renta.service';
   styleUrl: './gestion-r.component.css'
 })
 export class GestionRComponent {
-  rentas: RentaModel[] = [];
+  rentas: ReservaModel[] = [];
   searchText: string = '';
   
   constructor(private rentaService: RentaService) { }
@@ -26,12 +26,12 @@ export class GestionRComponent {
     this.rentas = await this.rentaService.getRentas();
   }
 
-  async marcarComoDevuelto(renta: RentaModel) {
-    //renta.estado = 'devuelto';
-    //renta.fechaDevolucion = new Date().toISOString().split('T')[0]; // Fecha actual en formato YYYY-MM-DD
-    //await this.rentaService.updateRenta(renta);
+  async marcarComoDevuelto(renta: ReservaModel) {
+    renta.estado = 'devuelto';
+    renta.fechaDevolucion = new Date().toISOString().split('T')[0]; // Fecha actual en formato YYYY-MM-DD
+    await this.rentaService.updateRenta(renta);
     //await this.libroService.incrementarExistencia(renta.tituloLibro); // Incrementar la existencia del libro
-    //this.loadRentas(); // Recargar la lista de rentas
+    this.loadRentas();
 }
   
 }

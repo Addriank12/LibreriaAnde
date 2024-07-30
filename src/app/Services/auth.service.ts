@@ -5,7 +5,7 @@ import { LoginController } from '../DataAcces/LoginController';
 import { UsersInfoController } from '../DataAcces/UsersInfoController';
 import { SignUpController } from '../DataAcces/SignUpController';
 import { LibroController } from '../DataAcces/LibroController';
-import { USerCache } from '../Common/UserCache';
+import { UserCache } from '../Common/UserCache';
 
 export interface Credential {
   email: string;
@@ -18,7 +18,7 @@ export interface Credential {
 })
 export class AuthService {
   private userSubject = new BehaviorSubject<{ currentUser: UserInfo }>(
-    USerCache.getStoredUser()
+    UserCache.getStoredUser()
   );
   public currentUser$ = this.userSubject.asObservable();
   private loginController: LoginController = new LoginController();
@@ -31,7 +31,7 @@ export class AuthService {
 
   // Initialize the current user from local storage
   private initializeCurrentUser(): void {
-    const currentUser = USerCache.getStoredUser();    
+    const currentUser = UserCache.getStoredUser();    
     this.userSubject.next(currentUser);
   }  
 
@@ -43,7 +43,7 @@ export class AuthService {
   // Update the current user and store it
   setUserName(currentUser: UserInfo): void {
     this.userSubject.next({ currentUser });
-    USerCache.storeUser(currentUser);
+    UserCache.storeUser(currentUser);
   }
 
   //Add the Login Method

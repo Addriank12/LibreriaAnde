@@ -1,4 +1,4 @@
-import { USerCache } from '../Common/UserCache';
+import { UserCache } from '../Common/UserCache';
 import { AuthService } from '../Services/auth.service';
 
 export abstract class GenericRepository {
@@ -6,7 +6,7 @@ export abstract class GenericRepository {
   baseURL: string = 'http://localhost:8080/delande/api/';
 
   getToken(): string {
-    return USerCache.getStoredUser().currentUser.token;
+    return UserCache.getStoredUser().currentUser.token;
   }
 
   async getAll(): Promise<any> {
