@@ -4,8 +4,8 @@ import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { Router, RouterLink } from '@angular/router';
 import { AuthService } from '../../Services/auth.service';
-import { LibroService } from '../../Services/libro.service';
 import { UserInfoService } from '../../Services/user-info.service';
+import { LibroService } from '../../Services/libro.service';
 
 
 @Component({
@@ -22,7 +22,7 @@ export class GestionComponent implements OnInit {
   libros: LibroModel[] = [];
   
   
-  constructor(private router: Router, private authService: AuthService, private userinfoService: UserInfoService) {
+  constructor(private router: Router, private authService: AuthService, private libroService: LibroService, private userinfoService: UserInfoService) {
       (async () => {
         if ((await authService.getCurrentUser()).isAdmin === false){
           this.router.navigate(['/home']);
@@ -37,16 +37,16 @@ export class GestionComponent implements OnInit {
   async ngOnInit(): Promise<void> {
     this.nombreUsuario = (await this.authService.getCurrentUser()).userName;
 
-   // this.userinfoService.getTotalAdmins().then(total => {
-   //   this.totalAdmins = total;
-   // });
-//
-   // this.libroService.getTotalLibros().then(total => {
-   //   this.totalLibros = total;
-   // });
-//
-   // this.userinfoService.getTotalUsuarios().then(total => {
-   //   this.totalUsuarios = total;
-   // });
+    this.userinfoService.getTotalAdmins().then(total => {
+      this.totalAdmins = total;
+    });
+
+    this.libroService.getTotalLibros().then(total => {
+      this.totalLibros = total;
+    });
+
+    this.userinfoService.getTotalUsuarios().then(total => {
+      this.totalUsuarios = total;
+    });
   }
 }

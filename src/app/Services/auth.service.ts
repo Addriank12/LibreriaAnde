@@ -5,6 +5,7 @@ import { LoginController } from '../DataAcces/LoginController';
 import { UsersInfoController } from '../DataAcces/UsersInfoController';
 import { SignUpController } from '../DataAcces/SignUpController';
 import { LibroController } from '../DataAcces/LibroController';
+import { USerCache } from '../Common/UserCache';
 
 export interface Credential {
   email: string;
@@ -17,7 +18,7 @@ export interface Credential {
 })
 export class AuthService {
   private userSubject = new BehaviorSubject<{ currentUser: UserInfo }>(
-    AuthService.getStoredUser()
+    USerCache.getStoredUser()
   );
   public currentUser$ = this.userSubject.asObservable();
   private loginController: LoginController = new LoginController();
@@ -30,24 +31,9 @@ export class AuthService {
 
   // Initialize the current user from local storage
   private initializeCurrentUser(): void {
-    const currentUser = AuthService.getStoredUser();
-    
+    const currentUser = USerCache.getStoredUser();    
     this.userSubject.next(currentUser);
-  }
-
-  // Retrieve the stored user from local storage
-  public static getStoredUser(): { currentUser: UserInfo } {
-    const storedUser = localStorage.getItem('currentUser');
-    return storedUser
-      ? JSON.parse(storedUser)
-      : { currentUser: { email: '', userName: '', isAdmin: false } };
-  }
-
-  // Store the user in local storage
-  private storeUser(user: UserInfo): void {
-    localStorage.setItem('currentUser', JSON.stringify({ currentUser: user }));
-    console.log(user);
-  }
+  }  
 
   // Get the current user
   async getCurrentUser(): Promise<UserInfo> {
@@ -57,7 +43,7 @@ export class AuthService {
   // Update the current user and store it
   setUserName(currentUser: UserInfo): void {
     this.userSubject.next({ currentUser });
-    this.storeUser(currentUser);
+    USerCache.storeUser(currentUser);
   }
 
   //Add the Login Method

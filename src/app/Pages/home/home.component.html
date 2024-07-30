@@ -23,8 +23,8 @@
         <p>En esta sección podrás ver los libros destacados últimamente.</p>
             <div class="gallery">
                 <div class="divImg" *ngFor="let libro of libros | slice:0:4">
-                <img [src]="libro.Imagen" alt="{{ libro.Titulo }}">
-                <p>{{ libro.Titulo }}</p>
+                <img [src]="libro.imagen" alt="{{ libro.titulo }}">
+                <p>{{ libro.titulo }}</p>
             </div>
           </div>
     </div>
@@ -35,8 +35,8 @@
         <p>¡Echa un vistazo a nuestras recomendaciones!</p>
         <div class="gallery">
             <div class="divImg" *ngFor="let libro of libros | slice:0:5">
-            <img [src]="libro.Imagen" alt="{{ libro.Titulo }}">
-            <p>{{ libro.Titulo }}</p>
+            <img [src]="libro.imagen" alt="{{ libro.titulo }}">
+            <p>{{ libro.titulo }}</p>
         </div>
       </div>
     </section>

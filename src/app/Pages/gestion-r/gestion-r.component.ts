@@ -2,7 +2,6 @@ import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { RentaModel } from '../../Domain/RentaModel';
-import { LibroService } from '../../Services/libro.service';
 import { FilterByUsernameforRentPipe } from "../../filter-by-usernamefor-rent.pipe";
 import { RentaService } from '../../Services/renta.service';
 

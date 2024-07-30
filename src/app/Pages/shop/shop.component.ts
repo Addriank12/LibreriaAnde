@@ -15,12 +15,12 @@ export class ShopComponent {
   libros: any[] = [];
   isLoading: boolean = true;
 
-  constructor() {}
+  constructor(private libroService: LibroService) {}
 
   async ngOnInit() {
-    //this.libros = await this.libroService.getLibros();
-    //this.isLoading = false;
-    //console.log(this.libros);
+    this.libros = await this.libroService.getLibros();
+    this.isLoading = false;
+    console.log(this.libros);
   }
 
 }

@@ -1,124 +1,120 @@
+import { USerCache } from '../Common/UserCache';
 import { AuthService } from '../Services/auth.service';
 
 export abstract class GenericRepository {
   protected abstract collectionName: string;
-  private baseURL: string = 'http://localhost:8080/delande/api/';
+  baseURL: string = 'http://localhost:8080/delande/api/';
 
   getToken(): string {
-    return AuthService.getStoredUser().currentUser.token;
+    return USerCache.getStoredUser().currentUser.token;
   }
 
-  getAll(): Promise<any[]> {
+  async getAll(): Promise<any> {
     let headers: { Authorization?: string } = {};
     if (this.getToken()) {
       headers['Authorization'] = `Bearer ${this.getToken()}`;
     }
-    return fetch(this.baseURL + this.collectionName, {
+    const response = await fetch(this.baseURL + this.collectionName, {
       headers: headers,
-    }).then(async (response) => {
-      const contentType = response.headers.get('content-type');
-      if (response.status == 200) {
-        if (contentType && contentType.includes('application/json')) {
-          return await response.json(); // Parse JSON response
-        } else {
-          return await response.text();
-        }
-      } else {
-        throw new Error(await response.text());
-      }
     });
+    const contentType = response.headers.get('content-type');
+    if (response.status == 200) {
+      if (contentType && contentType.includes('application/json')) {
+        return await response.json(); // Parse JSON response
+      } else {
+        return await response.text();
+      }
+    } else {
+      throw new Error(await response.text());
+    }
   }
 
-  getById(id: string): Promise<any> {
+  async getById(id: string): Promise<any> {
     let headers: { Authorization?: string } = {};
     if (this.getToken()) {
       headers['Authorization'] = `Bearer ${this.getToken()}`;
     }
-    return fetch(this.baseURL + this.collectionName + '/' + id, {
+    const response = await fetch(this.baseURL + this.collectionName + '/' + id, {
       headers: headers,
-    }).then(async (response) => {
-      const contentType = response.headers.get('content-type');
-      if (response.status == 200) {
-        if (contentType && contentType.includes('application/json')) {
-          return await response.json(); // Parse JSON response
-        } else {
-          return await response.text();
-        }
-      } else {
-        throw new Error(await response.text());
-      }
     });
+    const contentType = response.headers.get('content-type');
+    if (response.status == 200) {
+      if (contentType && contentType.includes('application/json')) {
+        return await response.json(); // Parse JSON response
+      } else {
+        return await response.text();
+      }
+    } else {
+      throw new Error(await response.text());
+    }
   }
 
-  add(entity: any): Promise<any> {
+  async add(entity: any): Promise<any> {
     let headers: { 'content-Type': string; Authorization?: string } = {
       'content-Type': 'application/json',
     };
     if (this.getToken()) {
       headers['Authorization'] = `Bearer ${this.getToken()}`;
     }
-    return fetch(this.baseURL + this.collectionName, {
+    const response = await fetch(this.baseURL + this.collectionName, {
       method: 'POST',
       headers: headers,
       body: JSON.stringify(entity),
-    }).then(async (response) => {
-      const contentType = response.headers.get('content-type');
-      if (response.status == 200) {
-        if (contentType && contentType.includes('application/json')) {
-          return await response.json(); // Parse JSON response
-        } else {
-          return await response.text();
-        }
-      } else {
-        throw new Error(await response.text());
-      }
     });
+    const contentType = response.headers.get('content-type');
+    if (response.status == 200) {
+      if (contentType && contentType.includes('application/json')) {
+        return await response.json(); // Parse JSON response
+      } else {
+        return await response.text();
+      }
+    } else {
+      throw new Error(await response.text());
+    }
   }
 
-  update(entity: any): Promise<any> {
+  async update(entity: any): Promise<any> {
     let headers: { 'content-Type': string; Authorization?: string } = {
       'content-Type': 'application/json',
     };
     if (this.getToken()) {
       headers['Authorization'] = `Bearer ${this.getToken()}`;
     }
-    return fetch(this.baseURL + this.collectionName, {
+    const response = await fetch(this.baseURL + this.collectionName, {
       method: 'PUT',
       headers: headers,
       body: JSON.stringify(entity),
-    }).then(async (response) => {
-      const contentType = response.headers.get('content-type');
-      if (response.status == 200) {
-        if (contentType && contentType.includes('application/json')) {
-          return await response.json(); // Parse JSON response
-        } else {
-          return await response.text();
-        }
-      } else {
-        throw new Error(await response.text());
-      }
     });
+    const contentType = response.headers.get('content-type');
+    if (response.status == 200) {
+      if (contentType && contentType.includes('application/json')) {
+        return await response.json(); // Parse JSON response
+      } else {
+        return await response.text();
+      }
+    } else {
+      throw new Error(await response.text());
+    }
   }
 
-  delete(id: string): Promise<void> {
+  async delete(id: string): Promise<string> {
     let headers: { Authorization?: string } = {};
     if (this.getToken()) {
       headers['Authorization'] = `Bearer ${this.getToken()}`;
     }
-    return fetch(this.baseURL + this.collectionName + '/' + id, {
+    const response = await fetch(this.baseURL + this.collectionName + '/' + id, {
       method: 'DELETE',
       headers: headers,
-    }).then(async (response) => {
-      const contentType = response.headers.get('content-type');
-      if (response.status == 200) {
-        if (contentType && contentType.includes('application/json')) {
-          return await response.json(); // Parse JSON response
-        } else {
-          return await response.text();
-        }
-      } else {
-        throw new Error(await response.text());
-      }
     });
+    const contentType = response.headers.get('content-type');
+    if (response.status == 200) {
+      if (contentType && contentType.includes('application/json')) {
+        return await response.json(); // Parse JSON response
+      } else {
+        return await response.text();
+      }
+    } else {
+      throw new Error(await response.text());
+    }
   }
 }

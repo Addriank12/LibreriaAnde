@@ -15,7 +15,7 @@ import { FilterByTitlePipe } from "../../filter-by-title.pipe";
   templateUrl: './gestion-l.component.html',
   styleUrl: './gestion-l.component.css'
 })
-export class GestionLComponent implements OnInit {
+export class GestionLComponent {
   selectedLibro: LibroModel = new LibroModel();
   libroSeleccionado: LibroModel = new LibroModel();
   libros: LibroModel[] = [];
@@ -27,11 +27,7 @@ export class GestionLComponent implements OnInit {
       private route: ActivatedRoute,
       private libroService: LibroService,
       authService: AuthService) {
-      (async () => {
-        if ((await authService.getCurrentUser()).isAdmin === false){
-          this.router.navigate(['/home']);
-        }
-      })();
+
     }
 
   toggleFormulario(): void {
@@ -39,18 +35,18 @@ export class GestionLComponent implements OnInit {
   }
 
   ngOnInit() { 
-    //this.route.params.subscribe(params => {
-    //  const tituloLibro = params['titulo'];
-    //  if (tituloLibro) {
-    //    this.libroService.getLibroByTitulo(tituloLibro).then(libro => {
-    //      this.selectedLibro = libro as LibroModel;
-    //    });
-    //  }
-    //});
-    //this.libroService.getLibros().then(libros => {
-    //  this.libros = libros.map(libro => libro as LibroModel);
-    //  console.log(this.libros);
-    //});
+    this.route.params.subscribe(params => {
+      const tituloLibro = params['titulo'];
+      if (tituloLibro) {
+        this.libroService.getLibroByTitulo(tituloLibro).then(libro => {
+          this.selectedLibro = libro as LibroModel;
+        });
+      }
+    });
+    this.libroService.getLibros().then(libros => {
+      this.libros = libros.map(libro => libro as LibroModel);
+      console.log(this.libros);
+    });
   }
 
   async agregarLibro() {
@@ -75,19 +71,19 @@ export class GestionLComponent implements OnInit {
   }
 
   eliminarLibro(libro: LibroModel) {
-    //this.libroService.deleteLibro(libro.Titulo).then(() => {
-    //  alert('Libro eliminado con éxito');
-    //  this.libros = this.libros.filter(l => l.Titulo !== libro.Titulo);
-    //  if (this.selectedLibro && this.selectedLibro.Titulo === libro.Titulo) {
-    //    this.selectedLibro = new LibroModel();
-    //  }
-    //});
+    this.libroService.deleteLibro(libro.titulo).then(() => {
+      alert('Libro eliminado con éxito');
+      this.libros = this.libros.filter(l => l.titulo !== libro.titulo);
+      if (this.selectedLibro && this.selectedLibro.titulo === libro.titulo) {
+        this.selectedLibro = new LibroModel();
+      }
+    });
   }
 
   updateLibro(): void {
-    //this.libroService.updateLibro(this.selectedLibro).then(() => {
-    //  alert('Libro actualizado con éxito');
-    //});
+    this.libroService.updateLibro(this.selectedLibro).then(() => {
+      alert('Libro actualizado con éxito');
+    });
   }
 }
 

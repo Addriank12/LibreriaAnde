@@ -8,7 +8,7 @@ import { AuthService } from './auth.service';
 @Injectable({
   providedIn: 'root'
 })
-export class UserInfoService {
+export class UserInfoService {  
   private usersInfoController: UsersInfoController = new UsersInfoController()
 
   constructor() {       
@@ -36,15 +36,14 @@ export class UserInfoService {
     return await this.usersInfoController.getAll();
   }
 
- // async getTotalAdmins(): Promise<number> {
- //   const q = query(collection(this.firestore, 'UsersInfo'), where('isAdmin', '==', true));
- //   const querySnapshot = await getDocs(q);
- //   return querySnapshot.size;
- // }
-//
- // async getTotalUsuarios(): Promise<number> {
- //   const querySnapshot = await getDocs(collection(this.firestore, 'UsersInfo'));
- //   return querySnapshot.size;
- // }
+  async getTotalUsuarios() {
+    return this.usersInfoController.getAll().then(users => users.filter((user: { isAdmin: any; }) => !user.isAdmin).length);
+
+    
+  }
+  async getTotalAdmins() {
+    return this.usersInfoController.getAll().then(users => users.filter((user: { isAdmin: any; }) => user.isAdmin).length);
+  }
+
 
 }

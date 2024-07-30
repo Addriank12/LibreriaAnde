@@ -3,13 +3,13 @@
     <section class="shop-section">
         <div class="products">
             <div *ngIf="isLoading" class="loading">Cargando...</div>
-            <div *ngFor="let libro of libros" [routerLink]="['/detalle-libro', libro.Titulo]" class="product">
+            <div *ngFor="let libro of libros" [routerLink]="['/detalle-libro', libro.titulo]" class="product">
                 <div class="product-image-container">
-                    <img [src]="libro.Imagen" alt="{{ libro.Titulo }}">
+                    <img [src]="libro.imagen" alt="{{ libro.titulo }}">
                   </div>
                 <div class="product-content">
-                    <h3>{{ libro.Titulo }}</h3>
-                    <p>{{ libro.Autor }}</p>
+                    <h3>{{ libro.titulo }}</h3>
+                    <p>{{ libro.autor }}</p>
                 </div>
             </div>
         </div>

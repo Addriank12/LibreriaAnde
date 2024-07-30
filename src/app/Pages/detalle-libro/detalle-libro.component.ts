@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute, RouterLink } from '@angular/router';
-import { LibroService } from '../../Services/libro.service';
 import { LibroModel } from '../../Domain/LIbroModel';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { LibroService } from '../../Services/libro.service';
 
 @Component({
   selector: 'app-detalle-libro',
@@ -17,16 +17,17 @@ export class DetalleLibroComponent {
   libros: any[] = [];
 
   constructor(
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private libroService: LibroService
   ) { }
 
   ngOnInit(): void {
-    //const titulo = this.route.snapshot.paramMap.get('titulo');
-    //if (titulo) {
-    //  this.libroService.getLibroByTitulo(titulo).then(libro => {
-    //    this.libro = libro;
-    //  });
-    //}
+    const titulo = this.route.snapshot.paramMap.get('titulo');
+    if (titulo) {
+      this.libroService.getLibroByTitulo(titulo).then(libro => {
+        this.libro = libro;
+      });
+    }
   }
 }
 
