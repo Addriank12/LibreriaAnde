@@ -23,9 +23,9 @@ export class GestionLComponent implements OnInit {
   mostrarFormulario: boolean = false;
 
   constructor(
-      private libroService: LibroService, 
       private router: Router, 
       private route: ActivatedRoute,
+      private libroService: LibroService,
       authService: AuthService) {
       (async () => {
         if ((await authService.getCurrentUser()).isAdmin === false){
@@ -39,22 +39,22 @@ export class GestionLComponent implements OnInit {
   }
 
   ngOnInit() { 
-    this.route.params.subscribe(params => {
-      const tituloLibro = params['titulo'];
-      if (tituloLibro) {
-        this.libroService.getLibroByTitulo(tituloLibro).then(libro => {
-          this.selectedLibro = libro as LibroModel;
-        });
-      }
-    });
-    this.libroService.getLibros().then(libros => {
-      this.libros = libros.map(libro => libro as LibroModel);
-      console.log(this.libros);
-    });
+    //this.route.params.subscribe(params => {
+    //  const tituloLibro = params['titulo'];
+    //  if (tituloLibro) {
+    //    this.libroService.getLibroByTitulo(tituloLibro).then(libro => {
+    //      this.selectedLibro = libro as LibroModel;
+    //    });
+    //  }
+    //});
+    //this.libroService.getLibros().then(libros => {
+    //  this.libros = libros.map(libro => libro as LibroModel);
+    //  console.log(this.libros);
+    //});
   }
 
-  agregarLibro() {
-    this.libroService.addLibro(this.selectedLibro);
+  async agregarLibro() {
+    await this.libroService.addLibro(this.selectedLibro);
     alert('Libro agregado con éxito');
     this.ngOnInit();
   }
@@ -69,25 +69,25 @@ export class GestionLComponent implements OnInit {
     const target = event.target as HTMLInputElement;
     if (target.files && target.files[0]) {
       const reader = new FileReader();
-      reader.onload = (e) => this.selectedLibro.Imagen = (e.target as FileReader).result;
+      reader.onload = (e) => this.selectedLibro.imagen = (e.target as FileReader).result;
       reader.readAsDataURL(target.files[0]);
     }
   }
 
   eliminarLibro(libro: LibroModel) {
-    this.libroService.deleteLibro(libro.Titulo).then(() => {
-      alert('Libro eliminado con éxito');
-      this.libros = this.libros.filter(l => l.Titulo !== libro.Titulo);
-      if (this.selectedLibro && this.selectedLibro.Titulo === libro.Titulo) {
-        this.selectedLibro = new LibroModel();
-      }
-    });
+    //this.libroService.deleteLibro(libro.Titulo).then(() => {
+    //  alert('Libro eliminado con éxito');
+    //  this.libros = this.libros.filter(l => l.Titulo !== libro.Titulo);
+    //  if (this.selectedLibro && this.selectedLibro.Titulo === libro.Titulo) {
+    //    this.selectedLibro = new LibroModel();
+    //  }
+    //});
   }
 
   updateLibro(): void {
-    this.libroService.updateLibro(this.selectedLibro).then(() => {
-      alert('Libro actualizado con éxito');
-    });
+    //this.libroService.updateLibro(this.selectedLibro).then(() => {
+    //  alert('Libro actualizado con éxito');
+    //});
   }
 }
 

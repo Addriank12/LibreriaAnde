@@ -75,6 +75,7 @@ th {
     max-width: 400px;
     padding: 10px;
     margin-bottom: 20px;
+    margin-right: 10px;
     border: 1px solid #ccc;
     border-radius: 5px;
     font-size: 1em;
@@ -136,7 +137,7 @@ th {
     }
 
     form{
-        padding: 10px;
+        padding: 5px;
     }
     table {
         width: 100%;
@@ -153,18 +154,20 @@ th {
         width: 100%;
     }
 
-
     add-book-form input{
       width: 80%;
       margin: 0 auto;
     }
+
     .add-book-form textarea{
       width: 80%;
       text-align: center;
       margin: 0 auto;
     }
+
     .add-book-form button{
       width: 80%;
+      height: 80%;
       margin: 0 auto;
     }
     

@@ -1,19 +1,21 @@
 export class LibroModel{
-    Titulo: string;
-    Autor: string;
-    Imagen: any;
-    Genero : any;
-    AnioPublicacion : number;
-    Existencia: number;
-    Contenido: string;
+    titulo: string;
+    autor: string;
+    imagen: any;
+    genero : any;
+    anioPublicacion : number;
+    existencias: number;
+    contenido: string;
 
     constructor(){
-        this.Titulo = '';
-        this.Autor = '';
-        this.Imagen = '';
-        this.Genero = '';
-        this.AnioPublicacion = 0;
-        this.Existencia = 0;
-        this.Contenido = '';
+        this.titulo = '';
+        this.autor = '';
+        this.imagen = '';
+        this.genero = '';
+        this.anioPublicacion = 0;
+        this.existencias = 0;
+        this.contenido = '';
     }
+
+
 }

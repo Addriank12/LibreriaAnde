@@ -17,17 +17,16 @@ export class DetalleLibroComponent {
   libros: any[] = [];
 
   constructor(
-    private route: ActivatedRoute,
-    private libroService: LibroService
+    private route: ActivatedRoute
   ) { }
 
   ngOnInit(): void {
-    const titulo = this.route.snapshot.paramMap.get('titulo');
-    if (titulo) {
-      this.libroService.getLibroByTitulo(titulo).then(libro => {
-        this.libro = libro;
-      });
-    }
+    //const titulo = this.route.snapshot.paramMap.get('titulo');
+    //if (titulo) {
+    //  this.libroService.getLibroByTitulo(titulo).then(libro => {
+    //    this.libro = libro;
+    //  });
+    //}
   }
 }
 

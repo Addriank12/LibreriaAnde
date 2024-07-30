@@ -3,9 +3,6 @@ import { FormsModule } from '@angular/forms';
 import { AuthService, Credential } from '../../Services/auth.service';
 import { LoaderComponent } from '../../Components/loader/loader.component';
 import { Router } from '@angular/router';
-import { UserInfoService } from '../../Services/user-info.service';
-import { LibroService } from '../../Services/libro.service';
-import { RentaModel } from '../../Domain/RentaModel';
 import { UserInfo } from '../../Domain/UserInfoModel';
 import { RentaService } from '../../Services/renta.service';
 

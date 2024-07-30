@@ -12,7 +12,7 @@ export class FilterByTitlePipe implements PipeTransform {
       return libros;
     }
     return libros.filter(libro =>
-      libro.Titulo.toLowerCase().includes(searchText.toLowerCase())
+      libro.titulo.toLowerCase().includes(searchText.toLowerCase())
     );
   }
 

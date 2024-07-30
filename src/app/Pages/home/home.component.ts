@@ -15,11 +15,11 @@ import { BrowserModule } from '@angular/platform-browser';
 export class HomeComponent {
   libros: any[] = [];
 
-  constructor(private libroService: LibroService) {}
+  constructor() {}
 
   async ngOnInit() {
-    this.libros = await this.libroService.getLibros();
-    console.log(this.libros);
+    //this.libros = await this.libroService.getLibros();
+    //console.log(this.libros);
   }
   
 }

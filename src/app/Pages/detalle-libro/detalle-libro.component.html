@@ -2,21 +2,21 @@
 
 <div class="detalle-libro-container" *ngIf="libro">
     <div class="detalle-libro-imagen">
-        <img [src]="libro.Imagen" alt="{{ libro.Titulo }}">
+        <img [src]="libro.imagen" alt="{{ libro.titulo }}">
     </div>
     <div class="detalle-libro-contenido">
-        <div class="detalle-libro-titulo">{{ libro.Titulo }}</div>
-        <div class="detalle-libro-autor">Autor: {{ libro.Autor }}</div>
-        <div class="detalle-libro-autor">Existencias: {{ libro.Existencia }}</div>
-        <div class="detalle-libro-autor">Año de Publicación: {{ libro.AnioPublicacion }}</div>
-        <div class="detalle-libro-genero">Género: {{ libro.Genero }}</div>
+        <div class="detalle-libro-titulo">{{ libro.titulo }}</div>
+        <div class="detalle-libro-autor">Autor: {{ libro.autor }}</div>
+        <div class="detalle-libro-autor">Existencias: {{ libro.existencias }}</div>
+        <div class="detalle-libro-autor">Año de Publicación: {{ libro.anioPublicacion }}</div>
+        <div class="detalle-libro-genero">Género: {{ libro.genero }}</div>
         <div class="detalle-libro-botones">
-            <button [routerLink]="['/rentar-libro', libro.Titulo]" [disabled]="libro.Existencia === 0">Rentar</button>
+            <button [routerLink]="['/rentar-libro', libro.titulo]" [disabled]="libro.existencias === 0">Rentar</button>
         </div>
     </div>
 </div>
 <div *ngIf="libro" class="detalle-libro-descripcion">
-    {{ libro.Contenido }}
+    {{ libro.contenido }}
 </div>
 <div *ngIf="!libro">
     <p>Libro no encontrado.</p>

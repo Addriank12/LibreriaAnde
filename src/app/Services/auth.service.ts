@@ -4,6 +4,7 @@ import { UserInfo } from '../Domain/UserInfoModel';
 import { LoginController } from '../DataAcces/LoginController';
 import { UsersInfoController } from '../DataAcces/UsersInfoController';
 import { SignUpController } from '../DataAcces/SignUpController';
+import { LibroController } from '../DataAcces/LibroController';
 
 export interface Credential {
   email: string;

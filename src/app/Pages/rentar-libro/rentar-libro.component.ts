@@ -28,7 +28,6 @@ export class RentarLibroComponent {
   
   constructor(
     private route: ActivatedRoute,
-    private libroService: LibroService,
     private rentaService: RentaService,
     private authService: AuthService
   ) { }
@@ -36,11 +35,11 @@ export class RentarLibroComponent {
   ngOnInit(): void {
     const titulo = this.route.snapshot.paramMap.get('titulo');
     if (titulo) {
-      this.libroService.getLibroByTitulo(titulo).then(libro => {
-        this.libro = libro;
-        this.usuario = this.authService.getCurrentUser();
-        this.loading = false; 
-      });
+      //this.libroService.getLibroByTitulo(titulo).then(libro => {
+      //  this.libro = libro;
+      //  this.usuario = this.authService.getCurrentUser();
+      //  this.loading = false; 
+      //});
     } else {
       this.loading = false; 
     }
@@ -77,8 +76,8 @@ export class RentarLibroComponent {
       return; // Detiene la ejecución si la fecha es menor a la actual
     }
   
-    if (this.libro && this.libro.Titulo) { // Asegúrate de que el libro y su título existan
-      this.rentaService.rentarLibro(this.libro.Titulo, this.fecha).then(() => {
+    if (this.libro && this.libro.titulo) { // Asegúrate de que el libro y su título existan
+      this.rentaService.rentarLibro(this.libro.titulo, this.fecha).then(() => {
         alert('Libro rentado con éxito');
         // Redirigir o hacer algo después de la renta
       });

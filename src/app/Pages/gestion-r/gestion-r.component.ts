@@ -17,7 +17,7 @@ export class GestionRComponent {
   rentas: RentaModel[] = [];
   searchText: string = '';
   
-  constructor(private libroService: LibroService, private rentaService: RentaService) { }
+  constructor(private rentaService: RentaService) { }
 
   ngOnInit(): void {
     this.loadRentas();
@@ -28,11 +28,11 @@ export class GestionRComponent {
   }
 
   async marcarComoDevuelto(renta: RentaModel) {
-    renta.estado = 'devuelto';
-    renta.fechaDevolucion = new Date().toISOString().split('T')[0]; // Fecha actual en formato YYYY-MM-DD
-    await this.rentaService.updateRenta(renta);
-    await this.libroService.incrementarExistencia(renta.tituloLibro); // Incrementar la existencia del libro
-    this.loadRentas(); // Recargar la lista de rentas
+    //renta.estado = 'devuelto';
+    //renta.fechaDevolucion = new Date().toISOString().split('T')[0]; // Fecha actual en formato YYYY-MM-DD
+    //await this.rentaService.updateRenta(renta);
+    //await this.libroService.incrementarExistencia(renta.tituloLibro); // Incrementar la existencia del libro
+    //this.loadRentas(); // Recargar la lista de rentas
 }
   
 }

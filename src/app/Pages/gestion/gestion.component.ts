@@ -22,7 +22,7 @@ export class GestionComponent implements OnInit {
   libros: LibroModel[] = [];
   
   
-  constructor(private libroService: LibroService, private router: Router, private authService: AuthService, private userinfoService: UserInfoService) {
+  constructor(private router: Router, private authService: AuthService, private userinfoService: UserInfoService) {
       (async () => {
         if ((await authService.getCurrentUser()).isAdmin === false){
           this.router.navigate(['/home']);

@@ -1,6 +1,6 @@
 import { AuthService } from '../Services/auth.service';
 
-export abstract class GenericRepository<T> {
+export abstract class GenericRepository {
   protected abstract collectionName: string;
   private baseURL: string = 'http://localhost:8080/delande/api/';
 
@@ -8,7 +8,7 @@ export abstract class GenericRepository<T> {
     return AuthService.getStoredUser().currentUser.token;
   }
 
-  getAll(): Promise<T[]> {
+  getAll(): Promise<any[]> {
     let headers: { Authorization?: string } = {};
     if (this.getToken()) {
       headers['Authorization'] = `Bearer ${this.getToken()}`;
@@ -29,7 +29,7 @@ export abstract class GenericRepository<T> {
     });
   }
 
-  getById(id: string): Promise<T> {
+  getById(id: string): Promise<any> {
     let headers: { Authorization?: string } = {};
     if (this.getToken()) {
       headers['Authorization'] = `Bearer ${this.getToken()}`;
@@ -50,7 +50,7 @@ export abstract class GenericRepository<T> {
     });
   }
 
-  add(entity: T): Promise<T> {
+  add(entity: any): Promise<any> {
     let headers: { 'content-Type': string; Authorization?: string } = {
       'content-Type': 'application/json',
     };
@@ -75,7 +75,7 @@ export abstract class GenericRepository<T> {
     });
   }
 
-  update(entity: T): Promise<T> {
+  update(entity: any): Promise<any> {
     let headers: { 'content-Type': string; Authorization?: string } = {
       'content-Type': 'application/json',
     };
