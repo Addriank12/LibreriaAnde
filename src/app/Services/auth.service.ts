@@ -41,21 +41,24 @@ export class AuthService {
   }
 
   // Update the current user and store it
-  setUserName(currentUser: UserInfo): void {
-    this.userSubject.next({ currentUser });
+  setUserName(currentUser: UserInfo): void {    
     UserCache.storeUser(currentUser);
+    this.userSubject.next({ currentUser });
   }
 
   //Add the Login Method
   async LoginUpWithEmailAndPassword(credential: Credential): Promise<string> {
-    return await this.loginController.add({ email: credential.email, password: credential.password });
+    return await this.loginController.add({ email: credential.email, password: credential.password });   
   }
 
   // Add the Sign Up Method
-  async SingUpWithEmailAndPassword(credential: Credential): Promise<void> {
+  async SignUpWithEmailAndPassword(credential: Credential, userName: String, loginCallback: () => Promise<void>): Promise<void> {
     await this.signUpController.add({ email: credential.email, password: credential.password });
-    await this.userInfoController.add({ email: credential.email, userName: 'Pendiente', isAdmin: false, direccion: 'Pendiente', telefono: '9999999999' });
+    await loginCallback();
+    await this.userInfoController.add({ email: credential.email, userName: userName, isAdmin: false, direccion: 'Pendiente', telefono: '9999999999' });    
   }
+
+
 
   // Add the Logout Method
   async Logout(): Promise<void> {

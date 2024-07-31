@@ -37,7 +37,7 @@ export class UserInfoService {
   }
 
   async getTotalUsuarios() {
-    return this.usersInfoController.getAll().then(users => users.filter((user: { isAdmin: any; }) => !user.isAdmin).length);
+    return this.usersInfoController.getAll().then(users => users.length);
 
     
   }

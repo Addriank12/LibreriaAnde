@@ -18,8 +18,8 @@
         <td>{{ renta.id }}</td>
         <td>{{ renta.libro.titulo }}</td>
         <td>{{ renta.user.email }}</td>
-        <td>{{ renta.fechaRenta }}</td>
-        <td>{{ renta.fechaDevolucion }}</td>
+        <td>{{ renta.fechaRenta | date }}</td>
+        <td>{{ renta.fechaDevolucion | date }}</td>
         <td>{{ renta.estado }}</td>
         <td>
           <button (click)="marcarComoDevuelto(renta)" [disabled]="renta.estado === 'devuelto'">Marcar como devuelto</button>

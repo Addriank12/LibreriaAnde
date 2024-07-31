@@ -5,6 +5,7 @@ import { LoaderComponent } from '../../Components/loader/loader.component';
 import { Router } from '@angular/router';
 import { UserInfo } from '../../Domain/UserInfoModel';
 import { RentaService } from '../../Services/renta.service';
+import { UserInfoService } from '../../Services/user-info.service';
 
 
 @Component({
@@ -21,7 +22,7 @@ export class AuthenticationComponent implements OnInit {
   isLoading: boolean = false;
   userName: string = "";
   
-  constructor(private asuthService: AuthService, private router: Router, private rentaService: RentaService){}
+  constructor(private asuthService: AuthService, private router: Router, private rentaService: RentaService, private userInfoService: UserInfoService){}
   
   ngOnInit(): void {
     this.asuthService.currentUser$.subscribe(async (user) => {
@@ -43,15 +44,14 @@ export class AuthenticationComponent implements OnInit {
     });
   }
   
-  async SingUp() {
+  async SingUp(): Promise<void> {
     try{
       this.isLoading = true;
       if (this.userName === "") {
         throw new Error('El nombre de usuario no puede estar vacio')
-      }        
-      await this.asuthService.SingUpWithEmailAndPassword(this.credential);
+      }
+      await this.asuthService.SignUpWithEmailAndPassword(this.credential, this.userName, async () => await this.login(this.credential));
       this.error = "";
-      this.login;
     }
     catch(error: any){
       this.error = error.toString();
@@ -61,12 +61,14 @@ export class AuthenticationComponent implements OnInit {
     }
   }
 
-  async login() {
+  async login(credential: Credential) : Promise<void> {
     try {
       this.isLoading = true;
-      const token = await this.asuthService.LoginUpWithEmailAndPassword(this.credential);    
-      const user: UserInfo = { email: this.credential.email, userName: '', isAdmin: false, direccion: '', telefono: '', profilePic: '', token: '' }; ; 
+      const token = await this.asuthService.LoginUpWithEmailAndPassword(credential);    
+      const user: UserInfo = { email: credential.email, userName: '', isAdmin: false, direccion: '', telefono: '', profilePic: '', token: '' }; ; 
       user.token = token;
+      this.asuthService.setUserName(user);
+      user.isAdmin = (await this.userInfoService.getUserByEmail(credential.email)).isAdmin;
       this.asuthService.setUserName(user);
       // Navigate to home page
       this.router.navigate(['/home']);

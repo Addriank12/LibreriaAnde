@@ -1,41 +1,57 @@
-/* Estilos generales */
 body {
-  font-family: Arial, sans-serif;
+  font-family: 'Arial', sans-serif;
   margin: 5%;
   padding: 0;
-  background-color: #f9f9f9df;
+  background-color: #f9f9f9;
   color: #333;
-  border-radius: 30px; 
+  border-radius: 30px;
+  line-height: 1.6;
 }
 
 header h1 {
   padding-left: 2%;
   font-size: 2.5em;
   margin-left: 50px;
+  color: #fff;
 }
 
-.content p{
-  text-shadow: #000 1px 2px 1px;
-} 
+.content {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+  color: #fff;
+  padding: 5%;
+  box-sizing: border-box;
+  border-radius: 20px;
+}
+
+.content p {
+  text-shadow: 1px 2px 4px rgba(0, 0, 0, 0.5);
+  font-size: 1.3em;
+  margin-bottom: 20px;
+}
 
 /* Estilos para la sección de información de libros */
 .infoLibros {
   margin: auto;
   padding: 20px;
   text-align: center;
-  background-color: rgb(146, 117, 64);
+  background-color: #927540;
   border-radius: 20px;
   margin: 0 80px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 .infoLibros h2 {
   font-size: 2em;
   margin-bottom: 10px;
+  color: #fff;
 }
 
 .infoLibros p {
   font-size: 1.2em;
   margin-bottom: 20px;
+  color: #f1f1f1;
 }
 
 /* Estilos para la galería */
@@ -53,8 +69,8 @@ header h1 {
   text-align: center;
   background-color: white;
   border: 1px solid #ddd;
-  
- max-height: 265px;
+
+  max-height: 265px;
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   transition: transform 0.2s;
@@ -66,7 +82,7 @@ header h1 {
 
 .divImg img {
   width: 100%;
-  max-height:200px;
+  max-height: 200px;
   border-top-left-radius: 10px;
   border-top-right-radius: 10px;
 }
@@ -77,12 +93,11 @@ header h1 {
   color: #333;
 }
 
-
 .background-section {
   position: relative;
   height: 450px; /* Altura deseada de la sección de fondo */
   overflow: hidden;
-  background: rgba(0, 0, 0, 0.409); 
+  background: rgba(0, 0, 0, 0.409);
   border-radius: 20px;
   margin: 0 80px;
 }
@@ -102,17 +117,8 @@ header h1 {
   object-fit: cover;
 }
 
-.background-section h2{
+.background-section h2 {
   color: (129, 98, 69, 0.583);
-}
-
-.content {
-  position: relative;
-  z-index: 1; 
-  text-align: center;
-  color: #fff; 
-  padding: 50px; 
-  box-sizing: border-box;
 }
 
 /* Estilos para la sección de recomendaciones */
@@ -129,86 +135,31 @@ header h1 {
   margin-bottom: 20px;
 }
 
-
-  @media (max-width: 800px) {
-    header h1{
-      font-size: 20px;
-      padding-top: 2%;
-    }
-    .divImg img {
-      width: 100%;
-      max-height: 200px;
-      border-top-left-radius: 10px;
-      border-top-right-radius: 10px;
-      object-fit: cover;
-    }
-    .background-section {
-      position: relative;
-      height: 280px; /* Altura deseada de la sección de fondo */
-      margin: 4%;
-    }
-
-    .background-image img {
-      width: 100%;
-      height: auto;
-      object-fit: cover;
-    }
-
-    .background-section p{
-      font-size: 20px;
-    }
-
-    .content
-    {
-      padding: 5px;
-    }
-
-    .background-section h2{
-      font-size: 25px;
-      margin-top: 0;
-    }
-    
-
-    .infoLibros{
-      margin: auto;
-      padding: 20px;
-      padding-top: 5px;
-      margin: 5%;
-      font-size: 10px;
-    }
-
-    .infoLibros h2 {
-      margin-bottom: 10px;
-      font-size: 25px;
-    }
-
-    .infoLibros p{
-      font-size: 20px;
-      margin-bottom: 20px;
-    }
-
-    .divImg {
-      width: 120px;
-      height: auto;
-overflow: hidden;
-      max-height: 265px;
-    }
-
-    .recommendations-section{
-      margin: auto;
-      padding: 20px;
-      padding-top: 5px;
-      margin: 5%;
-    }
-
-    .recommendations-section h2{
-      font-size: 25px;
-    }
-
-    .recommendations-section p{
-      font-size: 20px;
-    }
+/* Añadir estilos responsivos */
+@media (max-width: 768px) {
+  body {
+    margin: 2%;
   }
 
+  header h1 {
+    font-size: 2em;
+    margin-left: 20px;
+  }
 
-  
+  .content {
+    padding: 10%;
+  }
+
+  .infoLibros {
+    margin: 0 20px;
+    padding: 15px;
+  }
+
+  .infoLibros h2 {
+    font-size: 1.5em;
+  }
+
+  .infoLibros p {
+    font-size: 1em;
+  }
+}

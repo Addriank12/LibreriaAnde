@@ -41,12 +41,10 @@ export class LibroService {
 
   public async updateLibro(selectedLibro: LibroModel): Promise<void> {
     try {
-      selectedLibro.imagen = await this.uploadFile(selectedLibro);
-      await this.libroController.update(selectedLibro);
+      selectedLibro.imagen = await this.uploadFile(selectedLibro);      
     } catch (error) {
-      console.error('Error updating libro:', error);
-      throw error;
     }
+    await this.libroController.update(selectedLibro);
   }
 
   public async getLibroByTitulo(titulo: string): Promise<LibroModel> {

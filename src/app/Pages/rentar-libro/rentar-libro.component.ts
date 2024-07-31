@@ -25,7 +25,7 @@ export class RentarLibroComponent {
   libros: any[] = [];
   loading: boolean = true;
   email: string = '';
-  fechaEntrega: string = '';
+  fechaEntrega: Date = new Date();
   diasRestantes: number = 0;
   searchQuery: string = '';
 
@@ -73,7 +73,7 @@ export class RentarLibroComponent {
         diasSumados++;
       }
     }
-    this.fechaEntrega = fechaSeleccionada.toISOString().split('T')[0]; // Formatear fecha para mostrar
+    this.fechaEntrega = fechaSeleccionada; // Formatear fecha para mostrar
     this.diasRestantes = 5; // En este contexto, siempre serán 5 días laborales
   }
 
@@ -101,7 +101,7 @@ export class RentarLibroComponent {
       const reserva: ReservaModel = {
         libro: this.libro,
         user: user,
-        fechaRenta: new Date().toISOString().split('T')[0], // Formatear fecha para mostrar
+        fechaRenta: new Date(), // Formatear fecha para mostrar
         fechaDevolucion: this.fechaEntrega,
         estado: 'pendiente',
         id: '',
@@ -109,6 +109,11 @@ export class RentarLibroComponent {
       this.rentaService
         .rentarLibro(reserva)
         .then(() => {
+          const libro = this.libro;
+          if (libro) {
+            libro.existencias--;
+            this.libroService.updateLibro(libro);
+          }          
           alert('Libro rentado exitosamente');
         })
         .catch((error) => {

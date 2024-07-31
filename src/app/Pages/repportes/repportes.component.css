@@ -1,0 +1,88 @@
+.reportes-container {
+    padding: 20px;
+    font-family: 'Arial', sans-serif;
+    background-color: #f0f0f0; /* Fondo más claro */
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  h1 {
+    text-align: center;
+    color: #222; /* Texto más oscuro */
+  }
+  
+  .filters {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    margin-bottom: 20px;
+  }
+  
+  .filter-group {
+    flex: 1;
+    min-width: 200px;
+  }
+  
+  label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: #333; /* Texto más oscuro */
+  }
+  
+  input[type="text"], input[type="date"] {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #bbb; /* Borde más oscuro */
+    border-radius: 4px;
+    box-sizing: border-box;
+    background-color: #fff; /* Fondo blanco para inputs */
+    color: #333; /* Texto más oscuro */
+  }
+  
+  input[type="text"]::placeholder, input[type="date"]::placeholder {
+    color: #888; /* Placeholder más oscuro */
+  }
+  
+  .btn-primary {
+    padding: 10px 20px;
+    background-color: #0056b3; /* Botón más oscuro */
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  .btn-primary:hover {
+    background-color: #004494; /* Hover más oscuro */
+  }
+  
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+  }
+  
+  th, td {
+    border: 1px solid #bbb; /* Borde más oscuro */
+    padding: 12px;
+    text-align: left;
+  }
+  
+  td{
+    color: #333;
+  }
+
+  th {
+    background-color: #0056b3; /* Fondo más oscuro */
+    color: 333;
+  }
+  
+  tbody tr:nth-child(even) {
+    background-color: #e9e9e9; /* Fondo más claro */
+  }
+  
+  tbody tr:hover {
+    background-color: #d0d0d0; /* Hover más oscuro */
+  }

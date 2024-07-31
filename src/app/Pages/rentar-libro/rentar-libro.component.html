@@ -28,7 +28,7 @@
         <p><strong>Libro a rentar:</strong> {{ libro.titulo }}</p>
         <p><strong>Usuario:</strong> {{ email }}</p>
         <p *ngIf="fechaEntrega">
-          <strong>Fecha prevista de entrega:</strong> {{ fechaEntrega }}
+          <strong>Fecha prevista de entrega:</strong> {{ fechaEntrega | date }}
         </p>
         <p *ngIf="diasRestantes >= 0"><strong>Días restantes:</strong> {{ diasRestantes }}</p>
         <p>

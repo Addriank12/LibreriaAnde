@@ -1,0 +1,65 @@
+<div class="reportes-container">
+    <h1>Reportes de Reservas</h1>
+    <div class="filters">
+      <div class="filter-group">
+        <label for="userFilter">Filtrar por Usuario:</label>
+        <input id="userFilter" [(ngModel)]="userFilter" placeholder="Nombre de usuario" />
+      </div>
+      <div class="filter-group">
+        <label for="bookFilter">Filtrar por Libro:</label>
+        <input id="bookFilter" [(ngModel)]="bookFilter" placeholder="Título del libro" />
+      </div>
+      <div class="filter-group">
+        <label for="startDate">Fecha de Inicio:</label>
+        <input id="startDate" type="date" [(ngModel)]="startDate" />
+      </div>
+      <div class="filter-group">
+        <label for="endDate">Fecha de Fin:</label>
+        <input id="endDate" type="date" [(ngModel)]="endDate" />
+      </div>
+      <button class="btn-primary" (click)="exportToCSV()">Exportar a CSV</button>
+    </div>
+    <table>
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Usuario</th>
+          <th>Libro</th>
+          <th>Estado</th>
+          <th>Fecha de Renta</th>
+          <th>Fecha de Devolución</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let reserva of filteredReservas()">
+          <td>{{ reserva.id }}</td>
+          <td>{{ reserva.user.userName }}</td>
+          <td>{{ reserva.libro.titulo }}</td>
+          <td>{{ reserva.estado }}</td>
+          <td>{{ reserva.fechaRenta | date }}</td>
+          <td>{{ reserva.fechaDevolucion | date }}</td>
+        </tr>
+      </tbody>
+    </table>
+  
+    <h1>Reporte de Usuarios</h1>
+    <table>
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Nombre de Usuario</th>
+          <th>Email</th>
+          <th>Fecha de Registro</th>
+          <th>Último Acceso</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let usuario of usuarios">
+          <td>{{ usuario.email }}</td>
+          <td>{{ usuario.userName }}</td>
+          <td>{{ usuario.telefono| date }}</td>
+          <td>{{ usuario.direccion }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>

@@ -6,6 +6,7 @@ import { UserInfoService } from '../../Services/user-info.service';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
 import { UserInfo } from '../../Domain/UserInfoModel';
+import { UserCache } from '../../Common/UserCache';
 
 @Component({
   selector: 'app-header',
@@ -53,10 +54,22 @@ export class HeaderComponent {
   }
 
   ngOnInit() {
-    this.sub = this.authService.currentUser$.subscribe(async (user) => {
-      this.currentUser = await this.authService.getCurrentUser();
-      if (this.currentUser.email === '') {
-        this.router.navigate(['/home']);
+    this.sub = this.authService.currentUser$.subscribe({
+      next: async (user) => {
+        try {
+          this.currentUser = UserCache.getStoredUser().currentUser;
+          if (this.currentUser.email === '' && this.router.url !== '/home') {
+            this.router.navigate(['/home']);
+          }
+        } catch (error) {
+          console.error('Error fetching current user:', error);
+        }
+      },
+      error: (err) => {
+        console.error('Error in currentUser$ subscription:', err);
+      },
+      complete: () => {
+        console.log('currentUser$ subscription completed');
       }
     });
   }

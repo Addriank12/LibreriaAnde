@@ -6,16 +6,16 @@ export class ReservaModel {
   user: UserInfo;
   libro: LibroModel;
   estado: 'pendiente' | 'devuelto';
-  fechaRenta: string;
-  fechaDevolucion: string;
+  fechaRenta: Date;
+  fechaDevolucion: Date;
 
   constructor(
     id: string,
     user: UserInfo,
     libro: LibroModel,
     estado: 'pendiente' | 'devuelto',
-    fechaRenta: string,
-    fechaDevolucion: string
+    fechaRenta: Date,
+    fechaDevolucion: Date
   ) {
     this.id = id;
     this.user = user;
