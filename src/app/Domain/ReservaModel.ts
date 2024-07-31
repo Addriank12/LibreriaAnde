@@ -5,17 +5,17 @@ export class ReservaModel {
   id: string;
   user: UserInfo;
   libro: LibroModel;
-  estado: 'pendiente' | 'devuelto';
-  fechaRenta: Date;
-  fechaDevolucion: Date;
+  estado: 'pendiente' | 'devuelto' | 'reservado';
+  fechaRenta: string;
+  fechaDevolucion: string;
 
   constructor(
     id: string,
     user: UserInfo,
     libro: LibroModel,
-    estado: 'pendiente' | 'devuelto',
-    fechaRenta: Date,
-    fechaDevolucion: Date
+    estado: 'pendiente' | 'devuelto' | 'reservado',
+    fechaRenta: string,
+    fechaDevolucion: string
   ) {
     this.id = id;
     this.user = user;

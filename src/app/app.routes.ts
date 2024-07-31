@@ -12,6 +12,7 @@ import { RentarLibroComponent } from './Pages/rentar-libro/rentar-libro.componen
 import { GestionRComponent } from './Pages/gestion-r/gestion-r.component';
 import { GestionLComponent } from './Pages/gestion-l/gestion-l.component';
 import { RepportesComponent } from './Pages/repportes/repportes.component';
+import { MisReservasComponent } from './Pages/mis-reservas/mis-reservas.component';
 
 export const routes: Routes = [
     { path: '', redirectTo: 'home', pathMatch: 'full' }, // Redirect to home component
@@ -22,6 +23,7 @@ export const routes: Routes = [
     { path: 'login', component: AuthenticationComponent },
     { path: 'profile', component: ProfileComponent },
     { path: 'gestion', component: GestionComponent },
+    { path: 'mis-reservas', component: MisReservasComponent },
     { path: 'gestion/:titulo', component: GestionLComponent },
     { path: 'gestion-l', component: GestionLComponent },
     { path: 'gestion-u', component: GestionUComponent },

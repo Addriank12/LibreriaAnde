@@ -36,6 +36,17 @@ export class GestionRComponent {
     libro.existencias++;
     await this.libroService.updateLibro(libro); // Incrementar la existencia del libro
     this.loadRentas();
-}
-  
+  }
+
+  async marcarComoReservado(renta: ReservaModel, fechaInicio: string) {
+    const hoy = new Date().toISOString().split('T')[0]; // Fecha actual en formato YYYY-MM-DD
+    if (fechaInicio === hoy) {
+      renta.estado = 'reservado';
+    } else {
+      renta.estado = 'pendiente';
+    }
+    renta.fechaRenta = fechaInicio;
+    await this.rentaService.updateRenta(renta);
+    this.loadRentas();
+  }
 }
