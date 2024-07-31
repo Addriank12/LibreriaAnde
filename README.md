@@ -1,5 +1,5 @@
 # Librería Del Ande - Frontend
-
+## Realizado por: @Addriank12 (Adrián Campoverde) y @Marcoxskii (Marco Cajamarca)
 Bienvenidos al repositorio del frontend del proyecto Librería Del Ande. Este proyecto es una aplicación web desarrollada con Angular que permite a los usuarios buscar, rentar y gestionar libros en línea. Los administradores pueden gestionar los libros, usuarios y reservas a través de una interfaz dedicada.
 
 ## Descripción del Proyecto
