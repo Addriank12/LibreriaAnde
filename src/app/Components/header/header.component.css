@@ -95,7 +95,7 @@
 
 @media (max-width: 950px) {
   li a {
-    font-size: 6px;
+    font-size: 12px;
     margin: 0; /* Elimina los márgenes */
     padding: 0; /* Reduce el relleno */
   }
@@ -147,11 +147,11 @@
   }
 
   .mobile-menu li a{
-    font-size: 25px;
+    font-size: 13px;
   }
 
   .auth-section-wide label{
-    font-size: 15px;
+    font-size: 13px;
   }
 
 }

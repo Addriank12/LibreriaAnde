@@ -141,9 +141,24 @@ header h1 {
     margin: 2%;
   }
 
+  h1{
+    font-size: 30px;
+  }
+
+  .background-section {
+    margin: 0 20px;
+    font-size: 12px;
+  }
+
+  .background-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
   header h1 {
-    font-size: 2em;
-    margin-left: 20px;
+    font-size: 1em;
+    margin-left: 10px;
   }
 
   .content {
@@ -156,10 +171,23 @@ header h1 {
   }
 
   .infoLibros h2 {
-    font-size: 1.5em;
+    font-size: 1em;
   }
 
   .infoLibros p {
+    font-size: 1em;
+  }
+
+  .recommendations-section {
+    margin: 0 20px;
+    padding: 15px;
+  }
+
+  .recommendations-section h2 {
+    font-size: 1em;
+  }
+
+  .recommendations-section p{
     font-size: 1em;
   }
 }
