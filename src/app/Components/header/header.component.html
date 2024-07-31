@@ -14,6 +14,7 @@
       <li><a routerLink="aboutIt">Acerca De</a></li>
       @if (currentUser.isAdmin) {
       <li><a routerLink="gestion">Gestion</a></li>
+      <a *ngIf="mostrarMisReservas" routerLink="/mis-reservas">Mis Reservas</a>
       }
     </ul>
   </nav>
@@ -30,6 +31,7 @@
     <li><a routerLink="aboutIt">Acerca De</a></li>
     @if (currentUser.isAdmin) {
     <li><a routerLink="gestion">Gestion</a></li>
+    <a *ngIf="mostrarMisReservas" routerLink="/mis-reservas">Mis Reservas</a>
     }
     <div class="auth-section-mobile">
       @if (currentUser.email != "") {

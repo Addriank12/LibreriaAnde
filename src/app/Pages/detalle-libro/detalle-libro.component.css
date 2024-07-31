@@ -89,3 +89,11 @@
 .boton-volver:hover {
     background-color: #2980b9;
 }
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .boton-volver {
+        font-size: 0.9em; /* Ajusta el tamaño de la fuente para pantallas medianas */
+        padding: 8px 12px; /* Ajusta el padding para pantallas medianas */
+    }
+}

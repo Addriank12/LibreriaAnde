@@ -26,4 +26,9 @@ export class RentaService {
   async getRentas(): Promise<ReservaModel[]> {
     return await this.reservaController.getAll();
   }
+
+  async usuarioTieneRenta(usuarioId: string): Promise<boolean> {
+    const reservas = await this.getReservasUsuario(usuarioId);
+    return reservas.length > 0;
+  }  
 }

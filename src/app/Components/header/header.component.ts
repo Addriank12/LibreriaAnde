@@ -6,6 +6,7 @@ import { UserInfoService } from '../../Services/user-info.service';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
 import { UserInfo } from '../../Domain/UserInfoModel';
+import { RentaService } from '../../Services/renta.service';
 
 @Component({
   selector: 'app-header',
@@ -23,13 +24,16 @@ export class HeaderComponent {
     telefono: '',
     profilePic: '',
     token: '',
+    
   };
+  mostrarMisReservas: boolean = false;
   private sub: Subscription = new Subscription();
 
   constructor(
     public authService: AuthService,
     private userInfoService: UserInfoService,
-    private router: Router
+    private router: Router,
+    private rentaService: RentaService
   ) {
     document.addEventListener('DOMContentLoaded', function () {
       const menuToggle = document.getElementById('menu-toggle');
@@ -57,6 +61,8 @@ export class HeaderComponent {
       this.currentUser = await this.authService.getCurrentUser();
       if (this.currentUser.email === '') {
         this.router.navigate(['/home']);
+      } else {
+        this.mostrarMisReservas = await this.rentaService.usuarioTieneRenta(this.currentUser.email);
       }
     });
   }
