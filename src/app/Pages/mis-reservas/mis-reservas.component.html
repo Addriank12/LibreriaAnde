@@ -1,1 +1,23 @@
-
+<div class="container">
+    <h2>Mis Reservas</h2>
+    <table class="reservas-table">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Libro</th>
+          <th>Estado</th>
+          <th>Fecha de Renta</th>
+          <th>Fecha de Devolución</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let reserva of reservas">
+          <td>{{ reserva.id }}</td>
+          <td>{{ reserva.libro.titulo }}</td>
+          <td>{{ reserva.estado }}</td>
+          <td>{{ reserva.fechaRenta | date }}</td>
+          <td>{{ reserva.fechaDevolucion | date }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>

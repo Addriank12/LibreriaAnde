@@ -111,7 +111,9 @@ export class RentarLibroComponent {
         .then(() => {
           const libro = this.libro;
           if (libro) {
-            libro.existencias--;
+            if (libro.existencias !== null && libro.existencias !== undefined) {
+              libro.existencias--;
+            }
             this.libroService.updateLibro(libro);
           }          
           alert('Libro rentado exitosamente');

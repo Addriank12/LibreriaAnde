@@ -6,6 +6,8 @@ import { Router } from '@angular/router';
 import { UserInfo } from '../../Domain/UserInfoModel';
 import { RentaService } from '../../Services/renta.service';
 import { UserInfoService } from '../../Services/user-info.service';
+import { ReservaModel } from '../../Domain/ReservaModel';
+import { UserCache } from '../../Common/UserCache';
 
 
 @Component({
@@ -70,6 +72,7 @@ export class AuthenticationComponent implements OnInit {
       this.asuthService.setUserName(user);
       user.isAdmin = (await this.userInfoService.getUserByEmail(credential.email)).isAdmin;
       this.asuthService.setUserName(user);
+      await this.CheckReservas();
       // Navigate to home page
       this.router.navigate(['/home']);
     } catch (error: any) {
@@ -97,6 +100,27 @@ export class AuthenticationComponent implements OnInit {
   changeMode(){
     this.loginMode = !this.loginMode;
     this.error = "";
+  }
+
+  proximasDevoluciones: ReservaModel[] = [];
+
+  async CheckReservas(){
+    this.proximasDevoluciones = await this.rentaService.getProximasDevoluciones(
+      UserCache.getStoredUser().currentUser.email
+    );
+    if (this.proximasDevoluciones.length > 0) {
+      const devolucionesMensaje = this.proximasDevoluciones
+        .map(
+          (reserva) =>
+            `Libro: ${
+              reserva.libro.titulo
+            }, Fecha de Devolución: ${new Date(
+              reserva.fechaDevolucion
+            ).toLocaleDateString()}`
+        )
+        .join('\n');
+      alert(`Tienes próximas devoluciones:\n${devolucionesMensaje}`);
+    }
   }
   
 }

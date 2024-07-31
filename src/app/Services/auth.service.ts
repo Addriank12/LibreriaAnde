@@ -6,6 +6,8 @@ import { UsersInfoController } from '../DataAcces/UsersInfoController';
 import { SignUpController } from '../DataAcces/SignUpController';
 import { LibroController } from '../DataAcces/LibroController';
 import { UserCache } from '../Common/UserCache';
+import { RentaService } from './renta.service';
+import { ReservaModel } from '../Domain/ReservaModel';
 
 export interface Credential {
   email: string;
@@ -25,7 +27,7 @@ export class AuthService {
   private signUpController: SignUpController = new SignUpController();
   private userInfoController: UsersInfoController = new UsersInfoController();
 
-  constructor() {
+  constructor(private rentaService: RentaService) {
     this.initializeCurrentUser();
   }
 

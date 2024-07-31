@@ -33,13 +33,15 @@ export class GestionRComponent {
     renta.fechaDevolucion = new Date();
     await this.rentaService.updateRenta(renta);
     const libro = renta.libro;
-    libro.existencias++;
-    await this.libroService.updateLibro(libro); // Incrementar la existencia del libro
+    if (libro.existencias) {
+      libro.existencias++;
+      await this.libroService.updateLibro(libro); // Incrementar la existencia del libro
+    }
     this.loadRentas();
   }
 
-  async marcarComoReservado(renta: ReservaModel, fechaInicio: string) {
-    const hoy = new Date().toISOString().split('T')[0]; // Fecha actual en formato YYYY-MM-DD
+  async marcarComoReservado(renta: ReservaModel, fechaInicio: Date) {
+    const hoy = new Date(); // Fecha actual en formato YYYY-MM-DD
     if (fechaInicio === hoy) {
       renta.estado = 'reservado';
     } else {

@@ -7,37 +7,28 @@
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
-input{
-    margin-top: 10px;
-    margin-bottom: 10px;
-    padding: 10px;
-    border: 1px solid #000;
-    border-radius: 15px;
+input {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  padding: 10px;
+  border: 1px solid #000;
+  border-radius: 15px;
 }
 
-button{
-    background-color: #0066B8;
-    color: #fff;
-    padding: 10px;
-    border: none;
-    border-radius: 20px;
-    cursor: pointer;
+button {
+  background-color: #0066b8;
+  color: #fff;
+  padding: 10px;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
 }
 
-textarea{
-    margin-top: 10px;
-    margin-bottom: 10px;
-    padding: 10px;
-    border: 1px solid #000;
-    border-radius: 15px;
-    max-height: 400px;
-}
-
-img{
-    width: 100%;
-    max-width: 32px;
-    margin: 0 auto;
-    display: block;
+img {
+  width: 100%;
+  max-width: 32px;
+  margin: 0 auto;
+  display: block;
 }
 
 table {
@@ -46,7 +37,8 @@ table {
   margin-top: 20px;
 }
 
-th, td {
+th,
+td {
   padding: 10px;
   border: 1px solid #34495e;
   text-align: left;
@@ -56,121 +48,138 @@ th {
   background-color: #34495e;
 }
 
+.add-book-form {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  width: 90%;
+  max-width: 500px;
+  z-index: 1000;
+}
+
+.add-book-form .close-button {
+  background-color: #ff5c5c;
+  color: #fff;
+  border: none;
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  font-size: 16px;
+  cursor: pointer;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.add-book-form form {
+  display: flex;
+  flex-direction: column;
+}
+
+.add-book-form input[type="text"],
+.add-book-form input[type="file"],
+.add-book-form input[type="number"],
+.add-book-form textarea {
+  margin-bottom: 15px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
+  transition: border-color 0.3s;
+}
+
+.add-book-form input[type="text"]:focus,
+.add-book-form input[type="number"]:focus,
+.add-book-form input[type="file"]:focus,
+.add-book-form textarea:focus {
+  border-color: #007bff;
+  outline: none;
+}
+
+.add-book-form textarea {
+  resize: vertical;
+  min-height: 100px;
+}
+
+.add-book-form button[type="submit"] {
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.add-book-form button[type="submit"]:hover {
+  background-color: #0056b3;
+}
+
+.data-list {
+  width: 45%;
+  padding-left: 3%;
+}
+
+.data-list tr:nth-child(even) {
+  background-color: #f4f4f427; /* Fondo gris claro */
+}
+
+.search-bar {
+  width: 100%;
+  max-width: 400px;
+  padding: 10px;
+  margin-bottom: 20px;
+  margin-right: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 1em;
+}
+
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 999;
+}
+
+tbody tr:nth-child(even) {
+  background-color: #f4f4f431; /* Fondo gris claro */
+}
+
+.full-width-table {
+  cursor: pointer;
+}
+
+@media (max-width: 907px) {
+  .management-section h2 {
+    display: block;
+    font-size: 20px;
+  }
+
+  form {
+    padding: 5px;
+  }
+  table {
+    width: 100%;
+    font-size: 6px;
+  }
   .content-area {
-    display: flex;
-    justify-content: space-between;
+    display: block;
   }
-  
   .data-list {
-    width: 45%;
-    padding-left: 3%;
-  }
-  
-  .data-list tr:nth-child(even) {
-    background-color: #f4f4f427; /* Fondo gris claro */
+    width: 100%;
+    padding-left: 0;
   }
 
-  .search-bar {
-    width: 100%;
-    max-width: 400px;
-    padding: 10px;
-    margin-bottom: 20px;
-    margin-right: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    font-size: 1em;
 }
-
-  .add-book-form {
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background-color: rgb(206, 206, 206);
-    padding: 15px;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
-    z-index: 1000;
-    width: 80%;
-    max-width: 500px;
-    border-radius: 8px;
-  }
-
-  form{
-    background-color: #fff;
-    color: black;
-    padding: 40px;
-    display: grid;
-    border-radius: 15px;
-    grid-template-columns: 1fr;
-    justify-content: center;
-    align-items: center;
-    margin: 0 auto;
-    max-width: 300px;
-    width: 100%;
-}
-
-  .modal-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.5);
-    z-index: 999;
-  }
-
-  tbody tr:nth-child(even) {
-    background-color: #f4f4f431; /* Fondo gris claro */
-  }
-
-  .full-width-table{
-    cursor: pointer;
-  }
-
-  
-
-  @media (max-width: 907px) {
-
-    .management-section h2{
-        display: block;
-        font-size: 20px;
-    }
-
-    form{
-        padding: 5px;
-    }
-    table {
-        width: 100%;
-        font-size: 6px;
-    }
-    .content-area {
-        display: block;
-    }
-    .data-list {
-        width: 100%;
-        padding-left: 0;
-    }
-    .add-book-form {
-        width: 100%;
-    }
-
-    add-book-form input{
-      width: 80%;
-      margin: 0 auto;
-    }
-
-    .add-book-form textarea{
-      width: 80%;
-      text-align: center;
-      margin: 0 auto;
-    }
-
-    .add-book-form button{
-      width: 80%;
-      height: 80%;
-      margin: 0 auto;
-    }
-    
-  }
-
-  

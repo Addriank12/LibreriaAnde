@@ -27,11 +27,11 @@ export class GestionLComponent {
       private route: ActivatedRoute,
       private libroService: LibroService,
       authService: AuthService) {
-
     }
 
   toggleFormulario(): void {
-    this.mostrarFormulario = !this.mostrarFormulario;
+    this.selectedLibro = new LibroModel();
+    this.mostrarFormulario = !this.mostrarFormulario;    
   }
 
   ngOnInit() { 
