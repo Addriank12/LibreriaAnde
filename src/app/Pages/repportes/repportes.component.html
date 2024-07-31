@@ -1,13 +1,29 @@
 <div class="reportes-container">
+  <div class="filter-group">
+    <label for="reportType">Tipo de Reporte:</label>
+    <select id="reportType" [(ngModel)]="selectedReportType">
+      <option value="reservas">Reporte de Reservas</option>
+      <option value="usuarios">Reporte de Usuarios</option>
+    </select>
+  </div>
+  <div *ngIf="selectedReportType === 'reservas'">
     <h1>Reportes de Reservas</h1>
     <div class="filters">
       <div class="filter-group">
         <label for="userFilter">Filtrar por Usuario:</label>
-        <input id="userFilter" [(ngModel)]="userFilter" placeholder="Nombre de usuario" />
+        <input
+          id="userFilter"
+          [(ngModel)]="userFilter"
+          placeholder="Nombre de usuario"
+        />
       </div>
       <div class="filter-group">
         <label for="bookFilter">Filtrar por Libro:</label>
-        <input id="bookFilter" [(ngModel)]="bookFilter" placeholder="Título del libro" />
+        <input
+          id="bookFilter"
+          [(ngModel)]="bookFilter"
+          placeholder="Título del libro"
+        />
       </div>
       <div class="filter-group">
         <label for="startDate">Fecha de Inicio:</label>
@@ -17,7 +33,9 @@
         <label for="endDate">Fecha de Fin:</label>
         <input id="endDate" type="date" [(ngModel)]="endDate" />
       </div>
-      <button class="btn-primary" (click)="exportToCSV()">Exportar a CSV</button>
+      <button class="btn-primary" (click)="exportToCSV()">
+        Exportar a CSV
+      </button>
     </div>
     <table>
       <thead>
@@ -41,25 +59,30 @@
         </tr>
       </tbody>
     </table>
-  
+  </div>
+
+  <div *ngIf="selectedReportType === 'usuarios'">
     <h1>Reporte de Usuarios</h1>
+    <button class="btn-primary" (click)="exportUsuariosToCSV()">
+        Exportar a CSV
+      </button>
     <table>
       <thead>
         <tr>
-          <th>ID</th>
-          <th>Nombre de Usuario</th>
           <th>Email</th>
-          <th>Fecha de Registro</th>
-          <th>Último Acceso</th>
+          <th>Nombre de Usuario</th>
+          <th>Teléfono</th>
+          <th>Dirección</th>
         </tr>
       </thead>
       <tbody>
         <tr *ngFor="let usuario of usuarios">
           <td>{{ usuario.email }}</td>
           <td>{{ usuario.userName }}</td>
-          <td>{{ usuario.telefono| date }}</td>
+          <td>{{ usuario.telefono }}</td>
           <td>{{ usuario.direccion }}</td>
         </tr>
       </tbody>
     </table>
   </div>
+</div>

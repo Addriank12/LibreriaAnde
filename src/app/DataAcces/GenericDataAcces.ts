@@ -3,7 +3,7 @@ import { AuthService } from '../Services/auth.service';
 
 export abstract class GenericRepository {
   protected abstract collectionName: string;
-  baseURL: string = 'http://172.22.212.79:8080/delande/api/';
+  baseURL: string = 'https://51.8.173.13:8443/delande/api/';
 
   getToken(): string {
     return UserCache.getStoredUser().currentUser.token;

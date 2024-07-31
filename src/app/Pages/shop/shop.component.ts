@@ -10,7 +10,7 @@ import { LibroModel } from '../../Domain/LIbroModel';
   standalone: true,
   imports: [FormsModule, CommonModule, RouterLink],
   templateUrl: './shop.component.html',
-  styleUrl: './shop.component.css'
+  styleUrl: './shop.component.css',
 })
 export class ShopComponent {
   searchCategory: string = '';
@@ -18,16 +18,21 @@ export class ShopComponent {
   searchAutor: string = '';
   searchGenero: string = '';
   searchAnioPublicacion: number | null = null;
-  searchExistencias: number | null = null;
+  searchExistencias: boolean = true;
   libros: LibroModel[] = [];
   isLoading: boolean = false;
 
   constructor(private libroService: LibroService) {}
 
   async ngOnInit() {
-    await this.performAdvancedSearch() 
+    await this.performAdvancedSearch();
     this.isLoading = false;
     console.log(this.libros);
+  }
+
+  async toggleSearchExistencias() {
+    this.searchExistencias = !this.searchExistencias;
+    await this.performAdvancedSearch();
   }
 
   async performAdvancedSearch() {
@@ -36,14 +41,17 @@ export class ShopComponent {
     console.log('Género:', this.searchGenero);
     console.log('Año de Publicación:', this.searchAnioPublicacion);
     console.log('Existencias:', this.searchExistencias);
+    
     this.libros = await this.libroService.getLibros();
-    this.libros = this.libros.filter(libro => {
-      return (!this.searchTitulo || libro.titulo.includes(this.searchTitulo)) &&
-         (!this.searchAutor || libro.autor.includes(this.searchAutor)) &&
-         (!this.searchGenero || libro.genero.includes(this.searchGenero)) &&
-         (!this.searchAnioPublicacion || Number(libro.anioPublicacion) === this.searchAnioPublicacion) &&
-         (!this.searchExistencias || libro.existencias === Number(this.searchExistencias));
+    
+    this.libros = this.libros.filter((libro) => {
+      return (
+        (!this.searchTitulo || libro.titulo.includes(this.searchTitulo)) &&
+        (!this.searchAutor || libro.autor.includes(this.searchAutor)) &&
+        (!this.searchGenero || libro.genero.includes(this.searchGenero)) &&
+        (!this.searchAnioPublicacion || Number(libro.anioPublicacion) === this.searchAnioPublicacion) &&
+        (libro.existencias !== null && (this.searchExistencias ? libro.existencias > 0 : libro.existencias === 0))
+      );
     });
   }
-
 }

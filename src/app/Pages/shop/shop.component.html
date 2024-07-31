@@ -23,12 +23,10 @@
       />
     </div>
     <div>
-      <label for="searchExistencias">Existencias:</label>
-      <input
-        type="number"
-        id="searchExistencias"
-        [(ngModel)]="searchExistencias"
-      />
+      <label for="searchExistencias">Disponible:</label>
+      <button class="toggle-button" (click)="toggleSearchExistencias()">
+        {{ searchExistencias ? 'No Disponibles' : 'Disponibles' }}
+      </button>
     </div>
     <button (click)="performAdvancedSearch()">Buscar</button>
   </section>
